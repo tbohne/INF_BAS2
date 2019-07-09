@@ -1,0 +1,6 @@
+*.toc
+*.aux
+*.bbl
+*.blg
+*.log
+tex_files/main.pdf
