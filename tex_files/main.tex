@@ -1,0 +1,97 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{a4wide}
+
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{palatino} %font
+
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption} %für subfigures
+\usepackage{url}
+\usepackage{tocloft}
+\usepackage{acronym}
+
+\usepackage{lipsum}
+
+%Pfad für Grafiken
+\graphicspath{{img/}}
+
+%Styleregeln
+\widowpenalty10000 % Vermeidet einzelne Zeilen eines Absatzes zu Beginn einer Seite
+\clubpenalty10000 % Vermeidet einzelne Zeilen eines Absatzes am Ende einer Seite
+\addtocontents{toc}{\protect\sloppy}
+\setcounter{tocdepth}{3}
+
+\begin{document}
+
+%deaktiviere Seitenzahlen
+\pagenumbering{gobble}
+
+%Titelseite
+\begin{titlepage}
+\centering
+\thispagestyle{empty}
+\begin{center}
+\includegraphics[width=0.9\textwidth]{uos.pdf}
+\end{center}
+\LARGE{\textsc{Institut für Informatik\\Arbeitsgruppe Verteilte Systeme}}
+\vfill
+\LARGE{\emph{Veranstaltungstitel}}\\
+\vspace{8mm}
+\huge{\textbf{{\fontfamily{ppl}\selectfont
+Titel der Arbeit}}}\\
+\vspace{9mm}
+\LARGE{Autor}\\
+\vspace{0.2cm}
+%ACHTUNG: !!!Matrikelnummer nur für die Abgabeversion, NICHT mit ins Wiki hochladen!!!
+\normalsize{Matrikelnummer}\\
+\vspace{4cm}
+\large{[Winter$|$Sommer]semester}\\
+\vspace{0.2cm}
+\large{\today}
+\vfill
+\end{titlepage}
+\newpage
+
+%Inhaltsverzeichnis
+\tableofcontents
+\newpage
+
+\pagestyle{plain}
+\pagenumbering{arabic} %Starte Seitennummerierung
+
+\section{Einleitung}
+\cite{aaronson}\cite{flocchini}\cite{upper}
+
+\section{Hauptteil}
+
+\subsection{Unterthema}
+
+\subsubsection{Teilaspekt}
+%\ac{TLA}~
+
+\section{Schluss}
+\cite{rfc}
+
+%Anhang
+
+%\section*{Anhang}
+%\addcontentsline{toc}{section}{Anhang}
+
+%Abkürzungsverzeichnis
+
+%\subsection*{Abkürzungsverzeichnis}
+%\addcontentsline{toc}{subsection}{Abkürzungsverzeichnis}
+%\begin{acronym}[LONG]
+%\acro{TLA}{Three Letter Acronym}
+%\end{acronym}
+
+%Bibliographie
+\addcontentsline{toc}{section}{Literatur}
+\bibliographystyle{IEEEtranSA}
+%\bibliographystyle{acm}
+\bibliography{sources.bib}
+
+\end{document}
