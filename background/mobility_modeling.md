@@ -1,5 +1,14 @@
 # Modeling Mobility
 
+A mobility model is designed to describe the movement pattern of mobile
+users/devices, and how their location, velocity and acceleration change over time.
+
+- generate artificial movement that can be reproduces at any time
+- performance of a wireless communication system often depends on the
+  characteristics of the movements of the mobile nodes
+- desireable to emulate the movement pattern
+- otherwise simulation results may be misleading
+
 In performance evaluation of a protocol for an ad hoc network,
 the protocol should be tested under realistic conditions:
 - sensible transmission range
@@ -39,6 +48,8 @@ ad hoc networks.
 ### trace based
 
 - observed in real-life systems
+- networks have to exist
+- based on user movement traces
 - provide accurate information (especially when they involve a large number of participants
   and an appropriately long observation period)
 
@@ -46,11 +57,20 @@ ad hoc networks.
 
 - new network environments are not easily modeled if traces have not yet been created
 - attempt to realistically represent the behaviors of MNs without the use of traces
+- represent movement in a "realistic" fashion
+- 4 types of models: random, temporal dependencies, spatial dependencies, geographic restrictions
+
+## MOBILITY METRICS
+
+- pure movement metrics: no further assumptions
+- range-based metrics: contain a range around the ndoe as one parameter
+- link-based metrics: depend on links between two nodes
 
 ## ENTITY MOBILITY MODELS
 
 ### RANDOM WALK
 
+- nodes move to a randomly chosen destination with a randomly selected velocity
 - first described mathematically by Einstein in 1926
 - since many entities in nature move in extremely unpredictable ways,
   the Random Walk Mobility model was developed to mimic this erratic movement
@@ -64,6 +84,10 @@ ad hoc networks.
 
 ### RANDOM WAYPOINT
 
+- each node starts from random position
+- travels to randomly chosen destination (x, y)
+- with a constant velocity chosen randomly from [0, v_max]
+- bounces if boundary is reached
 - includes pause times between changes in direction and/or speed
 - MN travels toward the newly chosen destination at the selected speed
 - upon arrival, the MN pauses for a specified time period before starting the process again
@@ -92,6 +116,7 @@ ad hoc networks.
 
 ### GAUSS-MARKOV
 
+- affected by its movement history --> temporal dependencies
 - designed to adapt to different levels of randomness via one tuning parameter
 - ensure that an MN doesn't remain near an edge of the grid for a long period of time,
   the MNs are forced away from an edge when they move within a certain distance of the edge
@@ -229,9 +254,10 @@ ad hoc networks.
 
 - useful for specific realistic scenarios
 
-### RPGM
+### RPGM (REFERENCE POINT GROUP MOBILITY)
 
 - generic method for handling group mobility
+- correlated to the movement of other nodes
 
 ## SUMMARY
 
