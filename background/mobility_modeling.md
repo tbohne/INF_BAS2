@@ -121,3 +121,125 @@ ad hoc networks.
 ## GROUP MOBILITY MODELS
 
 - models that represent multiple MNs whose actions are completely independent of each other
+
+### EXPONENTIAL CORRELATED RANDOM MOBILITY
+
+- motion function is used to create MN movements
+- not easy to create a given motion pattern by selecting appropriate values
+
+### COLUMN MOBILITY
+
+- useful for scanning or searching purposes
+
+### NOMADIC COMMUNITY MOBILITY
+
+- just as ancient nomadic societies moved from location to location,
+  the Nomadic Community Mobility model represents groups of MNs that collectively
+  move from one point to another
+- individuals maintain their own personal space where they move in random ways
+- each MN uses an entity mobility model (e.g. Random Walk) to roam around a given reference point
+
+### PURSUE MOBILITY
+
+- attempts to represent MNs tracking a particular target
+- could represent police officers attempting to catch an escaped criminal
+
+### REFERENCE POINT GROUP MOBILITY
+
+- random motion of a group of MNs as well as the random motion of each individual MN
+  within the group
+- group movements are based on the path traveled by a logical center for the group
+- both the movement of the logical center for each group, and the random motion of each
+  individual MN within the group, are implemented via the Random Waypoint Mobility model
+- MNs do not use pause times
+- pause times are only used when the group reference point reaches a destination
+  and all group nodes pauses for the same period of time
+
+## IMPORTANCE OF CHOOSING A MOBILITY MODEL
+
+- choice of mobility model can have significant effect on the performance
+  investigation of an ad hoc network protocol
+
+## CONCLUSIONS
+
+- performance of an ad hoc network protocol can vary significantly with different mobility models
+- performance of an ad hoc network protocol can vary significantly when the same mobility model is
+  used with different parameters
+- selection of a mobility model may require a data traffic pattern that significantly influences protocol performance
+- performance of an ad hoc network protocol should be evaluated with the mobility model that most closely
+  matches the expected real world scenario
+- since the development of ad hoc networks is relatively new, we do not yet know what a realistic model
+  is for a given scenario
+- if the expected real world scenario is unknown, researchers should make an informed choice
+  about the mobility model to use
+
+## SUMMARY FOR SYNTHETIC ENTITY MOBILITY MODELS
+
+### RANDOM WALK MOBILITY
+
+- with a small input parameter (distance or time) produces
+  Brownian Motion --> basically evaluates a static network
+- a large input parameter (distance or time) is similar to the Random Waypoint Mobility model
+  without pause times
+- main difference between these two: MNs are more likely to cluster in the center of the
+  simulation area with the Random Waypoint Mobility model
+
+### RANDOM WAYPOINT MOBILITY
+
+- used in many prominent simulation studies of ad hoc network protocols
+- appears to create realistic mobility patterns
+- for example in a conference setting or museum
+
+### RANDOM DIRECTION MOBILITY
+
+- unrealistic model because it is unlikely that people would spread themselves evenly
+  throughout an area
+- unlikely that people will only pause at the edge of a given area
+- the Modified Random Direction model allows MNs to pause and change directions
+  before reaching the simulation boundary
+
+### BOUNDLESS SIMULATION AREA MOBILITY
+
+- movement patterns that one might expect in the real world
+- only model that allows MNs to travel unobstructed in the simulation area
+- undesired side effects that would occur from allowing the MNs to move around a torus
+
+### GAUSS-MARKOV MOBILITY
+
+- also provides movement patterns that one might expect in the real world
+  (if appropriate parameters are chosen)
+
+### PROBABILISTIC RANDOM WALK MOBILITY
+
+- also provides movement patterns that one might expect in the real world
+- choosing appropriate parameters for the probability matrix may be difficult
+
+### CITY SECTION MOBILITY
+
+- appears to create realistic movements for a section of a city
+
+## SUMMARY FOR SYNTHETIC GROUP MOBILITY MODELS
+
+### EXPONENTIAL CORRELATED RANDOM MOBILITY
+
+- appears to theoretically describe all other mobility models
+- selecting appropriate parameter values is (almost) impossible
+
+### COLUMN, NOMADIC COMMUNITY AND PURSUE MOBILITY
+
+- useful for specific realistic scenarios
+
+### RPGM
+
+- generic method for handling group mobility
+
+## SUMMARY
+
+- if group mobility model is desired, using RPGM with appropriate parameters is recommended
+- if entity mobility model is desired, using either Random Waypoint, Random Walk
+  (if clustering is undesired) or Gauss-Markov is recommended
+- further research on mobility models for ad hoc network protocol evaluation is needed
+- devote further effort in examining the movements of entities in the real world
+  to produce accurate mobility models
+- further effort to develop new model that combines the best attributes of some of the models
+- develop a minimum mobility model standard for performance evaluation
