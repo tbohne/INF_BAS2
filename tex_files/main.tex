@@ -13,6 +13,8 @@
 \usepackage{tocloft}
 \usepackage{acronym}
 
+\usepackage[babel,german=quotes,threshold=3]{csquotes} 
+
 \usepackage{lipsum}
 
 %Pfad für Grafiken
@@ -64,30 +66,137 @@ Analyzing Mobility-Traffic Correlations in Large WLAN Traces}}}\\
 \pagenumbering{arabic} %Starte Seitennummerierung
 
 \section{Einleitung}
-\cite{aaronson}\cite{flocchini}\cite{upper}
 
-\section{Hauptteil}
+Die stetig wachsende Zahl mobiler Geräte führt zu enormen Herausforderungen bei der Entwicklung
+und Planung der dafür erforderlichen Infrastruktur. Beim Konzipieren neuer Netzwerke ist es von zentraler
+Bedeutung, diese in möglichst realistischer Weise simulieren zu können, um sinnvolle Designentscheidungen
+treffen zu können. Dabei spielen zwei Bereiche eine essenzielle Rolle, die Bewegung der Nutzer bzw. Geräte
+sowie der Datenverkehr innerhalb des Netzwerks.\newline\newline
+Diese Ausarbeitung befasst sich mit dem Paper \textquote{Flutes vs. Cellos: Analyzing Mobility-Traffic
+Correlations in Large WLAN Traces} \cite{Alipour2018} aus dem Jahr 2018, in welchem Korrelationen
+zwischen diesen Bereichen untersucht werden. Darüber hinaus...\newline\newline
 
-\subsection{Unterthema}
+Es thematisiert Storage Loading Probleme mit Stacking Constraints.
+Ziel des Papers ist es, erste theoretische Ergebnisse für diese
+Klasse von Problemen zu liefern. Zusätzlich zu Ergebnissen der NP-Schwere, werden
+Polynomialzeit-Algorithmen für einige der Probleme vorgestellt, die als Bausteine in
+heuristischen Ansätzen zur Lösung allgemeinerer Probleme genutzt werden können.
+Das Paper ist dadurch motiviert, dass bisher kaum Komplexitätsergebnisse für Storage
+Loading Probleme vorliegen [10], obwohl diese auch aus praktischer Perspektive eine
+durchaus relevante Klasse von Problemen darstellen.
 
-\subsubsection{Teilaspekt}
-%\ac{TLA}~
+Zunächst werden in Kapitel 2 Storage Loading Probleme im Allgemeinen eingeführt
+und anschließend in Kapitel 3 formal definiert. Darauffolgend wird in Kapitel 4 auf die
+„Stacking Constraints“ eingegangen, die in Storage Loading Problemen eine zentrale
+Rolle spielen. In Kapitel 5 wird die simpelste Variante eines Storage Loading Problems
+skizziert und in Kapitel 6 durch mögliche Zielfunktionen ergänzt. Im Anschluss geht
+es dann in Kapitel 7 darum, die im Paper hergeleiteten Theoreme und zugehörigen
+Beweise vorzustellen. Kapitel 8 enthält einige abschließende Bemerkungen.
+
+\pagebreak
+
+% \cite{aaronson}\cite{flocchini}\cite{upper}
+
+\section{Grundlagen}
+
+\subsection{Mobilität}
+\label{sec:mobility}
+
+Die Performance eines kabellosen Kommunikationssystems hängt unter anderem von der Bewegung
+der mobilen Knoten innerhalb dieses Systems ab. Dementsprechend ist es erstrebenswert,
+solche Bewegungsmuster zu emulieren, um möglichst realistische Simulationen durchführen zu können.
+Ein Mobilitätsmodell beschreibt das Bewegungsmuster mobiler Benutzer bzw. Geräte,
+also wie sich deren Standort, Geschwindigkeit und Beschleunigung im Laufe der Zeit ändern.
+Es geht im Wesehntlichen darum, künstliche Bewegungsmuster zu generieren, die zu jeder Zeit reproduzierbar sind.
+\newline\newline
+Dabei wird zwischen zwei Modellen unterschieden, den \textquote{Entity-Mobility-Models},
+also Modelle, bei denen die Bewegung einzelner Entitäten modelliert wird und den \textquote{Group-Mobility-Models},
+bei welchen es darum geht, die Bewegung einer Gruppe von Nutzern bzw. Geräten zu modellieren.
+Bei dieser Unterscheidung geht es im Wesentlichen darum, ob die Bewegung der einzelnen Entitäten voneinander abhängt oder nicht.
+Dies ist nur beim Group-Mobility-Model der Fall.
+\newline\newline
+Um neue Protokolle für Netzwerke zu simulieren, ist es zwingend erforderlich, ein Mobilitätsmodell zu verwenden,
+welches die mobilen Knoten geeignet repräsentiert, sodass die Bewegung tatsächlicher Nutzer möglichst realistisch abgebildet wird.
+\newline\newline
+Neben der Unterscheidung zwischen Entity- und Group-Mobility-Models wird auch zwischen zwei Arten der Datenbasis unterschieden.
+Es gibt zum Einen die Bewegungsmodelle, die auf Trace-Daten basieren, d.h. auf Beobachtungen der Bewegung von Nutzern
+in tatsächlich existierenden Systemen. Diese liefern bei einer ausreichend großen Gruppe von Mobilnutzern und einer ausreichend
+langen Beobachtungsphase sehr akurate Informationen, setzen allerdings voraus, dass ein solches Netzwerk bereits existiert.
+Die zweite Variante entpsricht der synthetischen Generierung von Bewegungsmustern für Netzwerkumgebungen, für die noch keine
+Traces vorliegen. Dabei geht es dann darum, die mobilen Knoten möglichst realistisch abzubilden, wobei es im Wensentlichen vier
+Arten von Ansätzen gibt, dies zu tun: Rein zufällig, basierend auf zeitlichen oder räumlichen Abhängigkeiten und basierend
+auf geographischen Restriktionen. Basierend auf diesen vier Ansätzen existieren eine Vielzahl von Mobilitätsmodellen,
+auf welche ggf. im Verlauf der Ausarbeitung an geeigneter Stelle Bezug genommen wird.
+
+\pagebreak
+
+\subsection{Datenverkehr}
+\label{sec:traffic}
+
+Zu einer sinnvollen Simulation der Performance eines Kommunikationssystems gehört auch die Simulation des Datenverkehrs
+innerhalb dieses Systems. Wie bereits bei der Bewegungsmodellierung kann auch hier von tatsächlichen Beobachtungen in
+existierenden Netzen ausgegangen werden, wenn solche vorliegen.
+
+Einfacher Datenverkehr besteht aus der einfachen Ankunft diskreter Entitäten, z.B. Paketen.
+Es gibt allerdings auch Datenverkehr, bei welchem mehrere Einheiten eintreffen, sogenannte \textquote{Batch Arrivals}.
+Im einfachsten Fall wird in einer Simulation einfach eine zufällig generierte Sequenz von Zwischenankunftszeiten generiert.
+Neben Ankunftszeiten und Batch-Größen möchte man evtl. auch die Last modellieren.
+
+Ein einfaches Modell des Datenverkehrs ist \textsc{CBR} (Constant Bitrate), bei welchem eine Anzahl von Paketankünften
+pro Zeiteinheit definiert wird. Die Paketgröße ist dabei ebenfalls konstant. Dieses Modell ist sehr simpel und Dementsprechend
+leicht zu implementieren, aber auch nicht besonders realistisch. Wenngleich VoIP und Video-Übertragung manchmal
+die Gestalt von \textsc{CBR}-Datenverkehr aufweist.
+
+Man kann verschiedene Parameter variieren, um realistischen Datenverkehr zu erzeugen. Die Zeit kann z.B. diskret oder
+kontinuierlich sein. Es können verschiedene Ströme des Datenverkehrs multiplext werden, um einen realistischen Mix
+des Datenverkehrs zu erhalten, wie er z.B. durch Sprachverbindungen, Video-Übertragungen, Datei-Transport etc. entsteht.
+
+Neben \textsc{CBR} gibt es auch \textsc{VBR} (Variable Bitrate), welcher z.B. beim Videostreaming auftritt,
+bei welchem kodierte Frames eine variable, zufällige Größe haben.
+
+Eine weitere wichtige Eigenschaft des Datenverkehrs ist die sogenannte \textquote{Burstiness}, also die Stoßhaftigkeit.
+Traffic entsteht in Schüben, z.B. für komprimierte Videos und Datentransfers. Die Ankünfte der Pakete bilden visuelle
+Cluster. Ein sehr großer Teil des Datenverkehrs in Breitbandnetzen wird von dieser Art Traffic dominiert.
+
+Wie bereits bei der Bewegungsmodellierung gibt es auch hier eine Vielzahl verschiedener Modelle, die in bestimmten Szenarien
+geeignet sein können, um realistischen Datenverkehr zu modellieren.
+
+\pagebreak
+
+\section{Korrelationen zwischen Mobilität und Datenverkehr}
+
+Wie in den Abschnitten \ref{sec:mobility} und \ref{sec:traffic} deutlich wurde, hängt die Performanz eines mobilen
+Netzwerks erheblich von den Mustern der Mobilität und des Datenverkehrs ab.
+\newline\newline
+Aktuelle Modelle betrachten entweder die Mobilität oder den Datenverkehr, erfassen jedoch nicht das Zusammenspiel beider Faktoren.
+\cite{Alipour2018} Außerdem basieren viele trace-basierte Mobilitätsmodelle auf Datensätzen aus der Prä-Smartphone-Ära,
+was die heutige Relevanz dieser Datensätze in Frage stellt. Die Autoren beschäftigen sich mit Mobilitäts- und Datenverkehrmodellen
+für Laptops und Smartphones.
+\newline\newline
+Die Modelle sind datengetrieben, es werden $30$\textsc{TB} große Datensätze von $300 k$ Geräten betrachtet, welche auf einem Campusgelände
+betrieben wurden. Zur Analyse dieser Daten wurde das Framework FLAMeS (\textbf{F}ramework for \textbf{L}arge-scale \textbf{A}nalysis of \textbf{M}obil\textbf{e} \textbf{S}ocieties) entwickelt. Das Ziel ist im Wesentlichen, einen ersten Schritt in Richtung integrierter
+Mobilitäts-Datenverkehr-Modelle zu ermöglichen, um in der Zukunft realistischere Test-Szenarien und Benchmarks zu entwickeln.
+\newline\newline
+Die beiden Faktoren der Mobilität und des Datenverkehrs beeinflussen sich durchaus gegenseitig. Eine Person kann langsamer gehen,
+wenn diese eine Nachricht erhält. Ebenso kann die Netzwerkaktivität von der Mobilität und Position abhängen. Stationäre Nutzer
+konsumieren und produzieren i.d.R. mehr Daten als jene, die sich bewegen. Außerdem verwenden Personen an unterschiedlichen
+Orten undterschiedliche Anwendungen und Services. Trotz dieses Zusammenhangs wurden Modelle zur Mobilität und zum Datenverkehr
+bisher typischerweise isoliert voneinander betrachtet.
+\newline\newline
+Um diesen Zusammenhang genauer zu untersuchen, wird zwischen stationären Geräten (Laptops) und mobilen Geräten (Smartphones)
+unterschieden. Das bereits erwähnte Framework FLAMeS wurde entwickelt, um stationäre und mobile Geräte zu differenzieren
+und in Bezug auf ihren Datenverkehr und ihre Mobilität zu untersuchen.
+\newline\newline
+Im Kern wurden dafür drei Fragestellungen untersucht:\newline
+\begin{itemize}
+    \item Wie unterscheiden sich Mobilität und Datenverkehr zwischen den unterschiedlichen Geräteklassen, Zeit und Ort?
+    \item Was sind die Beziehungen dieser Charakteristiken?
+    \item Sollten neue Modelle entwickelt werden, die diese Unterschiede berücksichtigen? Wenn ja, wie?
+\end{itemize}
+
+\pagebreak
 
 \section{Schluss}
-\cite{rfc}
-
-%Anhang
-
-%\section*{Anhang}
-%\addcontentsline{toc}{section}{Anhang}
-
-%Abkürzungsverzeichnis
-
-%\subsection*{Abkürzungsverzeichnis}
-%\addcontentsline{toc}{subsection}{Abkürzungsverzeichnis}
-%\begin{acronym}[LONG]
-%\acro{TLA}{Three Letter Acronym}
-%\end{acronym}
 
 %Bibliographie
 \addcontentsline{toc}{section}{Literatur}
