@@ -6,4 +6,7 @@
 *.fdb_latexmk
 *.fls
 *.out
+*.xml
+main-blx.bib
+main.bcf
 tex_files/main.pdf
