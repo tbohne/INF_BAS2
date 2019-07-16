@@ -13,6 +13,7 @@
 \usepackage{tocloft}
 \usepackage{acronym}
 \usepackage{float}
+\usepackage{color} 
 
 \usepackage[babel,german=quotes,threshold=3]{csquotes} 
 
@@ -170,25 +171,27 @@ Wie in den Abschnitten \ref{sec:mobility} und \ref{sec:traffic} deutlich wurde, 
 Netzwerks erheblich von den Mustern der Mobilität und des Datenverkehrs ab.
 \newline\newline
 Aktuelle Modelle betrachten entweder die Mobilität oder den Datenverkehr, erfassen jedoch nicht das Zusammenspiel beider Faktoren.
-\cite{Alipour2018} Außerdem basieren viele trace-basierte Mobilitätsmodelle auf Datensätzen aus der Prä-Smartphone-Ära,
-was die heutige Relevanz dieser Datensätze in Frage stellt. Die Autoren beschäftigen sich mit Mobilitäts- und Datenverkehrmodellen
-für Laptops und Smartphones.
+Außerdem verwenden viele trace-basierte Mobilitätsmodelle Datensätzen aus der Prä-Smartphone-Ära,
+was die heutige Relevanz dieser Modelle in Frage stellt. \cite{Alipour2018}\newline
+Die Autoren von \cite{Alipour2018} beschäftigen sich mit Mobilitäts- und Datenverkehrmodellen für Laptops und Smartphones.
+Die Modelle sind datengetrieben, es werden $30$\textsc{TB} große Datensätze von $300$\textsc{K} Geräten betrachtet, welche auf einem Campusgelände
+betrieben wurden. Zur Analyse dieser Daten wurde das Framework FLAMeS (\textbf{F}ramework for \textbf{L}arge-scale \textbf{A}nalysis of \textbf{M}obil\textbf{e} \textbf{S}ocieties) entwickelt.
+Ziel des Papers ist im Wesentlichen, einen ersten Schritt in Richtung integrierter Mobilitäts-Datenverkehr-Modelle 
+zu ermöglichen, um in der Zukunft realistischere Test-Szenarien und Benchmarks zu entwickeln. Im Folgenden werden relevante
+Aspekte und Ergebnisse aus der Veröffentlichung präsentiert.\newline
+Dass die beiden Faktoren der Mobilität und des Datenverkehrs sich trotz der bisher isolierten Betrachtungen
+durchaus gegenseitig beeinflussen, veranschaulichen die Autoren durch folgende Beispiele. 
+Eine Person verlangsamt ihren Gang, wenn diese eine Nachricht erhält. Ebenso kann die Netzwerkaktivität von der
+Mobilität und Position abhängen. Stationäre Nutzer konsumieren und produzieren in der Regel mehr Daten als jene, 
+die sich bewegen. Außerdem verwenden Personen an unterschiedlichen Orten undterschiedliche Anwendungen.
+Diese simplen Beispiele lassen eine gemeinsame Betrachtung beider Faktoren bereits als sinnvoll erscheinen.
 \newline\newline
-Die Modelle sind datengetrieben, es werden $30$\textsc{TB} große Datensätze von $300 k$ Geräten betrachtet, welche auf einem Campusgelände
-betrieben wurden. Zur Analyse dieser Daten wurde das Framework FLAMeS (\textbf{F}ramework for \textbf{L}arge-scale \textbf{A}nalysis of \textbf{M}obil\textbf{e} \textbf{S}ocieties) entwickelt. Das Ziel ist im Wesentlichen, einen ersten Schritt in Richtung integrierter
-Mobilitäts-Datenverkehr-Modelle zu ermöglichen, um in der Zukunft realistischere Test-Szenarien und Benchmarks zu entwickeln.
-\newline\newline
-Die beiden Faktoren der Mobilität und des Datenverkehrs beeinflussen sich durchaus gegenseitig. Eine Person kann langsamer gehen,
-wenn diese eine Nachricht erhält. Ebenso kann die Netzwerkaktivität von der Mobilität und Position abhängen. Stationäre Nutzer
-konsumieren und produzieren i.d.R. mehr Daten als jene, die sich bewegen. Außerdem verwenden Personen an unterschiedlichen
-Orten undterschiedliche Anwendungen und Services. Trotz dieses Zusammenhangs wurden Modelle zur Mobilität und zum Datenverkehr
-bisher typischerweise isoliert voneinander betrachtet.
-\newline\newline
-Um diesen Zusammenhang genauer zu untersuchen, wird zwischen stationären Geräten (Laptops) und mobilen Geräten (Smartphones)
-unterschieden. Das bereits erwähnte Framework FLAMeS wurde entwickelt, um stationäre und mobile Geräte zu differenzieren
+Um diesen Zusammenhang genauer zu untersuchen, unterscheiden sie zwischen stationären Geräten (Laptops) und mobilen Geräten
+(Smartphones). Da Laptops auch durchaus als mobil angesehen werden können, wird die Unterscheidung durch \textquote{on-the-go}- und \textquote{stop-to-use}-
+Geräte klarer. Das bereits erwähnte Framework FLAMeS wurde entwickelt, um stationäre und mobile Geräte zu differenzieren
 und in Bezug auf ihren Datenverkehr und ihre Mobilität zu untersuchen.
 \newline\newline
-Im Kern wurden dafür drei Fragestellungen untersucht:\newline
+Im Kern untersuchen die Autoren dafür drei Fragestellungen:\newline
 \begin{itemize}
     \item Wie unterscheiden sich Mobilität und Datenverkehr zwischen den unterschiedlichen Geräteklassen, Zeit und Ort?
     \item Was sind die Beziehungen dieser Charakteristiken?
@@ -199,34 +202,33 @@ In Abb. \ref{fig:flames} ist eine Übersicht des FLAMeS-Systems dargestellt, wel
 In der ersten Phase findet die Datensammlung und ein Preprocessing statt. Anschließend kommt es in Phase 2
 zur Mobilitäts- und Traffic-Analyse, wobei zwischen Laptops und Smartphones unterschieden wird. In der letzten
 Phase findet schließlich eine integrierte Analyse der Mobilität und des Traffics statt.
-
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.65\textwidth]{img/FLAMeS.png}
-\caption{FLAMeS System. \cite{Alipour2018}}
+\caption{FLAMeS-System. \cite{Alipour2018}}
 \label{fig:flames}
 \end{figure}
 
-\subsection{I. Datensammlung und Preprocessing}
+\subsection{Datensammlung und Preprocessing}
 
-Die erste Quelle sind WLAN AP Logs. Diese Logs wurden von $1760$ APs in $138$ Gebäuden über $479$ Tage auf dem
-Campus einer Universität gesammelt. Die Daten stammen von insgesamt $316k$ Geräten aus den Jahren $2011$ und $2012$.
-Jeder Eintrag enthält die MAC-Adresse des Geräts, dessen zugewiesene IP-Adresse, den assoziierten AP und einen Zeitstempel.
-Die Orte der APs werden durch die Längen- und Breitengrade der Gebäude, in welchen sie sich befinden, durch die Google Maps API
-approximiert. Daneben gibt es als weitere Quelle NetFlow Logs. Aus demselben Netzwerk wurden im April $2012$ über $76$ Mrd.
-Einträge in NetFlow Traces gesammelt. Ein \textquote{Flow} entspricht einer konsekutiven Sequenz von Paketen mit demselben
-Transportprotokoll, Start- und Ziel-IP und Port.
-\newline\newline
+Die gesammelten Daten stammen aus zwei Quellen. Die erste Quelle sind WLAN-AP-Logs. Diese Logs wurden von $1760$ APs in $138$ Gebäuden über $479$ Tage auf dem
+Campus einer Universität aufgezeichnet. Die Daten stammen von insgesamt $316$\textsc{K} Geräten aus den Jahren $2011$ und $2012$.
+Jeder Eintrag enthält die MAC-Adresse des Geräts, dessen zugewiesene IP-Adresse, den AP, mit welchem das Gerät verbunden ist
+und einen Zeitstempel.
+Die Orte der APs werden durch die Längen- und Breitengrade der Gebäude, in welchen sie sich befinden, mithilfe der Google Maps API
+approximiert. Daneben gibt es als weitere Quelle NetFlow-Logs. Aus demselben Netzwerk wurden im April $2012$ über $76$ Mrd.
+Einträge in NetFlow-Traces gesammelt. Ein \textquote{Flow} entspricht einer konsekutiven Sequenz von Paketen mit demselben
+Transportprotokoll, Start- und Ziel-IP und Port. \cite{Alipour2018}
 Anschließend werden die NetFlow-Einträge durch das dynamische MAC-to-IP Mapping aus den DHCP-Logs mit den WLAN-Verbindungen
 aus den AP-Logs gematcht. Diese werden durch Ort und Webseiten-Informationen erweitert (durch rDNS).
 \newline\newline
-Danach geht es darum, die Geräte in Laptops und Smartphones zu klassifizieren. Das geschieht mithilfe
-mehrerer Beobachtungen und Heuristiken. Zunächst einmal kann der Hersteller des Geräts mit der OUI
-\footnote{Organizationally Unique Identifier - 24-Bit-Zahl, die eindeutig den Hersteller identifiziert} basierend auf den
-ersten drei Oktetten der MAC-Adresse identifiziert werden. Auf diese Weise konnten bereits $46 \%$ der Geräte klassifiziert werden.
-Die folgende Heuristik wird verwendet: Rufe sämtliche OUIs (MAC Prefix) ab, welche admob.com kontaktieren und markiere das Gerät
-als Mobilgerät, wenn es bisher nicht markiert ist. Auf diese Weise konnten $86 \%$ der Geräte in AP-Logs und $97 \%$
-der NetFlow-Traces klassifiziert werden. Wie man Abb. \ref{fig:traces} entnehmen kann, ist die Anzahl der Flows und der
+Darauffolgend geht es darum, die Geräte in Laptops und Smartphones zu klassifizieren.
+Zunächst einmal kann der Hersteller des Geräts mit der OUI \footnote{Organizationally Unique Identifier - 24-Bit-Zahl, die eindeutig den Hersteller identifiziert} basierend auf den
+ersten drei Oktetten der MAC-Adresse identifiziert werden. Da viele Hersteller nur einen Gerätetyp herstellen, können auf diese Weise bereits
+$46 \%$ der Geräte klassifiziert werden. Die Heuristik, welche von den Autoren zur Klassifizierung verwendet wird
+prüft zusätzlich, ob ein Gerät admob.com kontatktiert, eine sehr verbreitete Plattform für Werbung auf Mobilgeräten.
+Ist dies der Fall, so wird ein Gerät als Mobilgerät klassifiziert. Auf diese Weise konnten $86 \%$ der Geräte in den AP-Logs
+und $97 \%$ der NetFlow-Traces klassifiziert werden. Wie man Abb. \ref{fig:traces} entnehmen kann, ist die Anzahl der Flows und der
 Gesamt-Traffic bei Laptops deutlich höher als bei Mobilgeräten, obwohl es insgesamt deutlich mehr verbundene Mobilgeräte gibt.
 Wie zu erwarten treten die Peaks an Wochentagen auf. Dass die Netzwerkaktivität nach dem 25. abnimmt, liegt daran, dass dort
 die vorlesungsfreie Zeit beginnt.
@@ -238,73 +240,64 @@ die vorlesungsfreie Zeit beginnt.
     \label{fig:traces}
 \end{figure}
 
+\vfill
+\pagebreak
+
 \subsection{Mobilitätsanalyse}
 
-In diesem Abschnitt geht es um eine zeitliche und örtliche Mobilitätsanalyse.
-\newline\newline
-Eine Session ist die Periode zwischen WLAN-Verbindungen. Die Startzeiten von Sessions stimmen mit den periodischen Startzeiten 
-der Vorlesungen überein, allerdings hauptsächlich in Hörsälen. In diesen Gebäuden fällt die Aktivität von Laptops nach dem Ende
-der Vorlesungszeiten stark. Die Aktivität von Mobilgeräten bleibt etwas länger erhalten. Für die Bibliothek und soziale
-Einrichtungen auf dem Campus ist die Wahrscheinlichkeit für neue Sessions später am Abend deutlich höher. Diese klaren 
-Ergebnisse gelten nur für Wochentage.
-\newline\newline
-Die räumliche Ausbreitung eines Geräts über einen Zeitraum von 6 Monaten.
-Nach einer initialen Phase von ca. einer Woche stabilisiert sich diese Ausbreitung. Für Laptops
-findet eine substanzielle Reduktion der Gesamtmobilität statt, während diese bei Smartphones nicht
-in einer solchen Deutlichkeit vorliegt.
-Da Smartphones \textquote{Always-On-Devices} sind, ist es leichter, deren Mobilität zu erfassen, da sie an Orten
+In diesem Abschnitt geht es um die zeitliche und räumliche Analyse der Mobilität der verschiedenen Geräteklassen.
+Die Startzeiten von WLAN-Sessions stimmen mit den Startzeiten der Vorlesungen überein, allerdings hauptsächlich in Hörsälen.
+In diesen Gebäuden fällt die Aktivität von Laptops nach dem Ende der Vorlesungszeiten stark. Die Aktivität von Mobilgeräten
+bleibt etwas länger erhalten. Für die Bibliothek und soziale Einrichtungen auf dem Campus ist die Wahrscheinlichkeit
+für neue Sessions später am Abend deutlich höher. An Wochenenden sind die Ergebnisse nicht so deutlich.\newline
+Die Autoren haben die räumliche Ausbreitung der Geräts über einen Zeitraum von 6 Monaten analysiert.
+Nach einer initialen Phase von ca. einer Woche stabilisiert sich diese Ausbreitung. Für Laptops findet eine 
+substanzielle Reduktion der Gesamtmobilität statt, während diese bei Smartphones nicht in einer solchen Deutlichkeit vorliegt.
+Da Smartphones \textquote{Always-On}-Geräte sind, ist es leichter, deren Mobilität zu erfassen, da sie auch an Orten
 wie Bushaltestellen etc., an denen Laptops typischerweise nicht eingeschaltet sind, verbunden sind.
-Dies ermöglicht eine feingranularere Erfassung der Mobilität dieser Geräte.
-Aufgrund der Vorlesungen, haben Stundenten, die an diesen teilnehmen an Wochentagen einen eingeschränkteren Bewegungsradius.
-\newline\newline
-Ebenfalls von Interesse ist die Zeit einer Session in einem Gebäude.
-Laptops haben etwas längere Aufenthaltszeiten, im Median liegen allerdings beide Geräteklassen bei etwa $2:40$ Stunden.
-Laptops werden in der Regel verwendet, wenn Nutzer länger an einem Ort verweilen.
-\newline\newline
-Trotz der geschilderten Unterschiede gibt es auch viele Gemeinsamkeiten, beispielsweise in der Verwendung während der Vorlesungszeit.
+Dies ermöglicht eine feingranularere Erfassung der Mobilität dieser Geräte. Aufgrund der Vorlesungen, 
+haben Stundenten, die an diesen teilnehmen an Wochentagen einen eingeschränkteren Bewegungsradius.\newline
+Ebenfalls von Interesse ist die Dauer einer Session innerhalb eines Gebäudes.
+Laptops haben etwas längere Aufenthaltszeiten, im Median liegen allerdings beide Geräteklassen bei etwa $2$ Stunden
+und $40$ Minuten. Laptops werden in der Regel verwendet, wenn Nutzer länger an einem Ort verweilen.
 
 \subsection{Trafficanalyse}
 
-In diesem Abschnitt geht es um eine Analyse des Datenverkehrs über unterschiedliche Gerätetypen, Zeiten und Orte.
-
-Ein relevantes Kriterium ist die \textquote{Flow-Size}, also die Summe der Bytes aller Pakete eines Flows.
-An Wochentagen ist die durchschnittliche Größe von Flows bei Smartphones mehr als doppelt so groß wie die von Laptop-Flows.
-Auch an Wochenenden ändert sich dies nicht signifikant.
-Die durchschnittliche Paketgröße von Smartphone-Flows ist $50 \%$ größer als die von Laptops.
-Die Median-Größe der Pakete von Smartphones fällt an Wochenenden, während es bei Laptops gleich bleibt.
+In diesem Abschnitt geht es um eine Analyse des Datenverkehrs über die unterschiedlichen Gerätetypen,
+Zeiten und Orte. Ein relevantes Kriterium ist die \textquote{Flow-Size}, also die Summe der Bytes aller Pakete eines Flows.
+An Wochentagen ist die durchschnittliche Größe von Flows bei Smartphones mehr als doppelt so groß wie jene von Laptop-Flows.
+Auch an Wochenenden ändert sich dies nicht signifikant. Die durchschnittliche Paketgröße von Smartphone-Flows ist $50 \%$ größer
+als die von Laptops. Die Median-Größe der Pakete von Smartphones fällt an Wochenenden, während diese bei Laptops gleich bleibt.
 Laptop-Flows zeigen zwischen Wochentagen und Wochenden in Bezug auf die durchschnittliche Paketgröße keine signifikante Veränderung.
-\newline\newline
 Ebenfalls interessant ist die Laufzeit eines Flows. Beide Gerätetypen zeigen erhöhte Mittelwerte an Wochenenden.
-Da es zusätzlich weniger aktive Geräte an Wochenenden gibt, zeigen die aktiven Geräte eine erhöhte Aktivität.
-\newline\newline
-Smartphones zeigen mehr extreme Phasen der Inaktivität, die durch größere Mobilität und Paketverluste verursacht werden können.
-\newline\newline
-Auch die Protokolle sind von Interesse. TCP ist für $78.5 \%$ der Laptop Flows verantwortlich
-und für $98.2 \%$ der Smartphone Flows. Die höhere Präsenz von UDP bei Laptops ist nachvollziehbar, weil
-UDP-Verbindungen wie Multiplayer-Spiele, Video-Konferenzen und Filesharing typischerweise nicht auf Mobilgeräten stattfinden.
-\newline\newline
-Insgesamt lässt sich festhalten, dass Smartphones mobiler sind und eine größere Anzahl von APs besuchen
-und größere Flow-Sizes haben und trotzdem für weniger Netzwerklast verantwortlich sind.
-\newline\newline
-Auch das Verhalten der Nutzer ist relevant. An Wochentagen konsumieren $90 \%$ der Laptops weniger als $700$\textsc{MB},
+Da es zusätzlich weniger aktive Geräte an Wochenenden gibt, zeigen die verbleibenden aktiven Geräte eine erhöhte Aktivität.
+Smartphones zeigen insgesamt mehr extreme Phasen der Inaktivität, die unter anderem durch größere Mobilität und Paketverluste
+verursacht werden können.\newline
+Auch die verwendeten Protokolle sind von Interesse. TCP ist für $78.5 \%$ der Laptop-Flows verantwortlich
+und für $98.2 \%$ der Smartphone-Flows. Die höhere Präsenz von UDP bei Laptops ist zu erwarten, weil
+UDP-Verbindungen, die z.B. bei Multiplayer-Spielen, Video-Konferenzen und Filesharing auftreten,
+typischerweise weniger auf Mobilgeräten stattfinden.
+Insgesamt lässt sich festhalten, dass Smartphones mobiler sind, eine größere Anzahl von APs besuchen,
+größere Flow-Sizes haben und trotzdem für insgesamt weniger Netzwerklast verantwortlich sind.\newline
+Auch das Verhalten der Nutzer ist relevant. An Wochentagen \textcolor{red}{konsumieren} $90 \%$ der Laptops weniger als $700$\textsc{MB},
 während $90 \%$ der Smartphones weniger als $200$\textsc{MB} verbrauchen.
-Bei der Paketrate sieht es ähnlich aus. An Wochentagen generieren Laptops durchschnittlich $318k$ Pakete, während
-Smartphones nur durchschnittlich $84k$ Pakete am Tag generieren. An Wochenenden erhöhen sich die wenigen verbleibenden
-Laptops deutlich und die Smartphones nur leicht.
-\newline\newline
-Die \textquote{Active Duration} ist weiterhin gut geeignet um Unterschiede zwischen Laptops und Smartphones zu verdeutlichen.
-Dabei werden die NetFlows herangezogen und nicht die WLAN-AP Verbindungszeiten, denn dies ermöglicht es \textquote{Idle}-Zeiten
-von aktiven Zeiten zu unterscheiden. Laptops haben 4x höhere durchschnittliche Aktivitätszeiten verglichen mit Smartphones.
-Insgesamt sind über $90 \%$ der Laptops weniger als $3.5$ Stunden am Tag aktiv und $90 \%$ der Smartphones weniger als eine Stunde.
-\newline\newline
-Insgesamt scheint es, als wäre der Datanverbrauch von Smartphones mehr bursty mit größeren Flows und kleinerer aktiver Dauer.
-Außerdem ist es so, dass an Wochenenden weniger Geräte am Campus sind, aber jene die verbleiben überdurchschnittlich aktiv sind
-und überdurchschnittlich viel Daten konsumieren.
-\newline\newline
+Ein ähnliches Bild ergibt sich bei der Paketrate. An Wochentagen generieren Laptops durchschnittlich $318$\textsc{K} Pakete, 
+während Smartphones nur durchschnittlich $84$\textsc{K} Pakete am Tag generieren. 
+An Wochenenden erhöht sich die Paketrate und der Datenkonsum der wenigen verbleibenden Laptops deutlich,
+während bei den Smartphones nur leichte Veränderungen zu beobachten sind.\newline
+Weiterhin gut geeignet, um Unterschiede zwischen Laptops und Smartphones zu verdeutlichen, sind die tatsächlichen Aktivitätszeiten.
+Dabei werden die Net-Flows herangezogen und nicht die WLAN-AP-Verbindungszeiten, denn dies ermöglicht es \textquote{Idle}-Zeiten
+von aktiven Zeiten zu unterscheiden. Laptops haben verglichen mit Smartphones $4x$ höhere durchschnittliche Aktivitätszeiten.
+Insgesamt sind über $90 \%$ der Laptops weniger als $3.5$ Stunden am Tag aktiv und $90 \%$ der Smartphones weniger als eine Stunde.\newline
+Zusammenfassend lässt sich sagen, dass der Datanverbrauch von Smartphones mehr bursty mit größeren Flows und kleinerer aktiver Dauer ist.
+Außerdem sind an Wochenenden weniger Geräte am Campus, aber jene die verbleiben, sind überdurchschnittlich aktiv 
+und konsumieren überdurchschnittlich viele Daten.
+
+\subsection{Integrierte Mobilitäts- und Traffic-Modelle}
+
 Zuletzt wurden Machine-Learning-Verfahren angewandt, um ein gemischtes Modell zu trainieren, welches Datenpunkte
 generiert und es konnte gezeigt werden, dass ein kombiniertes Mobilitäts-Traffic-Modell die Unterschiede besser abgebildet
-als separierte Traffic- bzw. Mobilitäts-Modelle.
-\newline\newline
+als separierte Traffic- bzw. Mobilitäts-Modelle.\newline
 Insgesamt wurde gezeigt, dass es ein signifikantes Potenzial für integrierte Mobilitäts- und Datenverkehr-Modelle gibt,
 welche die Unterschiede und Beziehungen zwischen unterschiedlichen Gerätetypen, Zeiten und Orten abbilden.
 
