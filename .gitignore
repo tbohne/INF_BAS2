@@ -3,4 +3,7 @@
 *.bbl
 *.blg
 *.log
+*.fdb_latexmk
+*.fls
+*.out
 tex_files/main.pdf
