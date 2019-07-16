@@ -12,10 +12,12 @@
 \usepackage{url}
 \usepackage{tocloft}
 \usepackage{acronym}
+\usepackage{float}
 
 \usepackage[babel,german=quotes,threshold=3]{csquotes} 
 
 \usepackage{lipsum}
+\usepackage{hyperref}  %hyperref still needs to be put at the end!
 
 %Pfad für Grafiken
 \graphicspath{{img/}}
@@ -77,13 +79,9 @@ Correlations in Large WLAN Traces} \cite{Alipour2018} aus dem Jahr 2018, in welc
 zwischen diesen Bereichen untersucht werden. Darüber hinaus...\newline\newline
 
 Es thematisiert Storage Loading Probleme mit Stacking Constraints.
-Ziel des Papers ist es, erste theoretische Ergebnisse für diese
-Klasse von Problemen zu liefern. Zusätzlich zu Ergebnissen der NP-Schwere, werden
-Polynomialzeit-Algorithmen für einige der Probleme vorgestellt, die als Bausteine in
-heuristischen Ansätzen zur Lösung allgemeinerer Probleme genutzt werden können.
-Das Paper ist dadurch motiviert, dass bisher kaum Komplexitätsergebnisse für Storage
-Loading Probleme vorliegen [10], obwohl diese auch aus praktischer Perspektive eine
-durchaus relevante Klasse von Problemen darstellen.
+\newline\newline
+Ziel des Papers ist es, die Unterschiede zwischen Laptops und Smartphones in Bezug auf Datenverkehr und Mobilität
+zu untersuchen und auch grundsätzlich die Interaktion zwischen Mobilität und Traffic.
 
 Zunächst werden in Kapitel 2 Storage Loading Probleme im Allgemeinen eingeführt
 und anschließend in Kapitel 3 formal definiert. Darauffolgend wird in Kapitel 4 auf die
@@ -99,67 +97,70 @@ Beweise vorzustellen. Kapitel 8 enthält einige abschließende Bemerkungen.
 
 \section{Grundlagen}
 
+In diesem Kapitel werden wichtige Konzepte eingeführt, welche im Verlauf der Arbeit eine zentrale Rolle spielen.
+In Abschnitt \ref{sec:mobility} geht es um Mobilität in Rechnernetzen und Abschnitt \ref{sec:traffic} handelt
+vom Datenverkehr in ebensolchen.
+
 \subsection{Mobilität}
 \label{sec:mobility}
 
-Die Performance eines kabellosen Kommunikationssystems hängt unter anderem von der Bewegung
-der mobilen Knoten innerhalb dieses Systems ab. Dementsprechend ist es erstrebenswert,
-solche Bewegungsmuster zu emulieren, um möglichst realistische Simulationen durchführen zu können.
-Ein Mobilitätsmodell beschreibt das Bewegungsmuster mobiler Benutzer bzw. Geräte,
-also wie sich deren Standort, Geschwindigkeit und Beschleunigung im Laufe der Zeit ändern.
-Es geht im Wesehntlichen darum, künstliche Bewegungsmuster zu generieren, die zu jeder Zeit reproduzierbar sind.
+Die Performanz eines kabellosen Kommunikationsnetzwerks hängt unter anderem von der Bewegung 
+der Nutzer bzw. Geräte innerhalb dieses Netzwerks ab. Dementsprechend ist es erstrebenswert,
+solche Bewegungsmuster z.B. bei der Planung neuer Netze zu emulieren, um möglichst realistische Simulationen
+durchführen zu können. Ein Mobilitätsmodell beschreibt das Bewegungsmuster mobiler Benutzer bzw. Geräte,
+also die Art, in welcher sich deren Standort, Geschwindigkeit und Beschleunigung im Laufe der Zeit ändern. \cite{Camp2002}
+Im Wesehntlichen geht es darum, künstliche Bewegungsmuster zu generieren, die die Realität in solch einem Netzwerk
+möglichst genau abbilden.
 \newline\newline
-Dabei wird zwischen zwei Modellen unterschieden, den \textquote{Entity-Mobility-Models},
-also Modelle, bei denen die Bewegung einzelner Entitäten modelliert wird und den \textquote{Group-Mobility-Models},
-bei welchen es darum geht, die Bewegung einer Gruppe von Nutzern bzw. Geräten zu modellieren.
-Bei dieser Unterscheidung geht es im Wesentlichen darum, ob die Bewegung der einzelnen Entitäten voneinander abhängt oder nicht.
-Dies ist nur beim Group-Mobility-Model der Fall.
+Dabei wird zwischen zwei grundsätzlichen Modellen unterschieden, den \textquote{Entity-Mobility-Models},
+also Modellen, bei denen die Bewegung einzelner Entitäten modelliert wird und den \textquote{Group-Mobility-Models},
+bei welchen es darum geht, die Bewegung einer Gruppe von Nutzern bzw. Geräten zu modellieren,
+in welcher die Bewegung der einzelnen Entitäten voneinander abhängt.
 \newline\newline
-Um neue Protokolle für Netzwerke zu simulieren, ist es zwingend erforderlich, ein Mobilitätsmodell zu verwenden,
-welches die mobilen Knoten geeignet repräsentiert, sodass die Bewegung tatsächlicher Nutzer möglichst realistisch abgebildet wird.
-\newline\newline
-Neben der Unterscheidung zwischen Entity- und Group-Mobility-Models wird auch zwischen zwei Arten der Datenbasis unterschieden.
-Es gibt zum Einen die Bewegungsmodelle, die auf Trace-Daten basieren, d.h. auf Beobachtungen der Bewegung von Nutzern
-in tatsächlich existierenden Systemen. Diese liefern bei einer ausreichend großen Gruppe von Mobilnutzern und einer ausreichend
-langen Beobachtungsphase sehr akurate Informationen, setzen allerdings voraus, dass ein solches Netzwerk bereits existiert.
-Die zweite Variante entpsricht der synthetischen Generierung von Bewegungsmustern für Netzwerkumgebungen, für die noch keine
-Traces vorliegen. Dabei geht es dann darum, die mobilen Knoten möglichst realistisch abzubilden, wobei es im Wensentlichen vier
-Arten von Ansätzen gibt, dies zu tun: Rein zufällig, basierend auf zeitlichen oder räumlichen Abhängigkeiten und basierend
-auf geographischen Restriktionen. Basierend auf diesen vier Ansätzen existieren eine Vielzahl von Mobilitätsmodellen,
-auf welche ggf. im Verlauf der Ausarbeitung an geeigneter Stelle Bezug genommen wird.
+Neben der Unterscheidung zwischen Entity- und Group-Mobility-Modellen, wird außerdem zwischen zwei Arten der Datenbasis unterschieden,
+welche der Simulation zugrunde liegt. Es gibt zum einen die Bewegungsmodelle, die auf Trace-Daten basieren, d.h. auf Beobachtungen
+der Bewegung von Nutzern in tatsächlich existierenden Systemen. Diese liefern bei einer ausreichend großen Gruppe von Nutzern
+und einer ausreichend langen Beobachtungsphase sehr akurate Informationen, setzen allerdings voraus, dass ein solches Netzwerk
+bereits existiert. \cite{Camp2002} Zum anderen existieren Modelle mit synthetisch generierten Bewegungsmustern für Netzwerkumgebungen, 
+für die noch keine Traces vorliegen. Dabei geht es darum, die Bewegung der Nutzer möglichst realistisch abzubilden,
+wobei es verschiedene Arten von Ansätzen gibt, dies zu tun. Ein simpler Ansatz ist die vollständig zufällige Bewegungsmodellierung,
+diese kann z.B. durch zeitliche oder räumliche Abhängigkeiten ergänzt werden. Auch geographischen Restriktionen können eine
+Rolle spielen. Innerhalb der verschiedenen Arten von Ansätzen existiert eine Vielzahl von Mobilitätsmodellen, 
+auf welche zum Teil im Verlauf dieser Ausarbeitung an geeigneter Stelle eingegangen wird.
 
 \pagebreak
 
 \subsection{Datenverkehr}
 \label{sec:traffic}
 
-Zu einer sinnvollen Simulation der Performance eines Kommunikationssystems gehört auch die Simulation des Datenverkehrs
+Zu einer sinnvollen Simulation der Performanz eines Kommunikationssystems gehört auch die Simulation des Datenverkehrs
 innerhalb dieses Systems. Wie bereits bei der Bewegungsmodellierung kann auch hier von tatsächlichen Beobachtungen in
-existierenden Netzen ausgegangen werden, wenn solche vorliegen.
-
-Einfacher Datenverkehr besteht aus der einfachen Ankunft diskreter Entitäten, z.B. Paketen.
-Es gibt allerdings auch Datenverkehr, bei welchem mehrere Einheiten eintreffen, sogenannte \textquote{Batch Arrivals}.
-Im einfachsten Fall wird in einer Simulation einfach eine zufällig generierte Sequenz von Zwischenankunftszeiten generiert.
-Neben Ankunftszeiten und Batch-Größen möchte man evtl. auch die Last modellieren.
-
+existierenden Netzen ausgegangen werden, sofern solche vorliegen.
+\newline\newline
+Einfacher Datenverkehr besteht aus der einfachen Ankunft diskreter Entitäten (Pakete).
+Es gibt allerdings auch Datenverkehr, bei welchem mehrere Entitäten zusammen in sogenannten \textquote{Batch-Arrivals} eintreffen.
+Im einfachsten Fall wird in einer Simulation eine zufällige Sequenz von Zwischenankunftszeiten \footnote{Zeit zwischen zwei 
+aufeinanderfolgenden \textquote{Arrivals}} generiert.
+Neben Ankunftszeiten und Batch-Größen ist es häufig sinnvoll, die Last zu modellieren. \cite{Frost1994}
+\newline\newline
 Ein einfaches Modell des Datenverkehrs ist \textsc{CBR} (Constant Bitrate), bei welchem eine Anzahl von Paketankünften
-pro Zeiteinheit definiert wird. Die Paketgröße ist dabei ebenfalls konstant. Dieses Modell ist sehr simpel und Dementsprechend
-leicht zu implementieren, aber auch nicht besonders realistisch. Wenngleich VoIP und Video-Übertragung manchmal
-die Gestalt von \textsc{CBR}-Datenverkehr aufweist.
-
-Man kann verschiedene Parameter variieren, um realistischen Datenverkehr zu erzeugen. Die Zeit kann z.B. diskret oder
-kontinuierlich sein. Es können verschiedene Ströme des Datenverkehrs multiplext werden, um einen realistischen Mix
-des Datenverkehrs zu erhalten, wie er z.B. durch Sprachverbindungen, Video-Übertragungen, Datei-Transport etc. entsteht.
-
-Neben \textsc{CBR} gibt es auch \textsc{VBR} (Variable Bitrate), welcher z.B. beim Videostreaming auftritt,
-bei welchem kodierte Frames eine variable, zufällige Größe haben.
-
+pro Zeiteinheit definiert wird. Die Paketgröße ist dabei ebenfalls konstant. Dieses Modell ist sehr simpel und dementsprechend
+leicht zu implementieren, dafür jedoch auch nicht besonders realistisch. Wenngleich VoIP und Video-Übertragung manchmal
+die Gestalt von \textsc{CBR}-Datenverkehr aufweist. ADDCITE\newline
+Neben \textsc{CBR}- gibt es auch \textsc{VBR}-Traffic (Variable Bitrate), welcher z.B. beim Videostreaming auftritt,
+bei welchem kodierte Frames eine variable, zufällige Größe besitzen.\cite{Frost1994}
+\newline\newline
+Um einen realistischen, heterogenen Traffic-Mix zu erhalten, sollten verschiedene Ströme des Datenverkehrs
+gemultiplext werden, z.B. Sprachverbindungen, Video-Übertragungen und Datei-Transporte. \cite{Frost1994}
+\newline\newline
 Eine weitere wichtige Eigenschaft des Datenverkehrs ist die sogenannte \textquote{Burstiness}, also die Stoßhaftigkeit.
 Traffic entsteht in Schüben, z.B. für komprimierte Videos und Datentransfers. Die Ankünfte der Pakete bilden visuelle
-Cluster. Ein sehr großer Teil des Datenverkehrs in Breitbandnetzen wird von dieser Art Traffic dominiert.
-
+Cluster. Der Datenverkehr in Breitbandnetzen wird von dieser Art Traffic dominiert. \cite{Frost1994}
+\newline\newline
 Wie bereits bei der Bewegungsmodellierung gibt es auch hier eine Vielzahl verschiedener Modelle, die in bestimmten Szenarien
 geeignet sein können, um realistischen Datenverkehr zu modellieren.
+
+\vfill
 
 \pagebreak
 
@@ -193,10 +194,130 @@ Im Kern wurden dafür drei Fragestellungen untersucht:\newline
     \item Was sind die Beziehungen dieser Charakteristiken?
     \item Sollten neue Modelle entwickelt werden, die diese Unterschiede berücksichtigen? Wenn ja, wie?
 \end{itemize}
+\pagebreak
+In Abb. \ref{fig:flames} ist eine Übersicht des FLAMeS-Systems dargestellt, welches aus drei Phasen besteht.
+In der ersten Phase findet die Datensammlung und ein Preprocessing statt. Anschließend kommt es in Phase 2
+zur Mobilitäts- und Traffic-Analyse, wobei zwischen Laptops und Smartphones unterschieden wird. In der letzten
+Phase findet schließlich eine integrierte Analyse der Mobilität und des Traffics statt.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.65\textwidth]{img/FLAMeS.png}
+\caption{FLAMeS System. \cite{Alipour2018}}
+\label{fig:flames}
+\end{figure}
+
+\subsection{I. Datensammlung und Preprocessing}
+
+Die erste Quelle sind WLAN AP Logs. Diese Logs wurden von $1760$ APs in $138$ Gebäuden über $479$ Tage auf dem
+Campus einer Universität gesammelt. Die Daten stammen von insgesamt $316k$ Geräten aus den Jahren $2011$ und $2012$.
+Jeder Eintrag enthält die MAC-Adresse des Geräts, dessen zugewiesene IP-Adresse, den assoziierten AP und einen Zeitstempel.
+Die Orte der APs werden durch die Längen- und Breitengrade der Gebäude, in welchen sie sich befinden, durch die Google Maps API
+approximiert. Daneben gibt es als weitere Quelle NetFlow Logs. Aus demselben Netzwerk wurden im April $2012$ über $76$ Mrd.
+Einträge in NetFlow Traces gesammelt. Ein \textquote{Flow} entspricht einer konsekutiven Sequenz von Paketen mit demselben
+Transportprotokoll, Start- und Ziel-IP und Port.
+\newline\newline
+Anschließend werden die NetFlow-Einträge durch das dynamische MAC-to-IP Mapping aus den DHCP-Logs mit den WLAN-Verbindungen
+aus den AP-Logs gematcht. Diese werden durch Ort und Webseiten-Informationen erweitert (durch rDNS).
+\newline\newline
+Danach geht es darum, die Geräte in Laptops und Smartphones zu klassifizieren. Das geschieht mithilfe
+mehrerer Beobachtungen und Heuristiken. Zunächst einmal kann der Hersteller des Geräts mit der OUI
+\footnote{Organizationally Unique Identifier - 24-Bit-Zahl, die eindeutig den Hersteller identifiziert} basierend auf den
+ersten drei Oktetten der MAC-Adresse identifiziert werden. Auf diese Weise konnten bereits $46 \%$ der Geräte klassifiziert werden.
+Die folgende Heuristik wird verwendet: Rufe sämtliche OUIs (MAC Prefix) ab, welche admob.com kontaktieren und markiere das Gerät
+als Mobilgerät, wenn es bisher nicht markiert ist. Auf diese Weise konnten $86 \%$ der Geräte in AP-Logs und $97 \%$
+der NetFlow-Traces klassifiziert werden. Wie man Abb. \ref{fig:traces} entnehmen kann, ist die Anzahl der Flows und der
+Gesamt-Traffic bei Laptops deutlich höher als bei Mobilgeräten, obwohl es insgesamt deutlich mehr verbundene Mobilgeräte gibt.
+Wie zu erwarten treten die Peaks an Wochentagen auf. Dass die Netzwerkaktivität nach dem 25. abnimmt, liegt daran, dass dort
+die vorlesungsfreie Zeit beginnt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\textwidth]{img/traces.png}
+    \caption{Traces über $25$ Tage. \cite{Alipour2018}}
+    \label{fig:traces}
+\end{figure}
+
+\subsection{Mobilitätsanalyse}
+
+In diesem Abschnitt geht es um eine zeitliche und örtliche Mobilitätsanalyse.
+\newline\newline
+Eine Session ist die Periode zwischen WLAN-Verbindungen. Die Startzeiten von Sessions stimmen mit den periodischen Startzeiten 
+der Vorlesungen überein, allerdings hauptsächlich in Hörsälen. In diesen Gebäuden fällt die Aktivität von Laptops nach dem Ende
+der Vorlesungszeiten stark. Die Aktivität von Mobilgeräten bleibt etwas länger erhalten. Für die Bibliothek und soziale
+Einrichtungen auf dem Campus ist die Wahrscheinlichkeit für neue Sessions später am Abend deutlich höher. Diese klaren 
+Ergebnisse gelten nur für Wochentage.
+\newline\newline
+Die räumliche Ausbreitung eines Geräts über einen Zeitraum von 6 Monaten.
+Nach einer initialen Phase von ca. einer Woche stabilisiert sich diese Ausbreitung. Für Laptops
+findet eine substanzielle Reduktion der Gesamtmobilität statt, während diese bei Smartphones nicht
+in einer solchen Deutlichkeit vorliegt.
+Da Smartphones \textquote{Always-On-Devices} sind, ist es leichter, deren Mobilität zu erfassen, da sie an Orten
+wie Bushaltestellen etc., an denen Laptops typischerweise nicht eingeschaltet sind, verbunden sind.
+Dies ermöglicht eine feingranularere Erfassung der Mobilität dieser Geräte.
+Aufgrund der Vorlesungen, haben Stundenten, die an diesen teilnehmen an Wochentagen einen eingeschränkteren Bewegungsradius.
+\newline\newline
+Ebenfalls von Interesse ist die Zeit einer Session in einem Gebäude.
+Laptops haben etwas längere Aufenthaltszeiten, im Median liegen allerdings beide Geräteklassen bei etwa $2:40$ Stunden.
+Laptops werden in der Regel verwendet, wenn Nutzer länger an einem Ort verweilen.
+\newline\newline
+Trotz der geschilderten Unterschiede gibt es auch viele Gemeinsamkeiten, beispielsweise in der Verwendung während der Vorlesungszeit.
+
+\subsection{Trafficanalyse}
+
+In diesem Abschnitt geht es um eine Analyse des Datenverkehrs über unterschiedliche Gerätetypen, Zeiten und Orte.
+
+Ein relevantes Kriterium ist die \textquote{Flow-Size}, also die Summe der Bytes aller Pakete eines Flows.
+An Wochentagen ist die durchschnittliche Größe von Flows bei Smartphones mehr als doppelt so groß wie die von Laptop-Flows.
+Auch an Wochenenden ändert sich dies nicht signifikant.
+Die durchschnittliche Paketgröße von Smartphone-Flows ist $50 \%$ größer als die von Laptops.
+Die Median-Größe der Pakete von Smartphones fällt an Wochenenden, während es bei Laptops gleich bleibt.
+Laptop-Flows zeigen zwischen Wochentagen und Wochenden in Bezug auf die durchschnittliche Paketgröße keine signifikante Veränderung.
+\newline\newline
+Ebenfalls interessant ist die Laufzeit eines Flows. Beide Gerätetypen zeigen erhöhte Mittelwerte an Wochenenden.
+Da es zusätzlich weniger aktive Geräte an Wochenenden gibt, zeigen die aktiven Geräte eine erhöhte Aktivität.
+\newline\newline
+Smartphones zeigen mehr extreme Phasen der Inaktivität, die durch größere Mobilität und Paketverluste verursacht werden können.
+\newline\newline
+Auch die Protokolle sind von Interesse. TCP ist für $78.5 \%$ der Laptop Flows verantwortlich
+und für $98.2 \%$ der Smartphone Flows. Die höhere Präsenz von UDP bei Laptops ist nachvollziehbar, weil
+UDP-Verbindungen wie Multiplayer-Spiele, Video-Konferenzen und Filesharing typischerweise nicht auf Mobilgeräten stattfinden.
+\newline\newline
+Insgesamt lässt sich festhalten, dass Smartphones mobiler sind und eine größere Anzahl von APs besuchen
+und größere Flow-Sizes haben und trotzdem für weniger Netzwerklast verantwortlich sind.
+\newline\newline
+Auch das Verhalten der Nutzer ist relevant. An Wochentagen konsumieren $90 \%$ der Laptops weniger als $700$\textsc{MB},
+während $90 \%$ der Smartphones weniger als $200$\textsc{MB} verbrauchen.
+Bei der Paketrate sieht es ähnlich aus. An Wochentagen generieren Laptops durchschnittlich $318k$ Pakete, während
+Smartphones nur durchschnittlich $84k$ Pakete am Tag generieren. An Wochenenden erhöhen sich die wenigen verbleibenden
+Laptops deutlich und die Smartphones nur leicht.
+\newline\newline
+Die \textquote{Active Duration} ist weiterhin gut geeignet um Unterschiede zwischen Laptops und Smartphones zu verdeutlichen.
+Dabei werden die NetFlows herangezogen und nicht die WLAN-AP Verbindungszeiten, denn dies ermöglicht es \textquote{Idle}-Zeiten
+von aktiven Zeiten zu unterscheiden. Laptops haben 4x höhere durchschnittliche Aktivitätszeiten verglichen mit Smartphones.
+Insgesamt sind über $90 \%$ der Laptops weniger als $3.5$ Stunden am Tag aktiv und $90 \%$ der Smartphones weniger als eine Stunde.
+\newline\newline
+Insgesamt scheint es, als wäre der Datanverbrauch von Smartphones mehr bursty mit größeren Flows und kleinerer aktiver Dauer.
+Außerdem ist es so, dass an Wochenenden weniger Geräte am Campus sind, aber jene die verbleiben überdurchschnittlich aktiv sind
+und überdurchschnittlich viel Daten konsumieren.
+\newline\newline
+Zuletzt wurden Machine-Learning-Verfahren angewandt, um ein gemischtes Modell zu trainieren, welches Datenpunkte
+generiert und es konnte gezeigt werden, dass ein kombiniertes Mobilitäts-Traffic-Modell die Unterschiede besser abgebildet
+als separierte Traffic- bzw. Mobilitäts-Modelle.
+\newline\newline
+Insgesamt wurde gezeigt, dass es ein signifikantes Potenzial für integrierte Mobilitäts- und Datenverkehr-Modelle gibt,
+welche die Unterschiede und Beziehungen zwischen unterschiedlichen Gerätetypen, Zeiten und Orten abbilden.
+
+\subsection{Diskussion}
+
+TODO: Kernfragen diskutieren.
 
 \pagebreak
 
-\section{Schluss}
+\section{Fazit und Ausblick}
+
+Die Autoren der in Abschnitt \ref{sec:} vorgestellten Veröffentlichung haben eine erweiterte Version veröffentlicht,
+in welcher sie tiefer auf bestimmte zuvor betrachtete Aspekte eingehen...
 
 %Bibliographie
 \addcontentsline{toc}{section}{Literatur}
