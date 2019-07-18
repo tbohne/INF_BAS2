@@ -170,8 +170,9 @@ geeignet sein können, um realistischen Datenverkehr zu modellieren.
 
 \section{Korrelationen zwischen Mobilität und Datenverkehr}
 
-Wie in den Abschnitten \ref{sec:mobility} und \ref{sec:traffic} deutlich wurde, hängt die Performanz eines mobilen
-Netzwerks erheblich von den Mustern der Mobilität und des Datenverkehrs ab.
+Wie in den Abschnitten \ref{sec:mobility} und \ref{sec:traffic} eingeführt, hängt die Performanz eines mobilen
+Netzwerks erheblich von den Mustern der Mobilität und des Datenverkehrs innerhalb des Netzwerks ab.
+\cite{Alipour2018} untersuchen mögliche Korrelationen zwischen beiden Faktoren.
 \newline\newline
 Aktuelle Modelle betrachten entweder die Mobilität oder den Datenverkehr, erfassen jedoch nicht das Zusammenspiel beider Faktoren.
 Außerdem verwenden viele trace-basierte Mobilitätsmodelle Datensätzen aus der Prä-Smartphone-Ära,
@@ -181,24 +182,23 @@ Die Modelle sind datengetrieben, es werden $30$\textsc{TB} große Datensätze vo
 betrieben wurden. Zur Analyse dieser Daten wurde das Framework FLAMeS (\textbf{F}ramework for \textbf{L}arge-scale \textbf{A}nalysis of \textbf{M}obil\textbf{e} \textbf{S}ocieties) entwickelt.
 Ziel des Papers ist im Wesentlichen, einen ersten Schritt in Richtung integrierter Mobilitäts-Datenverkehr-Modelle 
 zu ermöglichen, um in der Zukunft realistischere Test-Szenarien und Benchmarks zu entwickeln. Im Folgenden werden relevante
-Aspekte und Ergebnisse aus der Veröffentlichung präsentiert.\newline
+Aspekte und Ergebnisse aus der Veröffentlichung präsentiert.\newline\newline
 Dass die beiden Faktoren der Mobilität und des Datenverkehrs sich trotz der bisher überwiegend isolierten Betrachtungen
 durchaus gegenseitig beeinflussen, veranschaulichen die Autoren durch folgende alltägliche Beispiele. 
 Eine Person verlangsamt ihren Gang, wenn diese eine Nachricht erhält. Ebenso kann die Netzwerkaktivität von der
 Mobilität und Position abhängen. Stationäre Nutzer konsumieren und produzieren in der Regel mehr Daten als jene, 
-die sich bewegen. Außerdem verwenden Personen an unterschiedlichen Orten undterschiedliche Anwendungen.
+die sich bewegen. Außerdem verwenden Personen an unterschiedlichen Orten unterschiedliche Anwendungen.
 Diese simplen Beispiele lassen eine gemeinsame Betrachtung beider Faktoren bereits als sinnvoll erscheinen.
-\newline\newline
 Um diesen Zusammenhang genauer zu untersuchen, unterscheiden sie zwischen stationären Geräten (Laptops) und mobilen Geräten
 (Smartphones). Da Laptops auch durchaus als mobil angesehen werden können, wird die Unterscheidung durch \textquote{on-the-go}- und \textquote{stop-to-use}-
-Geräte klarer. Das bereits erwähnte Framework FLAMeS wurde entwickelt, um stationäre und mobile Geräte zu differenzieren
+Geräte verdeutlicht. Das bereits erwähnte Framework FLAMeS wurde entwickelt, um stationäre und mobile Geräte zu differenzieren
 und in Bezug auf ihren Datenverkehr und ihre Mobilität zu untersuchen.
-\newline\newline
-Im Kern untersuchen die Autoren dafür drei Fragestellungen:\newline
+Im Kern untersuchen die Autoren dafür drei Fragestellungen:
 \begin{itemize}
-    \item Wie unterscheiden sich Mobilität und Datenverkehr zwischen den unterschiedlichen Geräteklassen, Zeit und Ort?
-    \item Was sind die Beziehungen dieser Charakteristiken?
-    \item Sollten neue Modelle entwickelt werden, die diese Unterschiede berücksichtigen? Wenn ja, wie?
+    \item Wie unterscheiden sich Mobilitäts- und Datenverkehr-Charakteristiken zwischen den unterschiedlichen Geräteklassen,
+    Zeit und Ort?
+    \item Wie stehen diese Charakteristiken zueinander in Beziehung?
+    \item Sollten neue Modelle entwickelt werden, die diese Unterschiede berücksichtigen?
 \end{itemize}
 \pagebreak
 In Abb. \ref{fig:flames} ist eine Übersicht des FLAMeS-Systems dargestellt, welches aus drei Phasen besteht.
@@ -214,16 +214,22 @@ Phase findet schließlich eine integrierte Analyse der Mobilität und des Traffi
 
 \subsection{Datensammlung und Preprocessing}
 
-Die gesammelten Daten stammen aus zwei Quellen. Die erste Quelle sind WLAN-AP-Logs. Diese Logs wurden von $1760$ APs in $138$ Gebäuden über $479$ Tage auf dem
+Die gesammelten Daten stammen aus zwei Quellen. Die erste Quelle sind WLAN-AP\footnote{Access-Point}-Logs. 
+Diese Logs wurden an $1760$ APs in $138$ Gebäuden über $479$ Tage auf dem
 Campus einer Universität aufgezeichnet. Die Daten stammen von insgesamt $316$\textsc{K} Geräten aus den Jahren $2011$ und $2012$.
 Jeder Eintrag enthält die MAC-Adresse des Geräts, dessen zugewiesene IP-Adresse, den AP, mit welchem das Gerät verbunden ist
 und einen Zeitstempel.
 Die Orte der APs werden durch die Längen- und Breitengrade der Gebäude, in welchen sie sich befinden, mithilfe der Google Maps API
-approximiert. Daneben gibt es als weitere Quelle NetFlow-Logs. Aus demselben Netzwerk wurden im April $2012$ über $76$ Mrd.
-Einträge in NetFlow-Traces gesammelt. Ein \textquote{Flow} entspricht einer konsekutiven Sequenz von Paketen mit demselben
+approximiert. Daneben gibt es als weitere Quelle Netflow-Logs. Im selben Netzwerk wurden im April $2012$ über $76$ Mrd.
+Einträge in Netflow-Traces gesammelt. Ein \textquote{Flow} entspricht einer konsekutiven Sequenz von Paketen mit demselben
 Transportprotokoll, Start- und Ziel-IP und Port. \cite{Alipour2018}
-Anschließend werden die NetFlow-Einträge durch das dynamische MAC-to-IP Mapping aus den DHCP-Logs mit den WLAN-Verbindungen
-aus den AP-Logs gematcht. Diese werden durch Ort und Webseiten-Informationen erweitert (durch rDNS).
+
+\vfill
+\pagebreak
+
+Anschließend werden die Netflow-Einträge durch das dynamische MAC-to-IP Mapping aus den DHCP-Logs mit den WLAN-Verbindungen
+aus den AP-Logs gematcht. Die Ergebnisse werden mittels rDNS\footnote{Reverse DNS} durch Ort und Webseiten-Informationen
+ergänzt. \cite{Alipour2018}
 \newline\newline
 Darauffolgend geht es darum, die Geräte in Laptops und Smartphones zu klassifizieren.
 Zunächst einmal kann der Hersteller des Geräts mit der OUI \footnote{Organizationally Unique Identifier - 24-Bit-Zahl, die eindeutig den Hersteller identifiziert} basierend auf den
