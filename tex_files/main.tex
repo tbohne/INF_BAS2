@@ -125,7 +125,7 @@ wobei es verschiedene Arten von Ansätzen gibt, dies zu tun.\newline
 Wie in \cite{Aschenbruck2011} geschildert, können synthetische Modelle bestimmte Abhängigkeiten modellieren.
 Zeitliche Abhängigkeiten sorgen z.B. dafür, dass die Bewegung einer Entität durch dessen Bewegung in der Vergangenheit
 beeinflusst wird. Außerdem können räumliche Abhängigkeiten darfür sorgen, dass die Bewegung einer Entität durch die umgebenden 
-Entitätnen beeinflusst wird (Group-Mobility). Auch geographische Restriktionen können Teil des Modells sein.
+Entitäten beeinflusst wird (Group-Mobility). Auch geographische Restriktionen können Teil des Modells sein.
 Des Weiteren wird in \cite{Aschenbruck2011} darauf hingewiesen, dass auch Modelle wie
 \textquote{Random-Waypoint} und \textquote{Random-Walk} existieren, welche keine dieser Abhängigkeiten
 aufweisen. Diese Modelle sind einfach zu implementieren, jedoch nicht sehr realistisch.
@@ -139,22 +139,23 @@ auf welche zum Teil im Verlauf dieser Ausarbeitung an geeigneter Stelle eingegan
 
 Zu einer sinnvollen Simulation der Performanz eines Kommunikationssystems gehört auch die Simulation des Datenverkehrs
 innerhalb dieses Systems. Wie bereits bei der Bewegungsmodellierung, kann auch hier von tatsächlichen Beobachtungen in
-existierenden Netzen ausgegangen werden, sofern diese vorliegen.\newline
-Einfacher Datenverkehr besteht aus der einfachen Ankunft diskreter Entitäten (Pakete).
-Es gibt allerdings auch Datenverkehr, bei welchem mehrere Entitäten zusammen in sogenannten \textquote{Batch-Arrivals} eintreffen.
+existierenden Netzen ausgegangen werden, sofern diese vorliegen.
+\newline\newline
+Einfacher Datenverkehr besteht aus einzelnen Ankünften diskreter Entitäten.
+Bei diesen Entitäten kann es sich z.B. um Pakete handeln. Darüber hinaus gibt es Datenverkehr, 
+bei welchem mehrere Entitäten zusammen in sogenannten \textquote{Batch-Arrivals} eintreffen.
 Im einfachsten Fall wird in einer Simulation eine zufällige Sequenz von Zwischenankunftszeiten \footnote{Zeit zwischen zwei 
-aufeinanderfolgenden \textquote{Arrivals}} generiert.
-Neben Ankunftszeiten und Batch-Größen ist es zudem häufig sinnvoll, die Last zu modellieren. \cite{Frost1994}
+aufeinanderfolgenden \textquote{Arrivals}.} generiert. Neben Ankunftszeiten und Batch-Größen ist es zudem häufig sinnvoll,
+die Last zu modellieren. \cite{Frost1994} Die Last wird in \cite{Frost1994} als die Menge der Arbeit $W_n$ im System beschrieben,
+die die $n$-te eintreffende Entität erfordert.
 \newline\newline
 Ein einfaches Modell des Datenverkehrs ist \textsc{CBR} (Constant Bitrate), bei welchem eine Anzahl von Paketankünften
 pro Zeiteinheit definiert wird. Die Paketgröße ist dabei ebenfalls konstant. Dieses Modell ist sehr simpel und dementsprechend
-leicht zu implementieren, dafür jedoch auch nicht besonders realistisch. Wenngleich VoIP und Video-Übertragung manchmal
-die Gestalt von \textsc{CBR}-Datenverkehr aufweist. ADDCITE\newline
-Neben \textsc{CBR}- gibt es auch \textsc{VBR}-Traffic (Variable Bitrate), welcher z.B. beim Videostreaming auftritt,
-bei welchem kodierte Frames eine variable, zufällige Größe besitzen.\cite{Frost1994}
-\newline\newline
-Um einen realistischen, heterogenen Traffic-Mix zu erhalten, sollten verschiedene Ströme des Datenverkehrs
-gemultiplext werden, z.B. Sprachverbindungen, Video-Übertragungen und Datei-Transporte. \cite{Frost1994}
+leicht zu implementieren, dafür jedoch in der Regel nicht besonders realistisch.\newline
+Neben \textsc{CBR}- gibt es den typischerweise realistischeren \textsc{VBR}-Traffic (Variable Bitrate), 
+welcher z.B. beim Videostreaming auftritt, bei dem kodierte Frames eine variable, zufällige Größe besitzen.\cite{Frost1994}
+Um einen realistischen, heterogenen Traffic-Mix zu erhalten, sollten in einem Modell laut \cite{Frost1994} verschiedene
+Ströme des Datenverkehrs gemultiplext werden, z.B. Sprachverbindungen, Video-Übertragungen und Datei-Transporte.
 \newline\newline
 Eine weitere wichtige Eigenschaft des Datenverkehrs ist die sogenannte \textquote{Burstiness}, also die Stoßhaftigkeit.
 Traffic entsteht in Schüben, z.B. für komprimierte Videos und Datentransfers. Die Ankünfte der Pakete bilden visuelle
