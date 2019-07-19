@@ -232,12 +232,13 @@ aus den AP-Logs gematcht. Die Ergebnisse werden mittels rDNS\footnote{Reverse DN
 ergänzt. \cite{Alipour2018}
 \newline\newline
 Darauffolgend geht es darum, die Geräte in Laptops und Smartphones zu klassifizieren.
-Zunächst einmal kann der Hersteller des Geräts mit der OUI \footnote{Organizationally Unique Identifier - 24-Bit-Zahl, die eindeutig den Hersteller identifiziert} basierend auf den
-ersten drei Oktetten der MAC-Adresse identifiziert werden. Da viele Hersteller nur einen Gerätetyp herstellen, können auf diese Weise bereits
+Zunächst einmal kann der Hersteller des Geräts mit der OUI \footnote{Organizationally Unique Identifier - 24-Bit-Zahl, 
+die eindeutig den Hersteller identifiziert.} basierend auf den ersten drei Oktetten der MAC-Adresse identifiziert werden.
+Da viele Hersteller nur einen Gerätetyp herstellen, können auf diese Weise bereits
 $46 \%$ der Geräte klassifiziert werden. Die Heuristik, welche von den Autoren zur Klassifizierung verwendet wird
-prüft zusätzlich, ob ein Gerät admob.com kontatktiert, eine sehr verbreitete Plattform für Werbung auf Mobilgeräten.
+prüft zusätzlich, ob ein Gerät \textit{admob.com} kontatktiert, eine sehr verbreitete Plattform für Werbung auf Mobilgeräten.
 Ist dies der Fall, so wird ein Gerät als Mobilgerät klassifiziert. Auf diese Weise konnten $86 \%$ der Geräte in den AP-Logs
-und $97 \%$ der NetFlow-Traces klassifiziert werden. Diese Art der Geräteklassifizierung wahrt im Gegensatz zur Analyse von 
+und $97 \%$ der Netflow-Traces klassifiziert werden. Diese Art der Geräteklassifizierung wahre im Gegensatz zur Analyse von 
 HTTP-Headern die Privatsphäre der Nutzer.\newline
 Wie man Abb. \ref{fig:traces} entnehmen kann, ist die Anzahl der Flows und der
 Gesamt-Traffic bei Laptops deutlich höher als bei Mobilgeräten, obwohl es insgesamt deutlich mehr verbundene Mobilgeräte gibt.
@@ -247,7 +248,7 @@ die vorlesungsfreie Zeit beginnt.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.65\textwidth]{img/traces.png}
-    \caption{Kombinierte WLAN-AP- und Net-Flow-Traces über $25$ Tage. \cite{Alipour2018}}
+    \caption{Kombinierte WLAN-AP- und Netflow-Traces über $25$ Tage. \cite{Alipour2018}}
     \label{fig:traces}
 \end{figure}
 
@@ -262,92 +263,87 @@ In diesen Gebäuden fällt die Aktivität von Laptops nach dem Ende der Vorlesun
 bleibt etwas länger erhalten. Für die Bibliothek und soziale Einrichtungen auf dem Campus ist die Wahrscheinlichkeit
 für neue Sessions später am Abend deutlich höher. An Wochenenden gilt dies aufgrund des fehlenden weitgehend vorgegebenen
 Tagesablaufs durch Vorlesungen nicht und es lassen sich auch keine signifikanten Unterschiede zwischen den Gerätetypen 
-feststellen.\newline Die Autoren haben die räumliche Ausbreitung der Geräts über einen Zeitraum von 6 Monaten analysiert.
+feststellen. \cite{Alipour2018} \newline
+Grundsätzlich ist es so, dass Stundenten, die an Vorlesungen teilnehmen an Wochentagen einen eingeschränkteren Bewegungsradius haben.
+Die Autoren haben die räumliche Ausbreitung der Geräts über einen Zeitraum von 6 Monaten analysiert.
 Nach einer initialen Phase von ca. einer Woche stabilisiert sich diese Ausbreitung. Für Laptops findet eine 
 substanzielle Reduktion der Gesamtmobilität statt, während diese bei Smartphones nicht in einer solchen Deutlichkeit vorliegt.
-Da Smartphones \textquote{Always-On}-Geräte sind, ist es leichter, deren Mobilität zu erfassen, da sie auch an Orten
+Da Smartphones \textquote{always-on}-Geräte sind, ist es leichter, deren Mobilität zu erfassen, da sie auch an Orten
 wie Bushaltestellen etc., an denen Laptops typischerweise nicht eingeschaltet sind, verbunden sind.
-Dies ermöglicht eine feingranularere Erfassung der Mobilität dieser Geräte. Aufgrund der Vorlesungen, 
-haben Stundenten, die an diesen teilnehmen an Wochentagen einen eingeschränkteren Bewegungsradius.\newline
+Dies ermöglicht eine feingranularere Erfassung der Mobilität dieser Geräte. \cite{Alipour2018}
 Außerdem wird die Anzahl der unterschiedlichen besuchten Gebäude eines Nutzers gezählt und ein bevorzugtes
 Gebäude dieses Nutzers als jenes definiert, in welchem dieser an einem Tag die meiste Zeit verbracht hat.
 Dazu werden die Session-Zeiten innerhalb eines Gebäudes aufsummiert.
 Laptops haben etwas längere Aufenthaltszeiten, im Median liegen allerdings beide Geräteklassen bei etwa $2$ Stunden
 und $40$ Minuten. Wobei Laptops in der Regel verwendet werden, wenn Nutzer länger an einem Ort verweilen.
 
-\vfill
-\pagebreak
-
 \subsection{Trafficanalyse}
 
-In diesem Abschnitt geht es um eine Analyse des Datenverkehrs über die unterschiedlichen Gerätetypen,
-Zeiten und Orte. Ein relevantes Kriterium ist die \textquote{Flow-Size}, also die Summe der Bytes aller Pakete eines Flows.
+In diesem Abschnitt geht es um die zeitliche und räumliche Analyse des Datenverkehrs der verschiedenen Geräteklassen.
+Im Folgenden werden die Ergebnisse der Traffic-Analyse von \cite{Alipour2018} vorgestellt.
+Eine relevante Charakteristik ist die \textquote{Flow-Size}, also die Summe der Bytes aller Pakete eines Flows.
 An Wochentagen ist die durchschnittliche Größe von Flows bei Smartphones mehr als doppelt so groß wie jene von Laptop-Flows.
-Auch an Wochenenden ändert sich dies nicht signifikant. Die durchschnittliche Paketgröße von Smartphone-Flows ist ca. $50 \%$ größer
-als die von Laptops. Die Median-Größe der Pakete von Smartphones fällt an Wochenenden, während diese bei Laptops gleich bleibt.
-Laptop-Flows zeigen zwischen Wochentagen und Wochenden in Bezug auf die durchschnittliche Paketgröße keine signifikante Veränderung.
-\newline\newline
+Auch an Wochenenden ändert sich dies nicht signifikant. Die durchschnittliche Paketgröße von Smartphone-Flows
+ist ca. $50 \%$ größer als die von Laptops. Die Median-Größe der Pakete von Smartphones fällt an Wochenenden, 
+während diese bei Laptops gleich bleibt. Laptop-Flows zeigen zwischen Wochentagen und Wochenden in Bezug auf
+die durchschnittliche Paketgröße keine signifikante Veränderung.
 Trotz kleinerer Flows generiert ein durchschnittlicher Laptop $2.7$ mal so viel Traffic wie ein durchschnittliches Smartphone,
 weil ein Laptop für $3.7$ mal so viele Flows verantwortlich ist, wie ein Smartphone.
 \newline\newline
 Ebenfalls interessant ist die Laufzeit eines Flows. Beide Gerätetypen zeigen erhöhte Mittelwerte an Wochenenden.
-Da es zusätzlich weniger aktive Geräte an Wochenenden gibt, zeigen die verbleibenden aktiven Geräte eine erhöhte Aktivität.
-Smartphones zeigen insgesamt mehr extreme Phasen der Inaktivität, die unter anderem durch größere Mobilität und Paketverluste
-verursacht werden können.\newline
+Da es zusätzlich weniger aktive Geräte an Wochenenden gibt, ist für die verbleibenden aktiven Geräte eine erhöhte Aktivität
+zu beobachten. Smartphones zeigen insgesamt mehr extreme Phasen der Inaktivität, die unter anderem durch größere
+Mobilität und Paketverluste verursacht werden können.
 Auch die verwendeten Protokolle sind von Interesse. TCP ist für $78.5 \%$ der Laptop-Flows verantwortlich
 und für $98.2 \%$ der Smartphone-Flows. Die höhere Präsenz von UDP bei Laptops ist zu erwarten, weil
 UDP-Verbindungen, die z.B. bei Multiplayer-Spielen, Video-Konferenzen und Filesharing auftreten,
 typischerweise weniger auf Mobilgeräten stattfinden.
-Insgesamt lässt sich festhalten, dass Smartphones mobiler sind, eine größere Anzahl von APs besuchen,
-größere Flow-Sizes haben und trotzdem für insgesamt weniger Netzwerklast verantwortlich sind.
-\newline\newline
-Basierend auf den geschilderten Unterschieden könnte die Traffic Classification mittels Machine Learning
-von der Betrachtung des Gerätetyps während des Tranings profitieren.
-\newline\newline
 Außerdem wurde die Last an den APs in sämtlichen Gebäuden täglich beobachtet. Dabei wurde darauf geachtet,
-nicht in die Klausurenphase zu geraten, um Veränderungen im Verhalten der Nutzer zu vermeiden.
+die Beobachtungen außerhalb der Klausurenphase zu tätigen, um Veränderungen im Verhalten der Nutzer zu vermeiden.
 Es wurde die tägliche Rate der Paket- und Flowankünfte an den APs betrachtet. Die Median Flowraten sind
-$42$\textsc{K} bzw. $20$\textsc{K} für Laptops und Smartphones an Wochentagen ($7.5$\textsc{K} bzw. $0.5$\textsc{K})
-an Wochenenden. Die durchschnittliche Anzahl von Laptop-Paketen, die täglich von APs verarbeitet werden,
+$42$\textsc{K} bzw. $20$\textsc{K} für Laptops und Smartphones an Wochentagen ($7.5$\textsc{K} bzw. $0.5$\textsc{K}
+an Wochenenden). Die durchschnittliche Anzahl von Laptop-Paketen, die täglich von APs verarbeitet werden,
 ist $1.6$ mal größer als die von Smartphones. An Wochenenden wird ein großer Anteil der APs nicht verwendet,
 was die Aussage einer geringeren Mobilität der Nutzer an Wochenenden unterstützt.
 Das tatsächliche Traffic-Volumen der APs beträgt an durchschnittlichen Wochentagen für $90 \%$ der APs
 weniger als $5$\textsc{GB} Laptop-Traffic ($2.5$\textsc{GB} an Wochenenden) und weniger als $3$\textsc{GB} Smartphone-Traffic
-($1$\textsc{GB} an Wochenenden). Smartphones sind mobiler, besuchen eine größere Anzahl verschiedener APs
-und besitzen größere Flows, sind jedoch insgesamt für weniger Netzwerklast verantwortlich.
-\newline\newline
+($1$\textsc{GB} an Wochenenden).
 Auch das Verhalten der Nutzer ist relevant. An Wochentagen \textcolor{red}{konsumieren} $90 \%$ der Laptops weniger als $700$\textsc{MB},
 während $90 \%$ der Smartphones weniger als $200$\textsc{MB} verbrauchen.
 Ein ähnliches Bild ergibt sich bei der Paketrate. An Wochentagen generieren Laptops durchschnittlich $318$\textsc{K} Pakete, 
 während Smartphones nur durchschnittlich $84$\textsc{K} Pakete am Tag generieren. 
 An Wochenenden erhöht sich die Paketrate und der Datenkonsum der wenigen verbleibenden Laptops deutlich,
-während bei den Smartphones nur leichte Veränderungen zu beobachten sind.\newline
+während bei den Smartphones nur leichte Veränderungen zu beobachten sind.
 Weiterhin gut geeignet, um Unterschiede zwischen Laptops und Smartphones zu verdeutlichen, sind die tatsächlichen Aktivitätszeiten.
-Dabei werden die Net-Flows herangezogen und nicht die WLAN-AP-Verbindungszeiten, denn dies ermöglicht es \textquote{Idle}-Zeiten
+Dabei werden die Netflows herangezogen und nicht die WLAN-AP-Verbindungszeiten, denn dies ermöglicht es \textquote{Idle}-Zeiten
 von aktiven Zeiten zu unterscheiden. Laptops haben verglichen mit Smartphones $4x$ höhere durchschnittliche Aktivitätszeiten.
 Insgesamt sind über $90 \%$ der Laptops weniger als $3.5$ Stunden am Tag aktiv und $90 \%$ der Smartphones weniger als eine Stunde.\newline
-Zusammenfassend lässt sich sagen, dass der Datanverbrauch von Smartphones mehr bursty mit größeren Flows und kleinerer aktiver Dauer ist.
-Außerdem sind an Wochenenden weniger Geräte am Campus, aber jene die verbleiben, sind überdurchschnittlich aktiv 
-und konsumieren überdurchschnittlich viele Daten.
+Zusammenfassend lässt sich sagen, dass der Datanverbrauch von Smartphones mehr bursty mit größeren Flows und kleinerer aktiver
+Dauer ist. Außerdem sind an Wochenenden weniger Geräte am Campus, aber jene die verbleiben, sind überdurchschnittlich aktiv 
+und konsumieren überdurchschnittlich viele Daten. Insgesamt ist festzuhalten, dass Smartphones mobiler sind, 
+eine größere Anzahl von APs besuchen, größere Flow-Sizes haben und trotzdem für insgesamt weniger Netzwerklast 
+verantwortlich sind.
 
 \vfill
 \pagebreak
 
 \subsection{Integrierte Mobilitäts- und Traffic-Modelle}
 
-In diesem Abschnitt geht es darum, zu untersuchen, ob es einen Bedarf für integrierte Mobility-Traffic-Modelle gibt.
-Zunächst wird Feature Engineering betrieben. Es werden die Beziehungen zwischen Variablen der Mobilitätsdimension
-und der Trafficdimension getrennt voneinander betrachtet. Aus der Teilmenge der kombinierten Features wird untersucht,
-ob Cluster von Nutzergeräten im Datensatz auftauchen. Dafür wird \textsc{CFS} (Correlation Feature Selection) verwendet,
-um unkorrelierte Features zu erhalten. In Bezug auf Mobilität wurde der \textsc{CFS}-Algorithmus mit $8$ Features
-benutzt und es blieben $5$ Features übrig, die in einer kombinierten Analyse verwendet werden sollen.
+Zuletzt wird in \cite{Alipour2018} untersucht, ob es einen Bedarf für integrierte Mobility-Traffic-Modelle gibt.
+
+Dazu werden zunächst die wichtisten Features identifiziert
+
+Dazu wird zunächst \textquote{Feature-Engineering} betrieben. Es werden die Beziehungen zwischen Variablen der Mobilitätsdimension
+und der Trafficdimension getrennt voneinander betrachtet. Um unkorrelierte Features zu ermitteln wird \textsc{CFS} 
+(Correlation Feature Selection) verwendet. In Bezug auf Mobilität wurde der \textsc{CFS}-Algorithmus mit $8$ Features
+benutzt und es blieben $5$ Features übrig, die in einer kombinierten Analyse verwendet werden sollten.
 Für den Traffic wurde dasselbe gemacht, wobei von $19$ Features $11$ verbleiben.\newline
 Bei der Mobilität gibt es an Wochentagen eine starke Korrelation zwischen der Zeit, die im bevorzugten Gebäude 
-verbracht wird und der Dauer der Session, aber eine schwache Korrelation an Wochenenden, was darauf hindeutet,
+verbracht wird und der Dauer der Session, jedoch nur eine schwache Korrelation an Wochenenden, was darauf hindeutet,
 dass die meiste Onlinezeit am Wochenende im bevorzugten Gebäude verbracht wird.\newline
-Auch beim Traffic gibt es Korrelationen, die wohl interessanteste Erkenntnis ist allerdings, dass die
+Auch beim Traffic existieren Korrelationen, die wohl interessanteste Erkenntnis ist allerdings, dass die
 Aktivitätszeiten und die Anzahl von Flows und Paketen nur schwach korreliert, was bedeutet, dass Nutzer,
-die länger online sind, nicht notwendigerweise viel Traffic erzeugen.
+die länger online sind, nicht notwendigerweise mehr Traffic erzeugen.
 \newline\newline
 Ein wichtiger Schritt in Richtung integrierter Mobility-Traffic-Models ist die Analyse der Korrelationen
 zwischen beiden Dimensionen (Mobilität und Traffic).\newline
@@ -392,6 +388,13 @@ keine Verbesserung.
 \newline\newline
 Insgesamt besteht ein signifikantes Potenzial integrierter Mobilitäts- und Traffic-Modelle, welche die Unterschiede
 und Beziehungen von Features zwischen Gerätetypen, Zeit und Ort besser abbilden können als isolierte Modelle.
+
+\vfill
+\pagebreak
+
+\textcolor{red}{Basierend auf den geschilderten Unterschieden könnte die Traffic Classification mittels Machine Learning
+von der Betrachtung des Gerätetyps während des Tranings profitieren.}
+\newline\newline
 
 \subsection{Diskussion}
 
