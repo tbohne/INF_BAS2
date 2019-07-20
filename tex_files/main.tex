@@ -74,26 +74,17 @@ Die stetig wachsende Zahl mobiler Geräte führt zu enormen Herausforderungen be
 und Planung der dafür erforderlichen Infrastruktur. Beim Konzipieren neuer Netzwerke ist es von zentraler
 Bedeutung, diese in möglichst realistischer Weise zu simulieren, um sinnvolle Designentscheidungen
 treffen zu können. Dabei spielen zwei Bereiche eine essenzielle Rolle, die Bewegung der Nutzer bzw. Geräte
-sowie der Datenverkehr innerhalb des Netzwerks.\newline\newline
+sowie der Datenverkehr innerhalb des Netzwerks.\newline
 Diese Ausarbeitung befasst sich mit Korrelationen zwischen diesen beiden Bereichen,
 welche primär anhand der Ergebnisse des Papers \textquote{Flutes vs. Cellos: Analyzing Mobility-Traffic
 Correlations in Large WLAN Traces} \cite{Alipour2018} aus dem Jahr 2018 erörtert werden.
 Darüber hinaus werden an einigen Stellen weiterführende Quellen einbezogen.
 \newline\newline
-Ziel des Papers ist es, die Unterschiede zwischen Laptops und Smartphones in Bezug auf Datenverkehr und Mobilität
-zu untersuchen und auch grundsätzlich die Interaktion zwischen Mobilität und Traffic.
-
-Zunächst werden in Kapitel 2 Storage Loading Probleme im Allgemeinen eingeführt
-und anschließend in Kapitel 3 formal definiert. Darauffolgend wird in Kapitel 4 auf die
-„Stacking Constraints“ eingegangen, die in Storage Loading Problemen eine zentrale
-Rolle spielen. In Kapitel 5 wird die simpelste Variante eines Storage Loading Problems
-skizziert und in Kapitel 6 durch mögliche Zielfunktionen ergänzt. Im Anschluss geht
-es dann in Kapitel 7 darum, die im Paper hergeleiteten Theoreme und zugehörigen
-Beweise vorzustellen. Kapitel 8 enthält einige abschließende Bemerkungen.
-
-\pagebreak
-
-% \cite{aaronson}\cite{flocchini}\cite{upper}
+Zunächst werden in Kapitel \ref{sec:basics} die Grundlagen der Mobilität und des Datenverkehrs in Rechnernetzen
+eingeführt. Anschließend geht es in Kapitel \ref{sec:correlations} um Korrelationen zwischen beiden
+Bereichen, die anhand der Ergebnisse von \cite{Alipour2018} erörtert werden.
+Darauffolgend werden einige Aspekte diskutiert, bevor schließlich in \ref{sec:conclusion} ein abschließendes
+Fazit und ein Ausblick formuliert wird.
 
 \section{Grundlagen}
 \label{sec:basics}
@@ -132,8 +123,6 @@ aufweisen. Diese Modelle sind einfach zu implementieren, jedoch nicht sehr reali
 Insgesamt existiert eine Vielzahl von Mobilitätsmodellen mit verschiedenen Ansätzen,
 auf welche zum Teil im Verlauf dieser Ausarbeitung an geeigneter Stelle eingegangen wird.
 
-\pagebreak
-
 \subsection{Datenverkehr}
 \label{sec:traffic}
 
@@ -164,11 +153,8 @@ Cluster. Der Datenverkehr in Breitbandnetzen wird von dieser Art Traffic dominie
 Wie bereits bei der Bewegungsmodellierung gibt es auch hier eine Vielzahl verschiedener Modelle, die in bestimmten Szenarien
 geeignet sein können, um realistischen Datenverkehr zu modellieren.
 
-\vfill
-
-\pagebreak
-
 \section{Korrelationen zwischen Mobilität und Datenverkehr}
+\label{sec:correlations}
 
 Wie in den Abschnitten \ref{sec:mobility} und \ref{sec:traffic} eingeführt, hängt die Performanz eines mobilen
 Netzwerks erheblich von den Mustern der Mobilität und des Datenverkehrs innerhalb des Netzwerks ab.
@@ -191,7 +177,7 @@ die sich bewegen. Außerdem verwenden Personen an unterschiedlichen Orten unters
 Diese simplen Beispiele lassen eine gemeinsame Betrachtung beider Faktoren bereits als sinnvoll erscheinen.
 Um diesen Zusammenhang genauer zu untersuchen, unterscheiden sie zwischen stationären Geräten (Laptops) und mobilen Geräten
 (Smartphones). Da Laptops auch durchaus als mobil angesehen werden können, wird die Unterscheidung durch \textquote{on-the-go}- und \textquote{stop-to-use}-
-Geräte verdeutlicht. Das bereits erwähnte Framework FLAMeS wurde entwickelt, um stationäre und mobile Geräte zu differenzieren
+Geräte präzisiert. Das bereits erwähnte Framework FLAMeS wurde entwickelt, um stationäre und mobile Geräte zu differenzieren
 und in Bezug auf ihren Datenverkehr und ihre Mobilität zu untersuchen.
 Im Kern untersuchen die Autoren dafür drei Fragestellungen:
 \begin{itemize}
@@ -200,17 +186,17 @@ Im Kern untersuchen die Autoren dafür drei Fragestellungen:
     \item Wie stehen diese Charakteristiken zueinander in Beziehung?
     \item Sollten neue Modelle entwickelt werden, die diese Unterschiede berücksichtigen?
 \end{itemize}
-\pagebreak
+
 In Abb. \ref{fig:flames} ist eine Übersicht des FLAMeS-Systems dargestellt, welches aus drei Phasen besteht.
 In der ersten Phase findet die Datensammlung und ein Preprocessing statt. Anschließend kommt es in Phase 2
 zur Mobilitäts- und Traffic-Analyse, wobei zwischen Laptops und Smartphones unterschieden wird. In der letzten
 Phase findet schließlich eine integrierte Analyse der Mobilität und des Traffics statt.
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.65\textwidth]{img/FLAMeS.png}
-\caption{FLAMeS-System. \cite{Alipour2018}}
-\label{fig:flames}
-\end{figure}
+% \begin{figure}[H]
+% \centering
+% \includegraphics[width=0.65\textwidth]{img/FLAMeS.png}
+% \caption{FLAMeS-System. \cite{Alipour2018}}
+% \label{fig:flames}
+% \end{figure}
 
 \subsection{Datensammlung und Preprocessing}
 
@@ -223,14 +209,7 @@ Die Orte der APs werden durch die Längen- und Breitengrade der Gebäude, in wel
 approximiert. Daneben gibt es als weitere Quelle Netflow-Logs. Im selben Netzwerk wurden im April $2012$ über $76$ Mrd.
 Einträge in Netflow-Traces gesammelt. Ein \textquote{Flow} entspricht einer konsekutiven Sequenz von Paketen mit demselben
 Transportprotokoll, Start- und Ziel-IP und Port. \cite{Alipour2018}
-
-\vfill
-\pagebreak
-
-Anschließend werden die Netflow-Einträge durch das dynamische MAC-to-IP Mapping aus den DHCP-Logs mit den WLAN-Verbindungen
-aus den AP-Logs gematcht. Die Ergebnisse werden mittels rDNS\footnote{Reverse DNS} durch Ort und Webseiten-Informationen
-ergänzt. \cite{Alipour2018}
-\newline\newline
+Anschließend werden die Netflow-Einträge durch das dynamische MAC-to-IP Mapping aus den DHCP-Logs mit den WLAN-Verbindungen aus den AP-Logs gematcht. Die Ergebnisse werden mittels rDNS\footnote{Reverse DNS} durch Ort und Webseiten-Informationen ergänzt. \cite{Alipour2018}
 Darauffolgend geht es darum, die Geräte in Laptops und Smartphones zu klassifizieren.
 Zunächst einmal kann der Hersteller des Geräts mit der OUI \footnote{Organizationally Unique Identifier - 24-Bit-Zahl, 
 die eindeutig den Hersteller identifiziert.} basierend auf den ersten drei Oktetten der MAC-Adresse identifiziert werden.
@@ -251,9 +230,6 @@ die vorlesungsfreie Zeit beginnt.
     \caption{Kombinierte WLAN-AP- und Netflow-Traces über $25$ Tage. \cite{Alipour2018}}
     \label{fig:traces}
 \end{figure}
-
-\vfill
-\pagebreak
 
 \subsection{Mobilitätsanalyse}
 
@@ -409,6 +385,7 @@ Metriken besser abbilden, als isolierte Modelle. Die eingangs erwähnten Fragest
 und es wurden erste Schritte in Richtung integrierter Mobilitäts- und Traffic-Modelle getan.
 
 \section{Fazit und Ausblick}
+\label{sec:conclusion}
 
 Bereits das alltägliche Beispiel der Person, die ihren Gang verlangsamt um eine empfangene Nachricht zu lesen,
 verdeutlicht, dass es einen Zusammengang zwischen Mobilität und Datenverkehr bei Mobilgeräten gibt.
