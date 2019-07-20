@@ -72,14 +72,13 @@ Analyzing Mobility-Traffic Correlations in Large WLAN Traces}}}\\
 
 Die stetig wachsende Zahl mobiler Geräte führt zu enormen Herausforderungen bei der Entwicklung
 und Planung der dafür erforderlichen Infrastruktur. Beim Konzipieren neuer Netzwerke ist es von zentraler
-Bedeutung, diese in möglichst realistischer Weise simulieren zu können, um sinnvolle Designentscheidungen
+Bedeutung, diese in möglichst realistischer Weise zu simulieren, um sinnvolle Designentscheidungen
 treffen zu können. Dabei spielen zwei Bereiche eine essenzielle Rolle, die Bewegung der Nutzer bzw. Geräte
 sowie der Datenverkehr innerhalb des Netzwerks.\newline\newline
-Diese Ausarbeitung befasst sich mit dem Paper \textquote{Flutes vs. Cellos: Analyzing Mobility-Traffic
-Correlations in Large WLAN Traces} \cite{Alipour2018} aus dem Jahr 2018, in welchem Korrelationen
-zwischen diesen Bereichen untersucht werden. Darüber hinaus...\newline\newline
-
-Es thematisiert Storage Loading Probleme mit Stacking Constraints.
+Diese Ausarbeitung befasst sich mit Korrelationen zwischen diesen beiden Bereichen,
+welche primär anhand der Ergebnisse des Papers \textquote{Flutes vs. Cellos: Analyzing Mobility-Traffic
+Correlations in Large WLAN Traces} \cite{Alipour2018} aus dem Jahr 2018 erörtert werden.
+Darüber hinaus werden an einigen Stellen weiterführende Quellen einbezogen.
 \newline\newline
 Ziel des Papers ist es, die Unterschiede zwischen Laptops und Smartphones in Bezug auf Datenverkehr und Mobilität
 zu untersuchen und auch grundsätzlich die Interaktion zwischen Mobilität und Traffic.
@@ -97,6 +96,7 @@ Beweise vorzustellen. Kapitel 8 enthält einige abschließende Bemerkungen.
 % \cite{aaronson}\cite{flocchini}\cite{upper}
 
 \section{Grundlagen}
+\label{sec:basics}
 
 Bevor Korrelationen zwischen Datenverkehr und Mobilität im WLAN sinnvoll thematisiert werden können, 
 werden in diesem Kapitel zunächst die Grundlagen beider Konzepte eingeführt.
@@ -395,11 +395,26 @@ und Beziehungen von Features zwischen Gerätetypen, Zeit und Ort besser abbilden
 
 \subsection{Diskussion}
 
-TODO: Kernfragen diskutieren.
-
-\pagebreak
+In \cite{Alipour2018} wurde die Frage gestellt, ob es sinnvoll ist, Modelle zu entwickeln, die sowohl
+Mobilitäts-, als auch Datenverkehrcharakteristiken berücksichtigen. Es wurde darin gezeigt, dass solche
+kombinierten Betrachtungen potenziell zu deutlich realistischeren Ergebnissen gelangen können,
+als die in der Regel zu simplen isolierten Betrachtungen.\newline
+Es wurde ein Framework entwickelt, um die Datensätze eines bestehenden Netzwerks dahingehend zu analysieren.
+Zunächst ging es dabei um Geräteklassifizierung und anschließend um eine Untersuchung der Mobilitäts-
+und Traffic-Metriken, wobei die verschiedenen Gerätetypen über Raum und Zeit hinweg miteinander verglichen wurden.
+Nachdem gezeigt wurde, dass es signifikante Unterschiede zwischen den Gerätetypen gibt,
+wurde mittels Machine-Learning ein gemischtes Modell trainiert, welches Datenpunkte generiert
+und es konnte gezeigt werden, dass kombinierte Mobilitäts- und Traffic-Features die Unterschiede in den
+Metriken besser abbilden, als isolierte Modelle. Die eingangs erwähnten Fragestellungen wurden beantwortet
+und es wurden erste Schritte in Richtung integrierter Mobilitäts- und Traffic-Modelle getan.
 
 \section{Fazit und Ausblick}
+
+Bereits das alltägliche Beispiel der Person, die ihren Gang verlangsamt um eine empfangene Nachricht zu lesen,
+verdeutlicht, dass es einen Zusammengang zwischen Mobilität und Datenverkehr bei Mobilgeräten gibt.
+In \cite{Alipour2018} wird diese intuitive Idee eines Zusammenhangs bestätigt. Da beide Bereiche
+bisher typischerweise isoliert voneinander betrachtet werden, handelt es sich um ein aktives Forschungsfeld,
+bei dem in Zukunft weitere Betrachtungen und konkretere Ansätze kombinierter Modelle zu erwarten sind.
 
 Die Autoren der in Abschnitt \ref{sec:} vorgestellten Veröffentlichung haben eine erweiterte Version veröffentlicht,
 in welcher sie tiefer auf bestimmte zuvor betrachtete Aspekte eingehen...
