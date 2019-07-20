@@ -330,36 +330,37 @@ verantwortlich sind.
 \subsection{Integrierte Mobilitäts- und Traffic-Modelle}
 
 Zuletzt wird in \cite{Alipour2018} untersucht, ob es einen Bedarf für integrierte Mobility-Traffic-Modelle gibt.
-
-Dazu werden zunächst die wichtisten Features identifiziert
-
-Dazu wird zunächst \textquote{Feature-Engineering} betrieben. Es werden die Beziehungen zwischen Variablen der Mobilitätsdimension
-und der Trafficdimension getrennt voneinander betrachtet. Um unkorrelierte Features zu ermitteln wird \textsc{CFS} 
-(Correlation Feature Selection) verwendet. In Bezug auf Mobilität wurde der \textsc{CFS}-Algorithmus mit $8$ Features
-benutzt und es blieben $5$ Features übrig, die in einer kombinierten Analyse verwendet werden sollten.
-Für den Traffic wurde dasselbe gemacht, wobei von $19$ Features $11$ verbleiben.\newline
-Bei der Mobilität gibt es an Wochentagen eine starke Korrelation zwischen der Zeit, die im bevorzugten Gebäude 
+Um die Analyse und Interpretation zu vereinfachen und die wichtigsten Eigenschaften zu identifizieren,
+wird mithilfe des \textsc{CFS}\footnote{Correlation Feature Selection}-Algorithmus \textquote{Feature-Engineering} betrieben. 
+\newline\newline
+\textbf{Mobilität}\newline
+Der \textsc{CFS}-Algorithmus wird mit $8$ Eigenschaften ausgeführt
+und liefert $5$ verbleibende Eigenschaften, die für eine kombinierte Analyse geeignet sind.
+An Wochentagen gibt es eine starke Korrelation zwischen der Zeit, die im bevorzugten Gebäude 
 verbracht wird und der Dauer der Session, jedoch nur eine schwache Korrelation an Wochenenden, was darauf hindeutet,
-dass die meiste Onlinezeit am Wochenende im bevorzugten Gebäude verbracht wird.\newline
-Auch beim Traffic existieren Korrelationen, die wohl interessanteste Erkenntnis ist allerdings, dass die
+dass die meiste Onlinezeit am Wochenende im bevorzugten Gebäude verbracht wird.
+\newline\newline
+\textbf{Traffic}\newline
+Beim Traffic wird der \textsc{CFS}-Algorithmus mit $19$ Eigenschaften ausgeführt, die auf $11$
+reduziert werden. Auch beim Traffic existieren Korrelationen, die wohl interessanteste Erkenntnis ist allerdings, dass die
 Aktivitätszeiten und die Anzahl von Flows und Paketen nur schwach korreliert, was bedeutet, dass Nutzer,
 die länger online sind, nicht notwendigerweise mehr Traffic erzeugen.
 \newline\newline
 Ein wichtiger Schritt in Richtung integrierter Mobility-Traffic-Models ist die Analyse der Korrelationen
-zwischen beiden Dimensionen (Mobilität und Traffic).\newline
-Die Ergebnisse lauten wie folgt. Smartphones haben hohe Scores bei den Mobilitätsmetriken, haben eine
+zwischen beiden Dimensionen (Mobilität und Traffic) basierend auf der Teilmenge der Eigenschaften,
+die vom \textsc{CFS}-Algorithmus ausgewählt wurden.\newline
+Die Ergebnisse lassen sich wie folgt zusammenfassen. Smartphones haben hohe Scores bei den Mobilitätsmetriken, besitzen eine
 insgesamt kleinere Anzahl von Flows und weniger Netzwerktraffic, aber produzieren im Durchschnitt größere Flows.
 Für Laptops gilt an Wochenenden, je mehr Zeit in bevorzugten Gebäuden verbracht wird, desto größer die Gesamtaktivitätszeit
 und Flow-Anzahl. Dieser Effekt existiert in abgeschwächter Form auch bei Smartphones. 
-An Wochentagen existieren diese Korrelationen nicht.
-\newline\newline
-Zunächst wurde mittels Machine Learning untersucht, wie sich Mobilitäts- und Traffic-Features zwischen
-Smartphones und Laptops unterscheiden. Anschließend wird untersucht, ob es natürliche konvexe Cluster von Usern im
-Datensatz gibt. Diese Schritte verifizieren, dass die Unterschiede der Mobilitäts- und Traffic-Charakteristika zwischen
-Gerätetypen signifikant sind.
-\newline\newline
-Zuletzt wurden gemischte Modelle verwendet, um Datenpunkte beider Gerätetypen zu modellieren
-und es wurde deutlich, dass die Genauigkeit der gemischten Modelle steigt, wenn das Training mit kombinierten Features stattfindet.
+An Wochentagen existieren diese Korrelationen nicht.\newline
+Mittels Machine Learning wurde untersucht, wie sich Mobilitäts- und Traffic-Features zwischen
+Smartphones und Laptops unterscheiden. Anschließend wurde nach natürlichen konvexen Clustern von Usern im
+Datensatz gesucht. Diese Schritte verifizieren, dass die Unterschiede der Mobilitäts- und Traffic-Charakteristiken
+zwischen den Gerätetypen signifikant sind.
+
+\vfill
+\pagebreak
 
 \textbf{Supervised Classification}\newline
 Die Autoren haben Support Vector Maschinen (SVM) auf verschiedenen Teilmengen von Features
@@ -369,13 +370,13 @@ dass kombinierte Modelle, die sowohl Traffic, als auch Mobilität berücksichtig
 als isolierte Modelle. Außerdem erhöht sich die Genauigkeit weiter, wenn zwischen Wochentagen und Wochenenden differenziert wird.
 Das deutet daraufhin, dass das Nutzerverhalten für beide Gerätetypen besser unterscheidbar ist, wenn kombinierte
 Traffic und Mobilitäts-Features betrachtet werden, besonders, wenn Wochentage isoliert von Wochenenden betrachtet werden.
-
+\newline\newline
 \textbf{Unsupervised Clustering}\newline
-Um natural convex clusters zu untersuchen, wurde der K-means Algorithmus verwendet.
-Wenn nur Mobilitäts-Features verwendet werden, werden ca. $60 \%$ der Geräte korrekt geclustered.
+Um natürliche konvexe Cluster zu untersuchen, wurde der K-means-Algorithmus verwendet.
+Wenn nur Mobilitäts-Features verwendet werden, werden ca. $60 \%$ der Geräte korrekt geclustert.
 Werden dagegen nur Traffic-Features genutzt, erreicht man eine Genauigkeit von $81.2 \%$.
 Werden Mobilität und Traffic kombiniert, erhöht sich die Genauigkeit auf $81.5 \%$.
-
+\newline\newline
 \textbf{Mixture Model}\newline
 Um einen Schritt in Richtung der Synthetisierung von Traces basierend auf den Datasets zu machen,
 wurden Gaussian Mixture Models (GMM) mit kombinierten Mobilitäts- und Traffic-Features trainiert.
@@ -391,10 +392,6 @@ und Beziehungen von Features zwischen Gerätetypen, Zeit und Ort besser abbilden
 
 \vfill
 \pagebreak
-
-\textcolor{red}{Basierend auf den geschilderten Unterschieden könnte die Traffic Classification mittels Machine Learning
-von der Betrachtung des Gerätetyps während des Tranings profitieren.}
-\newline\newline
 
 \subsection{Diskussion}
 
