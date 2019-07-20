@@ -78,6 +78,8 @@ sowie der Datenverkehr innerhalb des Netzwerks.\newline
 Diese Ausarbeitung befasst sich mit Korrelationen zwischen diesen beiden Bereichen,
 welche primär anhand der Ergebnisse des Papers \textquote{Flutes vs. Cellos: Analyzing Mobility-Traffic
 Correlations in Large WLAN Traces} \cite{Alipour2018} aus dem Jahr 2018 erörtert werden.
+Ziel des Papers ist im Wesentlichen, einen ersten Schritt in Richtung integrierter Mobilitäts-Datenverkehr-Modelle 
+zu ermöglichen, um in der Zukunft realistischere Test-Szenarien und Benchmarks zu entwickeln.
 Darüber hinaus werden an einigen Stellen weiterführende Quellen einbezogen.
 \newline\newline
 Zunächst werden in Kapitel \ref{sec:basics} die Grundlagen der Mobilität und des Datenverkehrs in Rechnernetzen
@@ -112,7 +114,7 @@ der Bewegung von Nutzern in tatsächlich existierenden Systemen. Diese liefern b
 und einer ausreichend langen Beobachtungsphase sehr akurate Informationen, setzen allerdings voraus, dass ein solches Netzwerk
 bereits existiert. \cite{Camp2002} Zum anderen existieren Modelle mit synthetischen Bewegungsmustern für Netzwerkumgebungen, 
 für die noch keine Traces vorliegen. Dabei geht es darum, die Bewegung der Nutzer möglichst realistisch abzubilden,
-wobei es verschiedene Arten von Ansätzen gibt, dies zu tun.\newline
+wofür es verschiedene Arten von Ansätzen gibt.\newline
 Wie in \cite{Aschenbruck2011} geschildert, können synthetische Modelle bestimmte Abhängigkeiten modellieren.
 Zeitliche Abhängigkeiten sorgen z.B. dafür, dass die Bewegung einer Entität durch dessen Bewegung in der Vergangenheit
 beeinflusst wird. Außerdem können räumliche Abhängigkeiten darfür sorgen, dass die Bewegung einer Entität durch die umgebenden 
@@ -126,7 +128,7 @@ auf welche zum Teil im Verlauf dieser Ausarbeitung an geeigneter Stelle eingegan
 \subsection{Datenverkehr}
 \label{sec:traffic}
 
-Zu einer sinnvollen Simulation der Performanz eines Kommunikationssystems gehört auch die Simulation des Datenverkehrs
+Zu einer sinnvollen Evaluation der Performanz eines Kommunikationssystems gehört auch die Simulation des Datenverkehrs
 innerhalb dieses Systems. Wie bereits bei der Bewegungsmodellierung, kann auch hier von tatsächlichen Beobachtungen in
 existierenden Netzen ausgegangen werden, sofern diese vorliegen.
 \newline\newline
@@ -161,14 +163,13 @@ Netzwerks erheblich von den Mustern der Mobilität und des Datenverkehrs innerha
 \cite{Alipour2018} untersuchen mögliche Korrelationen zwischen beiden Faktoren.
 \newline\newline
 Aktuelle Modelle betrachten entweder die Mobilität oder den Datenverkehr, erfassen jedoch nicht das Zusammenspiel beider Faktoren.
-Außerdem verwenden viele trace-basierte Mobilitätsmodelle Datensätzen aus der Prä-Smartphone-Ära,
+Außerdem verwenden viele trace-basierte Mobilitätsmodelle Datensätze aus der Prä-Smartphone-Ära,
 was die heutige Relevanz dieser Modelle in Frage stellt. \cite{Alipour2018}\newline
 Die Autoren von \cite{Alipour2018} beschäftigen sich mit Mobilitäts- und Datenverkehrmodellen für Laptops und Smartphones.
-Die Modelle sind datengetrieben, es werden $30$\textsc{TB} große Datensätze von $300$\textsc{K} Geräten betrachtet, welche auf einem Campusgelände
-betrieben wurden. Zur Analyse dieser Daten wurde das Framework FLAMeS (\textbf{F}ramework for \textbf{L}arge-scale \textbf{A}nalysis of \textbf{M}obil\textbf{e} \textbf{S}ocieties) entwickelt.
-Ziel des Papers ist im Wesentlichen, einen ersten Schritt in Richtung integrierter Mobilitäts-Datenverkehr-Modelle 
-zu ermöglichen, um in der Zukunft realistischere Test-Szenarien und Benchmarks zu entwickeln. Im Folgenden werden relevante
-Aspekte und Ergebnisse aus der Veröffentlichung präsentiert.\newline\newline
+Die Modelle sind datengetrieben, es werden $30$\textsc{TB} große Datensätze von $300$\textsc{K} Geräten betrachtet, 
+welche auf einem Campusgelände betrieben wurden. Zur Analyse dieser Daten wurde das Framework FLAMeS (\textbf{F}ramework for 
+\textbf{L}arge-scale \textbf{A}nalysis of \textbf{M}obil\textbf{e} \textbf{S}ocieties) entwickelt.
+Im Folgenden werden relevante Aspekte und Ergebnisse aus der Veröffentlichung zusammengefasst.\newline\newline
 Dass die beiden Faktoren der Mobilität und des Datenverkehrs sich trotz der bisher überwiegend isolierten Betrachtungen
 durchaus gegenseitig beeinflussen, veranschaulichen die Autoren durch folgende alltägliche Beispiele. 
 Eine Person verlangsamt ihren Gang, wenn diese eine Nachricht erhält. Ebenso kann die Netzwerkaktivität von der
@@ -176,21 +177,21 @@ Mobilität und Position abhängen. Stationäre Nutzer konsumieren und produziere
 die sich bewegen. Außerdem verwenden Personen an unterschiedlichen Orten unterschiedliche Anwendungen.
 Diese simplen Beispiele lassen eine gemeinsame Betrachtung beider Faktoren bereits als sinnvoll erscheinen.
 Um diesen Zusammenhang genauer zu untersuchen, unterscheiden sie zwischen stationären Geräten (Laptops) und mobilen Geräten
-(Smartphones). Da Laptops auch durchaus als mobil angesehen werden können, wird die Unterscheidung durch \textquote{on-the-go}- und \textquote{stop-to-use}-
-Geräte präzisiert. Das bereits erwähnte Framework FLAMeS wurde entwickelt, um stationäre und mobile Geräte zu differenzieren
-und in Bezug auf ihren Datenverkehr und ihre Mobilität zu untersuchen.
-Im Kern untersuchen die Autoren dafür drei Fragestellungen:
+(Smartphones). Da Laptops auch durchaus als mobil angesehen werden können, präzisieren die Autoren die Unterscheidung
+durch \textquote{on-the-go}- und \textquote{stop-to-use}-Geräte. Das Framework FLAMeS ermöglicht es, stationäre und
+mobile Geräte zu differenzieren und in Bezug auf ihren Datenverkehr und ihre Mobilität zu untersuchen.
+Im Kern untersuchen die Autoren dabei drei Fragestellungen:
+
 \begin{itemize}
-    \item Wie unterscheiden sich Mobilitäts- und Datenverkehr-Charakteristiken zwischen den unterschiedlichen Geräteklassen,
-    Zeit und Ort?
+    \item Wie unterscheiden sich Mobilitäts- und Datenverkehr-Charakteristiken zwischen unterschiedlichen Geräteklassen,
+    Zeiten und Orten?
     \item Wie stehen diese Charakteristiken zueinander in Beziehung?
     \item Sollten neue Modelle entwickelt werden, die diese Unterschiede berücksichtigen?
 \end{itemize}
 
-In Abb. \ref{fig:flames} ist eine Übersicht des FLAMeS-Systems dargestellt, welches aus drei Phasen besteht.
-In der ersten Phase findet die Datensammlung und ein Preprocessing statt. Anschließend kommt es in Phase 2
-zur Mobilitäts- und Traffic-Analyse, wobei zwischen Laptops und Smartphones unterschieden wird. In der letzten
-Phase findet schließlich eine integrierte Analyse der Mobilität und des Traffics statt.
+Das FLAMeS-Systems besteht aus drei Phasen, in der ersten Phase findet die Datensammlung und ein Preprocessing statt.
+Anschließend kommt es in der zweiten Phase zur Mobilitäts- und Traffic-Analyse, wobei zwischen Laptops und Smartphones
+unterschieden wird. In der letzten Phase findet schließlich eine integrierte Analyse der Mobilität und des Traffics statt.
 % \begin{figure}[H]
 % \centering
 % \includegraphics[width=0.65\textwidth]{img/FLAMeS.png}
@@ -211,14 +212,14 @@ Einträge in Netflow-Traces gesammelt. Ein \textquote{Flow} entspricht einer kon
 Transportprotokoll, Start- und Ziel-IP und Port. \cite{Alipour2018}
 Anschließend werden die Netflow-Einträge durch das dynamische MAC-to-IP Mapping aus den DHCP-Logs mit den WLAN-Verbindungen aus den AP-Logs gematcht. Die Ergebnisse werden mittels rDNS\footnote{Reverse DNS} durch Ort und Webseiten-Informationen ergänzt. \cite{Alipour2018}
 Darauffolgend geht es darum, die Geräte in Laptops und Smartphones zu klassifizieren.
-Zunächst einmal kann der Hersteller des Geräts mit der OUI \footnote{Organizationally Unique Identifier - 24-Bit-Zahl, 
+Zunächst kann der Hersteller des Geräts mit der OUI \footnote{Organizationally Unique Identifier - 24-Bit-Zahl, 
 die eindeutig den Hersteller identifiziert.} basierend auf den ersten drei Oktetten der MAC-Adresse identifiziert werden.
 Da viele Hersteller nur einen Gerätetyp herstellen, können auf diese Weise bereits
-$46 \%$ der Geräte klassifiziert werden. Die Heuristik, welche von den Autoren zur Klassifizierung verwendet wird
+$46 \%$ der Geräte klassifiziert werden. Die Heuristik, welche von den Autoren zur Klassifizierung verwendet wird,
 prüft zusätzlich, ob ein Gerät \textit{admob.com} kontatktiert, eine sehr verbreitete Plattform für Werbung auf Mobilgeräten.
 Ist dies der Fall, so wird ein Gerät als Mobilgerät klassifiziert. Auf diese Weise konnten $86 \%$ der Geräte in den AP-Logs
 und $97 \%$ der Netflow-Traces klassifiziert werden. Diese Art der Geräteklassifizierung wahre im Gegensatz zur Analyse von 
-HTTP-Headern die Privatsphäre der Nutzer.\newline
+HTTP-Headern, die möglicherweise zu noch genaueren Ergebnissen führt, die Privatsphäre der Nutzer.\newline
 Wie man Abb. \ref{fig:traces} entnehmen kann, ist die Anzahl der Flows und der
 Gesamt-Traffic bei Laptops deutlich höher als bei Mobilgeräten, obwohl es insgesamt deutlich mehr verbundene Mobilgeräte gibt.
 Wie zu erwarten treten die Peaks an Wochentagen auf. Dass die Netzwerkaktivität nach dem 25. abnimmt, liegt daran, dass dort
@@ -233,25 +234,24 @@ die vorlesungsfreie Zeit beginnt.
 
 \subsection{Mobilitätsanalyse}
 
-In diesem Abschnitt geht es um die zeitliche und räumliche Analyse der Mobilität der verschiedenen Geräteklassen.
-Die Startzeiten von WLAN-Sessions stimmen mit den Startzeiten der Vorlesungen überein, allerdings hauptsächlich in Hörsälen.
-In diesen Gebäuden fällt die Aktivität von Laptops nach dem Ende der Vorlesungszeiten stark. Die Aktivität von Mobilgeräten
-bleibt etwas länger erhalten. Für die Bibliothek und soziale Einrichtungen auf dem Campus ist die Wahrscheinlichkeit
-für neue Sessions später am Abend deutlich höher. An Wochenenden gilt dies aufgrund des fehlenden weitgehend vorgegebenen
-Tagesablaufs durch Vorlesungen nicht und es lassen sich auch keine signifikanten Unterschiede zwischen den Gerätetypen 
-feststellen. \cite{Alipour2018} \newline
-Grundsätzlich ist es so, dass Stundenten, die an Vorlesungen teilnehmen an Wochentagen einen eingeschränkteren Bewegungsradius haben.
-Die Autoren haben die räumliche Ausbreitung der Geräts über einen Zeitraum von 6 Monaten analysiert.
+In diesem Abschnitt werden die Ergebnisse der Mobilitätsanalyse aus \cite{Alipour2018} zusammengefasst, in denen es
+um die zeitliche und räumliche Analyse der Mobilität der verschiedenen Geräteklassen geht.
+Die Startzeiten von WLAN-Sessions stimmen in Gebäuden, in denen Vorlesungen stattfinden mit den Startzeiten der Vorlesungen überein.
+In diesen Gebäuden fällt die Aktivität von Laptops nach dem Ende der Vorlesungszeiten stark, während die Aktivität von Mobilgeräten
+noch etwas länger erhalten bleibt. Für die Bibliothek und soziale Einrichtungen auf dem Campus ist die Wahrscheinlichkeit
+für neue Sessions später am Abend höher. Diese Ergebnisse treffen nur auf Wochentage zu, deren Ablauf durch
+die Vorlesungszeiten eine gewisse Struktur erhält.
+Dies hat außerdem zur Folge, dass Stundenten, die an Vorlesungen teilnehmen, an Wochentagen einen eingeschränkteren Bewegungsradius haben.
+Die Autoren haben die räumliche Ausbreitung der Geräte über einen Zeitraum von $6$ Monaten analysiert.
 Nach einer initialen Phase von ca. einer Woche stabilisiert sich diese Ausbreitung. Für Laptops findet eine 
 substanzielle Reduktion der Gesamtmobilität statt, während diese bei Smartphones nicht in einer solchen Deutlichkeit vorliegt.
 Da Smartphones \textquote{always-on}-Geräte sind, ist es leichter, deren Mobilität zu erfassen, da sie auch an Orten
 wie Bushaltestellen etc., an denen Laptops typischerweise nicht eingeschaltet sind, verbunden sind.
-Dies ermöglicht eine feingranularere Erfassung der Mobilität dieser Geräte. \cite{Alipour2018}
+Dies ermöglicht eine genauere Erfassung der Mobilität dieser Geräte.
 Außerdem wird die Anzahl der unterschiedlichen besuchten Gebäude eines Nutzers gezählt und ein bevorzugtes
 Gebäude dieses Nutzers als jenes definiert, in welchem dieser an einem Tag die meiste Zeit verbracht hat.
 Dazu werden die Session-Zeiten innerhalb eines Gebäudes aufsummiert.
-Laptops haben etwas längere Aufenthaltszeiten, im Median liegen allerdings beide Geräteklassen bei etwa $2$ Stunden
-und $40$ Minuten. Wobei Laptops in der Regel verwendet werden, wenn Nutzer länger an einem Ort verweilen.
+Laptops haben etwas längere Aufenthaltszeiten und werden in der Regel verwendet, wenn Nutzer länger an einem Ort verweilen.
 
 \subsection{Trafficanalyse}
 
@@ -300,9 +300,6 @@ und konsumieren überdurchschnittlich viele Daten. Insgesamt ist festzuhalten, d
 eine größere Anzahl von APs besuchen, größere Flow-Sizes haben und trotzdem für insgesamt weniger Netzwerklast 
 verantwortlich sind.
 
-\vfill
-\pagebreak
-
 \subsection{Integrierte Mobilitäts- und Traffic-Modelle}
 
 Zuletzt wird in \cite{Alipour2018} untersucht, ob es einen Bedarf für integrierte Mobility-Traffic-Modelle gibt.
@@ -335,9 +332,6 @@ Smartphones und Laptops unterscheiden. Anschließend wurde nach natürlichen kon
 Datensatz gesucht. Diese Schritte verifizieren, dass die Unterschiede der Mobilitäts- und Traffic-Charakteristiken
 zwischen den Gerätetypen signifikant sind.
 
-\vfill
-\pagebreak
-
 \textbf{Supervised Classification}\newline
 Die Autoren haben Support Vector Maschinen (SVM) auf verschiedenen Teilmengen von Features
 verwendet, um die Zulässigkeit der Gerätetyp-Inferenz und die Beziehung zwischen Mobilitäts- und Traffic-Charakteristiken
@@ -365,9 +359,6 @@ keine Verbesserung.
 \newline\newline
 Insgesamt besteht ein signifikantes Potenzial integrierter Mobilitäts- und Traffic-Modelle, welche die Unterschiede
 und Beziehungen von Features zwischen Gerätetypen, Zeit und Ort besser abbilden können als isolierte Modelle.
-
-\vfill
-\pagebreak
 
 \subsection{Diskussion}
 
