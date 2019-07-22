@@ -222,7 +222,7 @@ und $97 \%$ der Netflow-Traces klassifiziert werden. Diese Art der Geräteklassi
 HTTP-Headern, die möglicherweise zu noch genaueren Ergebnissen führt, die Privatsphäre der Nutzer.\newline
 Wie man Abb. \ref{fig:traces} entnehmen kann, ist die Anzahl der Flows und der
 Gesamt-Traffic bei Laptops deutlich höher als bei Mobilgeräten, obwohl es insgesamt deutlich mehr verbundene Mobilgeräte gibt.
-Wie zu erwarten treten die Peaks an Wochentagen auf. Dass die Netzwerkaktivität nach dem 25. abnimmt, liegt daran, dass dort
+Wie zu erwarten, treten die Peaks an Wochentagen auf. Dass die Netzwerkaktivität nach dem 25. abnimmt, liegt daran, dass dort
 die vorlesungsfreie Zeit beginnt.
 
 \begin{figure}[H]
@@ -292,7 +292,7 @@ An Wochenenden erhöht sich die Paketrate und der Datenkonsum der wenigen verble
 während bei den Smartphones nur leichte Veränderungen zu beobachten sind.
 Weiterhin gut geeignet, um Unterschiede zwischen Laptops und Smartphones zu verdeutlichen, sind die tatsächlichen Aktivitätszeiten.
 Dabei werden die Netflows herangezogen und nicht die WLAN-AP-Verbindungszeiten, denn dies ermöglicht es \textquote{Idle}-Zeiten
-von aktiven Zeiten zu unterscheiden. Laptops haben verglichen mit Smartphones $4x$ höhere durchschnittliche Aktivitätszeiten.
+von aktiven Zeiten zu unterscheiden. Laptops haben verglichen mit Smartphones $4$ mal höhere durchschnittliche Aktivitätszeiten.
 Insgesamt sind über $90 \%$ der Laptops weniger als $3.5$ Stunden am Tag aktiv und $90 \%$ der Smartphones weniger als eine Stunde.\newline
 Zusammenfassend lässt sich sagen, dass der Datanverbrauch von Smartphones mehr bursty mit größeren Flows und kleinerer aktiver
 Dauer ist. Außerdem sind an Wochenenden weniger Geräte am Campus, aber jene die verbleiben, sind überdurchschnittlich aktiv 
@@ -322,7 +322,8 @@ die länger online sind, nicht notwendigerweise mehr Traffic erzeugen.
 Ein wichtiger Schritt in Richtung integrierter Mobility-Traffic-Models ist die Analyse der Korrelationen
 zwischen beiden Dimensionen (Mobilität und Traffic) basierend auf der Teilmenge der Eigenschaften,
 die vom \textsc{CFS}-Algorithmus ausgewählt wurden.\newline
-Die Ergebnisse lassen sich wie folgt zusammenfassen. Smartphones haben hohe Scores bei den Mobilitätsmetriken, besitzen eine
+Die Ergebnisse lassen sich wie folgt zusammenfassen. Smartphones haben erwartungsgemäß hohe Scores bei den Mobilitätsmetriken (Bewegungsradius,
+Anzahl besuchter unterschiedlicher Gebäude, ...), besitzen eine
 insgesamt kleinere Anzahl von Flows und weniger Netzwerktraffic, aber produzieren im Durchschnitt größere Flows.
 Für Laptops gilt an Wochenenden, je mehr Zeit in bevorzugten Gebäuden verbracht wird, desto größer die Gesamtaktivitätszeit
 und Flow-Anzahl. Dieser Effekt existiert in abgeschwächter Form auch bei Smartphones. 
@@ -331,15 +332,14 @@ Mittels Machine Learning wurde untersucht, wie sich Mobilitäts- und Traffic-Fea
 Smartphones und Laptops unterscheiden. Anschließend wurde nach natürlichen konvexen Clustern von Usern im
 Datensatz gesucht. Diese Schritte verifizieren, dass die Unterschiede der Mobilitäts- und Traffic-Charakteristiken
 zwischen den Gerätetypen signifikant sind.
-
+\newline\newline
 \textbf{Supervised Classification}\newline
 Die Autoren haben Support Vector Maschinen (SVM) auf verschiedenen Teilmengen von Features
 verwendet, um die Zulässigkeit der Gerätetyp-Inferenz und die Beziehung zwischen Mobilitäts- und Traffic-Charakteristiken
 zu untersuchen. Insgesamt wurde die Genauigkeit verschiedener Modelle analysiert. Dabei hat sich herausgestellt,
-dass kombinierte Modelle, die sowohl Traffic, als auch Mobilität berücksichtigen genauer sind,
-als isolierte Modelle. Außerdem erhöht sich die Genauigkeit weiter, wenn zwischen Wochentagen und Wochenenden differenziert wird.
-Das deutet daraufhin, dass das Nutzerverhalten für beide Gerätetypen besser unterscheidbar ist, wenn kombinierte
-Traffic und Mobilitäts-Features betrachtet werden, besonders, wenn Wochentage isoliert von Wochenenden betrachtet werden.
+dass kombinierte Modelle, die sowohl Traffic als auch Mobilität berücksichtigen, mit $\approx 81 \%$ genauer sind als isolierte Modelle
+(Mobilität $\approx 65 \%$, Traffic $\approx 79 \%$). Außerdem erhöht sich die Genauigkeit auf $\approx 86 \%$, wenn zwischen Wochentagen
+und Wochenenden differenziert wird.
 \newline\newline
 \textbf{Unsupervised Clustering}\newline
 Um natürliche konvexe Cluster zu untersuchen, wurde der K-means-Algorithmus verwendet.
@@ -348,16 +348,16 @@ Werden dagegen nur Traffic-Features genutzt, erreicht man eine Genauigkeit von $
 Werden Mobilität und Traffic kombiniert, erhöht sich die Genauigkeit auf $81.5 \%$.
 \newline\newline
 \textbf{Mixture Model}\newline
-Um einen Schritt in Richtung der Synthetisierung von Traces basierend auf den Datasets zu machen,
+Um einen Schritt in Richtung der Synthetisierung von Traces basierend auf den Datensätzen zu machen,
 wurden Gaussian Mixture Models (GMM) mit kombinierten Mobilitäts- und Traffic-Features trainiert.
-Anschlißend wurde Kolmogorov-Smirnov (KS) Statistik verwendet, um die generierten Samples zu Echtdaten zu vergleichen.
-Dabei hat sich herausgestellt, dass das kombinierte Modell in der Lage ist, das Verhalten beider Gerätetypen zu abzubilden.
+Anschlißend wurde Kolmogorov-Smirnov (KS) Statistik verwendet, um die generierten Samples mit Echtdaten zu vergleichen.
+Dabei hat sich herausgestellt, dass das kombinierte Modell in der Lage ist, das Verhalten beider Gerätetypen abzubilden.
 Das kombinierte Modell produziert Samples, dessen Traffic-Features den Originaldaten besser entsprechen, als ein GMM,
 welches nur mit Traffic-Features trainiert wurde, was darauf hindeutet, dass eine Beziehung zwischen Mobilität und Traffic besteht.
-Allerdings bringt das GMM des kombinierten Modells verglichen mit dem Modell, welches ausschließlich Mobility-Features trainiert wurde,
-keine Verbesserung.
+Allerdings bringt das GMM des kombinierten Modells in Bezug auf Mobilitäts-Features verglichen mit dem Modell, welches 
+ausschließlich mit Mobility-Features trainiert wurde, keine Verbesserung.
 \newline\newline
-Insgesamt besteht ein signifikantes Potenzial integrierter Mobilitäts- und Traffic-Modelle, welche die Unterschiede
+Insgesamt sehen die Autoren ein signifikantes Potenzial integrierter Mobilitäts- und Traffic-Modelle, welche die Unterschiede
 und Beziehungen von Features zwischen Gerätetypen, Zeit und Ort besser abbilden können als isolierte Modelle.
 
 \subsection{Diskussion}
@@ -365,7 +365,7 @@ und Beziehungen von Features zwischen Gerätetypen, Zeit und Ort besser abbilden
 In \cite{Alipour2018} wurde die Frage gestellt, ob es sinnvoll ist, Modelle zu entwickeln, die sowohl
 Mobilitäts-, als auch Datenverkehrcharakteristiken berücksichtigen. Es wurde darin gezeigt, dass solche
 kombinierten Betrachtungen potenziell zu deutlich realistischeren Ergebnissen gelangen können,
-als die in der Regel zu simplen isolierten Betrachtungen.\newline
+als die in der Regel zu simplen isolierten Betrachtungen.
 Es wurde ein Framework entwickelt, um die Datensätze eines bestehenden Netzwerks dahingehend zu analysieren.
 Zunächst ging es dabei um Geräteklassifizierung und anschließend um eine Untersuchung der Mobilitäts-
 und Traffic-Metriken, wobei die verschiedenen Gerätetypen über Raum und Zeit hinweg miteinander verglichen wurden.
@@ -373,7 +373,8 @@ Nachdem gezeigt wurde, dass es signifikante Unterschiede zwischen den Gerätetyp
 wurde mittels Machine-Learning ein gemischtes Modell trainiert, welches Datenpunkte generiert
 und es konnte gezeigt werden, dass kombinierte Mobilitäts- und Traffic-Features die Unterschiede in den
 Metriken besser abbilden, als isolierte Modelle. Die eingangs erwähnten Fragestellungen wurden beantwortet
-und es wurden erste Schritte in Richtung integrierter Mobilitäts- und Traffic-Modelle getan.
+und da viele der Erkenntnisse von aktuellen Modellen nicht berücksichtigt werden, liefert
+das Paper wichtige Grundlagen für das Design zukünftiger, integrierter Modelle.
 
 \section{Fazit und Ausblick}
 \label{sec:conclusion}
