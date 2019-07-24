@@ -122,16 +122,15 @@ Entitäten beeinflusst wird (Group-Mobility). Auch geographische Restriktionen k
 Des Weiteren wird in \cite{Aschenbruck2011} darauf hingewiesen, dass auch Modelle wie
 \textquote{Random-Waypoint} und \textquote{Random-Walk} existieren, welche keine dieser Abhängigkeiten
 aufweisen. Diese Modelle sind einfach zu implementieren, jedoch nicht sehr realistisch.
-Insgesamt existiert eine Vielzahl von Mobilitätsmodellen mit verschiedenen Ansätzen,
-auf welche zum Teil im Verlauf dieser Ausarbeitung an geeigneter Stelle eingegangen wird.
+Insgesamt existiert eine Vielzahl von Mobilitätsmodellen mit verschiedenen Ansätzen, welche in unterschiedlichen
+Szenarien geeignet sein können.
 
 \subsection{Datenverkehr}
 \label{sec:traffic}
 
 Zu einer sinnvollen Evaluation der Performanz eines Kommunikationssystems gehört auch die Simulation des Datenverkehrs
 innerhalb dieses Systems. Wie bereits bei der Bewegungsmodellierung, kann auch hier von tatsächlichen Beobachtungen in
-existierenden Netzen ausgegangen werden, sofern diese vorliegen.
-\newline\newline
+existierenden Netzen ausgegangen werden, sofern diese vorliegen.\newline
 Einfacher Datenverkehr besteht aus einzelnen Ankünften diskreter Entitäten.
 Bei diesen Entitäten kann es sich z.B. um Pakete handeln. Darüber hinaus gibt es Datenverkehr, 
 bei welchem mehrere Entitäten zusammen in sogenannten \textquote{Batch-Arrivals} eintreffen.
@@ -139,15 +138,13 @@ Im einfachsten Fall wird in einer Simulation eine zufällige Sequenz von Zwische
 aufeinanderfolgenden \textquote{Arrivals}.} generiert. Neben Ankunftszeiten und Batch-Größen ist es zudem häufig sinnvoll,
 die Last zu modellieren. \cite{Frost1994} Die Last wird in \cite{Frost1994} als die Menge der Arbeit $W_n$ im System beschrieben,
 die die $n$-te eintreffende Entität erfordert.
-\newline\newline
-Ein einfaches Modell des Datenverkehrs ist \textsc{CBR} (Constant Bitrate), bei welchem eine Anzahl von Paketankünften
-pro Zeiteinheit definiert wird. Die Paketgröße ist dabei ebenfalls konstant. Dieses Modell ist sehr simpel und dementsprechend
-leicht zu implementieren, dafür jedoch in der Regel nicht besonders realistisch.\newline
-Neben \textsc{CBR}- gibt es den typischerweise realistischeren \textsc{VBR}-Traffic (Variable Bitrate), 
-welcher z.B. beim Videostreaming auftritt, bei dem kodierte Frames eine variable, zufällige Größe besitzen.\cite{Frost1994}
+% Ein einfaches Modell des Datenverkehrs ist \textsc{CBR} (Constant Bitrate), bei welchem eine Anzahl von Paketankünften
+% pro Zeiteinheit definiert wird. Die Paketgröße ist dabei ebenfalls konstant. Dieses Modell ist sehr simpel und dementsprechend
+% leicht zu implementieren, dafür jedoch in der Regel nicht besonders realistisch.\newline
+% Neben \textsc{CBR}- gibt es den typischerweise realistischeren \textsc{VBR}-Traffic (Variable Bitrate), 
+% welcher z.B. beim Videostreaming auftritt, bei dem kodierte Frames eine variable, zufällige Größe besitzen.\cite{Frost1994}
 Um einen realistischen, heterogenen Traffic-Mix zu erhalten, sollten in einem Modell laut \cite{Frost1994} verschiedene
 Ströme des Datenverkehrs gemultiplext werden, z.B. Sprachverbindungen, Video-Übertragungen und Datei-Transporte.
-\newline\newline
 Eine weitere wichtige Eigenschaft des Datenverkehrs ist die sogenannte \textquote{Burstiness}, also die Stoßhaftigkeit.
 Traffic entsteht in Schüben, z.B. für komprimierte Videos und Datentransfers. Die Ankünfte der Pakete bilden visuelle
 Cluster. Der Datenverkehr in Breitbandnetzen wird von dieser Art Traffic dominiert. \cite{Frost1994}
@@ -160,7 +157,10 @@ geeignet sein können, um realistischen Datenverkehr zu modellieren.
 
 Wie in den Abschnitten \ref{sec:mobility} und \ref{sec:traffic} eingeführt, hängt die Performanz eines mobilen
 Netzwerks erheblich von den Mustern der Mobilität und des Datenverkehrs innerhalb des Netzwerks ab.
-\cite{Alipour2018} untersuchen mögliche Korrelationen zwischen beiden Faktoren.
+Bezogen auf die dort vorgestellten Mobilitäts- und Trafficmodelle handelt es sich bei \cite{Alipour2018}
+eher um eine Art \textquote{Meta-Paper}, es werden keine konkreten Modelle der Mobilität oder des Datenverkehrs vorgestellt.
+Stattdessen wird untersucht, ob kombinierte Modelle reale Netzwerke treffender repräsentieren als die bisher
+üblichen isolierten Varianten. Dabei werden Korrelationen zwischen beiden Faktoren untersucht.
 \newline\newline
 Aktuelle Modelle betrachten entweder die Mobilität oder den Datenverkehr, erfassen jedoch nicht das Zusammenspiel beider Faktoren.
 Außerdem verwenden viele trace-basierte Mobilitätsmodelle Datensätze aus der Prä-Smartphone-Ära,
@@ -183,7 +183,7 @@ mobile Geräte zu differenzieren und in Bezug auf ihren Datenverkehr und ihre Mo
 Im Kern untersuchen die Autoren dabei drei Fragestellungen:
 
 \begin{itemize}
-    \item Wie unterscheiden sich Mobilitäts- und Datenverkehr-Charakteristiken zwischen unterschiedlichen Geräteklassen,
+    \item Wie unterscheiden sich Mobilitäts- und Datenverkehr-Charakteristiken zwischen den unterschiedlichen Gerätetypen,
     Zeiten und Orten?
     \item Wie stehen diese Charakteristiken zueinander in Beziehung?
     \item Sollten neue Modelle entwickelt werden, die diese Unterschiede berücksichtigen?
@@ -300,34 +300,59 @@ und konsumieren überdurchschnittlich viele Daten. Insgesamt ist festzuhalten, d
 eine größere Anzahl von APs besuchen, größere Flow-Sizes haben und trotzdem für insgesamt weniger Netzwerklast 
 verantwortlich sind.
 
-\subsection{Integrierte Mobilitäts- und Traffic-Modelle}
+\subsection{Exkurs: Feature-Engineering}
+Die Identifizierung relevanter Features ist essenziell, um Data-Mining-Algorithmen effektiv mit realen Daten zu verwenden.
+Es wurden in der Literatur viele Feature-Selection Methoden vorgestellt, um Teilmengen der Features zu erhalten,
+die für die Klassifizierung und Clustering relevant sind.
+Machine-Learning-Methoden haben Schwierigkeiten, mit großen Zahlen von Input-Features
+umzugehen. Um diese Methoden dennoch effektiv anzuwenden, ist ein Preprocessing der Daten vonnöten. \cite{Kumar2014}
+Dieser Preprocessing-Schritt geschieht in der integrierten Mobilitäts- und Traffic-Analyse in \cite{Alipour2018} in
+Form von Feature-Selection. Feature-Selection ist der Prozess, in welchem relevante Features von irrelevanten unterschieden
+werden. Die irrelevanten Features werden nicht betrachtet, was die Genauigkeit, Geschwindigkeit und Verständlichkeit 
+der Methoden verbessert. Irrelevante Features sind jene, die keine nützlichen Informationen liefern und redundante Features
+liefern keine zusätzlichen Informationen. \cite{Kumar2014} Die betrachteten Features sollten dementsprechend weder
+irrelevant noch redundant sein.
 
-Zuletzt wird in \cite{Alipour2018} untersucht, ob es einen Bedarf für integrierte Mobility-Traffic-Modelle gibt.
-Um die Analyse und Interpretation zu vereinfachen und die wichtigsten Eigenschaften zu identifizieren,
-wird mithilfe des \textsc{CFS}\footnote{Correlation Feature Selection}-Algorithmus \textquote{Feature-Engineering} betrieben. 
+\subsection{Integrierte Mobilitäts- und Traffic-Modelle}
+In diesem Abschnitt geht es um den eigentlichen Kern von \cite{Alipour2018}, nämlich der Untersuchung, ob es einen Bedarf
+für integrierte Mobility-Traffic-Modelle gibt. Um die Analyse und Interpretation zu vereinfachen und die 
+wichtigsten Eigenschaften zu identifizieren, wird mithilfe eines \textsc{CFS}\footnote{Correlation Feature Selection}-Algorithmus
+\textquote{Feature-Engineering} betrieben. \textsc{CFS} ist eine Möglichkeit der Feature-Selection, die auf Korrelationen
+basiert. Die zentrale Hypothese des Ansatzes ist, dass gute Teilmengen der Features jene Features enthalten, die stark
+mit der Klasse, jedoch nicht untereinander korrelieren. \textsc{CFS} kombiniert diese Hypothese mit einem geeigneten
+Maß der Korrelation und einer heuristischen Suche. \cite{Hall2000}
+Bei den in \cite{Alipour2018} ermittelten Korrelationen handelt es sich um \textquote{Pearson-Korrelationen}.
+Die \textquote{Pearson-Correlation}-Methode vergibt Werte zwischen $-1$ und $1$, wobei $0$ überhaupt keiner Korrelation
+entspricht. Bei den Werten $1$ und $-1$ handelt es sich um totale positive bzw. negative Korrelationen.
+Eine positive Korrelation zwischen zwei Features $A$ und $B$ liegt vor, wenn bei steigendem Wert für $A$
+auch der Wert von $B$ steigt. Wohingegen bei einer negativen Korrelation bei einer Steigerung des Werts von $A$, 
+der Wert von $B$ fällt. \cite{Nettleton2014}
 \newline\newline
 \textbf{Mobilität}\newline
-Der \textsc{CFS}-Algorithmus wird mit $8$ Eigenschaften ausgeführt
-und liefert $5$ verbleibende Eigenschaften, die für eine kombinierte Analyse geeignet sind.
-An Wochentagen gibt es eine starke Korrelation zwischen der Zeit, die im bevorzugten Gebäude 
-verbracht wird und der Dauer der Session, jedoch nur eine schwache Korrelation an Wochenenden, was darauf hindeutet,
-dass die meiste Onlinezeit am Wochenende im bevorzugten Gebäude verbracht wird.
+Der \textsc{CFS}-Algorithmus wird mit $8$ Mobilitäts-Eigenschaften ausgeführt und selektiert $5$ Eigenschaften, 
+die für eine kombinierte Analyse geeignet sind. Für Laptops existiert z.B. an Wochentagen eine starke Korrelation ($0.96$)
+zwischen der Zeit, die im bevorzugten Gebäude verbracht wird und der Dauer der Session, jedoch nur eine schwache Korrelation
+($0.1$) an Wochenenden, was darauf hindeutet, dass die meiste Onlinezeit am Wochenende im bevorzugten
+Gebäude verbracht wird. \cite{Alipour2018} Die vollständigen Ergebnisse zu Korrelationen der Mobilität kann in
+Abb. \ref{fig:} nachvollzogen werden.
 \newline\newline
 \textbf{Traffic}\newline
-Beim Traffic wird der \textsc{CFS}-Algorithmus mit $19$ Eigenschaften ausgeführt, die auf $11$
-reduziert werden. Auch beim Traffic existieren Korrelationen, die wohl interessanteste Erkenntnis ist allerdings, dass die
-Aktivitätszeiten und die Anzahl von Flows und Paketen nur schwach korreliert, was bedeutet, dass Nutzer,
-die länger online sind, nicht notwendigerweise mehr Traffic erzeugen.
+Beim Traffic wird der \textsc{CFS}-Algorithmus mit $19$ Eigenschaften ausgeführt, von denen $11$
+selektiert werden. Auch beim Traffic existieren einige Korrelationen, die in Abb. \ref{fig:} nachvollzogen werden können.
+Die wohl interessanteste Erkenntnis ist allerdings, dass die Aktivitätszeiten und die Anzahl von Flows und Paketen nur
+schwach korreliert, was bedeutet, dass Nutzer, die länger online sind, nicht notwendigerweise mehr Traffic erzeugen. \cite{Alipour2018}
 \newline\newline
 Ein wichtiger Schritt in Richtung integrierter Mobility-Traffic-Models ist die Analyse der Korrelationen
 zwischen beiden Dimensionen (Mobilität und Traffic) basierend auf der Teilmenge der Eigenschaften,
-die vom \textsc{CFS}-Algorithmus ausgewählt wurden.\newline
+die vom \textsc{CFS}-Algorithmus selektiert wurden.\newline
 Die Ergebnisse lassen sich wie folgt zusammenfassen. Smartphones haben erwartungsgemäß hohe Scores bei den Mobilitätsmetriken (Bewegungsradius,
 Anzahl besuchter unterschiedlicher Gebäude, ...), besitzen eine
 insgesamt kleinere Anzahl von Flows und weniger Netzwerktraffic, aber produzieren im Durchschnitt größere Flows.
 Für Laptops gilt an Wochenenden, je mehr Zeit in bevorzugten Gebäuden verbracht wird, desto größer die Gesamtaktivitätszeit
 und Flow-Anzahl. Dieser Effekt existiert in abgeschwächter Form auch bei Smartphones. 
 An Wochentagen existieren diese Korrelationen nicht.\newline
+Die exakten Ergebnisse können in Abb. \ref{fig:} nachvollzogen werden.
+\newline\newline
 Mittels Machine Learning wurde untersucht, wie sich Mobilitäts- und Traffic-Features zwischen
 Smartphones und Laptops unterscheiden. Anschließend wurde nach natürlichen konvexen Clustern von Usern im
 Datensatz gesucht. Diese Schritte verifizieren, dass die Unterschiede der Mobilitäts- und Traffic-Charakteristiken
@@ -338,18 +363,18 @@ Die Autoren haben Support Vector Maschinen (SVM) auf verschiedenen Teilmengen vo
 verwendet, um die Zulässigkeit der Gerätetyp-Inferenz und die Beziehung zwischen Mobilitäts- und Traffic-Charakteristiken
 zu untersuchen. Insgesamt wurde die Genauigkeit verschiedener Modelle analysiert. Dabei hat sich herausgestellt,
 dass kombinierte Modelle, die sowohl Traffic als auch Mobilität berücksichtigen, mit $\approx 81 \%$ genauer sind als isolierte Modelle
-(Mobilität $\approx 65 \%$, Traffic $\approx 79 \%$). Außerdem erhöht sich die Genauigkeit auf $\approx 86 \%$, wenn zwischen Wochentagen
-und Wochenenden differenziert wird.
+(Mobilität $\approx 65 \%$, Traffic $\approx 79 \%$). Außerdem erhöht sich die Genauigkeit auf $\approx 86 \%$, wenn
+zudem zwischen Wochentagen und Wochenenden differenziert wird.
 \newline\newline
 \textbf{Unsupervised Clustering}\newline
-Um natürliche konvexe Cluster zu untersuchen, wurde der K-means-Algorithmus verwendet.
+Um natürliche konvexe Cluster zu untersuchen, wurde ein $k$-Means-Algorithmus verwendet.
 Wenn nur Mobilitäts-Features verwendet werden, werden ca. $60 \%$ der Geräte korrekt geclustert.
 Werden dagegen nur Traffic-Features genutzt, erreicht man eine Genauigkeit von $81.2 \%$.
-Werden Mobilität und Traffic kombiniert, erhöht sich die Genauigkeit auf $81.5 \%$.
+Werden Mobilität und Traffic kombiniert, erhöht sich die Genauigkeit leicht auf $81.5 \%$.
 \newline\newline
 \textbf{Mixture Model}\newline
 Um einen Schritt in Richtung der Synthetisierung von Traces basierend auf den Datensätzen zu machen,
-wurden Gaussian Mixture Models (GMM) mit kombinierten Mobilitäts- und Traffic-Features trainiert.
+wurden Gaussian-Mixture-Models (GMM) mit kombinierten Mobilitäts- und Traffic-Features trainiert.
 Anschlißend wurde Kolmogorov-Smirnov (KS) Statistik verwendet, um die generierten Samples mit Echtdaten zu vergleichen.
 Dabei hat sich herausgestellt, dass das kombinierte Modell in der Lage ist, das Verhalten beider Gerätetypen abzubilden.
 Das kombinierte Modell produziert Samples, dessen Traffic-Features den Originaldaten besser entsprechen, als ein GMM,
@@ -379,6 +404,26 @@ das Paper wichtige Grundlagen für das Design zukünftiger, integrierter Modelle
 \section{Fazit und Ausblick}
 \label{sec:conclusion}
 
+Da ein Modell eine Repräsentation bestimmter Aspekte eines real existierenden Konzepts ist,
+ist es von zentraler Bedeutung, diese Aspekte mit Bedacht zu wählen, sodass möglichst nur
+Aspekte des Konzepts modelliert werden, die tatsächlich wichtig sind. Gleichzeitig sollten
+sämtliche wichtigen Aspekte Teil des Modells sein.
+Übertragen auf Modelle von Mobilfunknetzwerken, sind die bisher existierenden Modelle
+basierend auf den Erkenntnissen aus \cite{Alipour2018} nicht detailliert genug. Es werden entweder
+Traffic- oder Mobilitätscharakteristiken modelliert, jedoch nicht die Kombination beider Dimensionen.
+Die betrachtete Veröffentlichung liefert demnach einen wichtigen Anstoß zur Entwicklung besserer Modelle.
+\newline\newline
+Die Autoren der in Abschnitt \ref{sec:} vorgestellten Veröffentlichung haben eine erweiterte Version veröffentlicht,
+in welcher sie tiefer auf bestimmte zuvor betrachtete Aspekte eingehen und weitere Erkenntnisse in Bezug
+auf das Design und die Parametrisierung von Mobilitäts- und Traffic-Modellen eingehen.
+Die konkrete Konzeption und Validierung eines konkreten Modelles überlassen sie zukünftigen Arbeiten.
+Es ist entscheidend, Laptops und Smartphones in Bezug auf Mobilität und Traffic zu differenzieren,
+weil sie erhebliche Unterschiede aufweisen. Smartphones sind kontinuierlich präsent, während Laptops
+zwischen Ortswechseln ausgeschaltet sind. Auch Unterschiede in den Trafficmustern sorgen dafür, dass
+eine Unterscheidung der Gerätetypen notwendig ist. Zusätzlich können die einzelnen Faktoren
+pro Gerätetyp und pro Nutzergruppe unterschieden werden. Studenten verschiedener Studiengänge könnten z.B.
+differenziert werden.
+\newline\newline
 Die Relevanz von Simulationen der Mobilität von Geräten bzw. Benutzern innerhalb eines Netzwerks
 ist bereits ausführlich diskutiert worden. Um möglichst akurate Simulationen durchzuführen, wäre es erstrebenswert,
 die Mobilität von realen Benutzern möglichst genau vorherzusagen. Mit dieser Vorhersagbarkeit haben sich die Autoren
@@ -395,9 +440,12 @@ verdeutlicht, dass es einen Zusammengang zwischen Mobilität und Datenverkehr be
 In \cite{Alipour2018} wird diese intuitive Idee eines Zusammenhangs bestätigt. Da beide Bereiche
 bisher typischerweise isoliert voneinander betrachtet werden, handelt es sich um ein aktives Forschungsfeld,
 bei dem in Zukunft weitere Betrachtungen und konkretere Ansätze kombinierter Modelle zu erwarten sind.
-
-Die Autoren der in Abschnitt \ref{sec:} vorgestellten Veröffentlichung haben eine erweiterte Version veröffentlicht,
-in welcher sie tiefer auf bestimmte zuvor betrachtete Aspekte eingehen...
+\newline\newline
+Die Autoren von \cite{Alipour2018} haben wichtige Erkenntnisse für den zukünftigen Entwurf von integrierten Modellen
+geliefert, die für zahlreiche praktische Anwendungen von Relevanz sein können. Allerdings haben sie noch kein konkretes
+Modell vorgestellt, dies bleibt Aufgabe zukünftiger Forschung. Zum gegenwärtigen Zeitpunkt liegt noch kein konkretes Modell
+vor, weshalb es spannend bleibt, abzuwarten, wie groß die Verbesserungen, die sich mit den Vorschlägen aus \cite{Alipour2018}
+praktisch erreichen lassen, ausfallen werden.
 
 \vfill
 \pagebreak
