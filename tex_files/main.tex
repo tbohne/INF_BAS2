@@ -70,23 +70,22 @@ Analyzing Mobility-Traffic Correlations in Large WLAN Traces}}}\\
 
 \section{Einleitung}
 
-Die stetig wachsende Zahl mobiler Geräte führt zu enormen Herausforderungen bei der Entwicklung
+Die stetig wachsende Zahl vernetzter Geräte führt zu enormen Herausforderungen bei der Entwicklung
 und Planung der dafür erforderlichen Infrastruktur. Beim Konzipieren neuer Netzwerke ist es von zentraler
 Bedeutung, diese in möglichst realistischer Weise zu simulieren, um sinnvolle Designentscheidungen
 treffen zu können. Dabei spielen zwei Bereiche eine essenzielle Rolle, die Bewegung der Nutzer bzw. Geräte
-sowie der Datenverkehr innerhalb des Netzwerks.\newline
-Diese Ausarbeitung befasst sich mit Korrelationen zwischen diesen beiden Bereichen,
+sowie der Datenverkehr innerhalb des Netzwerks.
+Diese Ausarbeitung befasst sich mit Korrelationen zwischen diesen Bereichen,
 welche primär anhand der Ergebnisse des Papers \textquote{Flutes vs. Cellos: Analyzing Mobility-Traffic
 Correlations in Large WLAN Traces} \cite{Alipour2018} aus dem Jahr 2018 erörtert werden.
-Ziel des Papers ist im Wesentlichen, einen ersten Schritt in Richtung integrierter Mobilitäts-Datenverkehr-Modelle 
-zu ermöglichen, um in der Zukunft realistischere Test-Szenarien und Benchmarks zu entwickeln.
-Darüber hinaus werden an einigen Stellen weiterführende Quellen einbezogen.
-\newline\newline
+Ziel des Papers ist es im Wesentlichen, einen ersten Schritt in Richtung integrierter Mobilitäts- und Datenverkehr-Modelle 
+zu ermöglichen, um in Zukunft realistischere Test-Szenarien und Benchmarks zu entwickeln.
+Darüber hinaus werden an einigen Stellen weiterführende Quellen einbezogen, um den Themenüberblick zu ergänzen.\newline
 Zunächst werden in Kapitel \ref{sec:basics} die Grundlagen der Mobilität und des Datenverkehrs in Rechnernetzen
 eingeführt. Anschließend geht es in Kapitel \ref{sec:correlations} um Korrelationen zwischen beiden
-Bereichen, die anhand der Ergebnisse von \cite{Alipour2018} erörtert werden.
-Darauffolgend werden einige Aspekte diskutiert, bevor schließlich in \ref{sec:conclusion} ein abschließendes
-Fazit und ein Ausblick formuliert wird.
+Bereichen, die anhand der Ergebnisse aus \cite{Alipour2018} vorgestellt werden.
+Darauffolgend thematisiert Kapitel \ref{sec:mobility_predictability} die Vorhersagbarkeit menschlicher Mobilität,
+bevor schließlich in Kapitel \ref{sec:conclusion} ein Fazit und ein Ausblick formuliert wird.
 
 \section{Grundlagen}
 \label{sec:basics}
@@ -401,6 +400,19 @@ Metriken besser abbilden, als isolierte Modelle. Die eingangs erwähnten Fragest
 und da viele der Erkenntnisse von aktuellen Modellen nicht berücksichtigt werden, liefert
 das Paper wichtige Grundlagen für das Design zukünftiger, integrierter Modelle.
 
+\section{Vorhersagbarkeit menschlicher Mobilität}
+\label{sec:mobility_predictability}
+Die Relevanz von Simulationen der Mobilität von Geräten bzw. Benutzern innerhalb eines Netzwerks
+ist bereits ausführlich diskutiert worden. Um möglichst akurate Simulationen durchzuführen, wäre es erstrebenswert,
+die Mobilität von realen Benutzern möglichst genau vorherzusagen. Mit dieser Vorhersagbarkeit haben sich die Autoren
+von \cite{Alipour2018} in einer weiteren Veröffentlichung mit dem Titel \textquote{Practical Prediction of Human
+Movements Across Device Types and Spatiotemporal Granularities}\cite{Alipour2019} aus diesem Jahr beschäftigt.
+Sie kommen in der Arbeit zu dem Schluss, dass die Bewegung von Laptops oder allgemein \textquote{sit-to-use}-Geräten
+signifikant besser vorherzusagen ist als jene von Smartphones bzw. Mobilgeräten.\newline
+Sie haben signifikante Korrelationen zwischen Vorhersagegenauigkeit, Mobilitäts-Features
+und Traffic-Features gefunden. Sie planen, den Nutzen der Vorhersagbarkeit als Feature 
+in integrierten Mobilitäts- und Traffic-Modellen weiter zu untersuchen.
+
 \section{Fazit und Ausblick}
 \label{sec:conclusion}
 
@@ -423,17 +435,6 @@ zwischen Ortswechseln ausgeschaltet sind. Auch Unterschiede in den Trafficmuster
 eine Unterscheidung der Gerätetypen notwendig ist. Zusätzlich können die einzelnen Faktoren
 pro Gerätetyp und pro Nutzergruppe unterschieden werden. Studenten verschiedener Studiengänge könnten z.B.
 differenziert werden.
-\newline\newline
-Die Relevanz von Simulationen der Mobilität von Geräten bzw. Benutzern innerhalb eines Netzwerks
-ist bereits ausführlich diskutiert worden. Um möglichst akurate Simulationen durchzuführen, wäre es erstrebenswert,
-die Mobilität von realen Benutzern möglichst genau vorherzusagen. Mit dieser Vorhersagbarkeit haben sich die Autoren
-von \cite{Alipour2018} in einer weiteren Veröffentlichung mit dem Titel \textquote{Practical Prediction of Human
-Movements Across Device Types and Spatiotemporal Granularities}\cite{Alipour2019} aus diesem Jahr beschäftigt.
-Sie kommen in der Arbeit zu dem Schluss, dass die Bewegung von Laptops oder allgemein \textquote{sit-to-use}-Geräten
-signifikant besser vorherzusagen ist als jene von Smartphones bzw. Mobilgeräten.\newline
-Sie haben signifikante Korrelationen zwischen Vorhersagegenauigkeit, Mobilitäts-Features
-und Traffic-Features gefunden. Sie planen, den Nutzen der Vorhersagbarkeit als Feature 
-in integrierten Mobilitäts- und Traffic-Modellen weiter zu untersuchen.
 \newline\newline
 Bereits das alltägliche Beispiel der Person, die ihren Gang verlangsamt um eine empfangene Nachricht zu lesen,
 verdeutlicht, dass es einen Zusammengang zwischen Mobilität und Datenverkehr bei Mobilgeräten gibt.
