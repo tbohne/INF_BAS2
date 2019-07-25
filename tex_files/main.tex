@@ -106,50 +106,54 @@ also die Art, in welcher sich deren Standort, Geschwindigkeit und Beschleunigung
 In \cite{Camp2002} wird dabei zwischen zwei grundsätzlichen Modellen unterschieden, den \textquote{Entity-Mobility-Models},
 also Modellen, bei denen die Bewegung einzelner Entitäten modelliert wird und den \textquote{Group-Mobility-Models},
 bei welchen es darum geht, die Bewegung einer Gruppe von Nutzern bzw. Geräten zu modellieren,
-in welcher die Bewegung der einzelnen Entitäten voneinander abhängt.\newline
+in welcher die Bewegung der einzelnen Entitäten voneinander abhängt.
 Neben der Unterscheidung zwischen Entity- und Group-Mobility-Modellen, wird dort außerdem zwischen zwei Arten der Datenbasis unterschieden,
 welche der Simulation zugrunde liegt. Es gibt zum einen die Bewegungsmodelle, die auf Trace-Daten basieren, d.h. auf Beobachtungen
 der Bewegung von Nutzern in tatsächlich existierenden Systemen. Diese liefern bei einer ausreichend großen Gruppe von Nutzern
 und einer ausreichend langen Beobachtungsphase sehr akurate Informationen, setzen allerdings voraus, dass ein solches Netzwerk
 bereits existiert. \cite{Camp2002} Zum anderen existieren Modelle mit synthetischen Bewegungsmustern für Netzwerkumgebungen, 
-für die noch keine Traces vorliegen. Dabei geht es darum, die Bewegung der Nutzer möglichst realistisch abzubilden,
+für die noch keine Traces vorliegen. In diesen Fällen geht es darum, die Bewegung der Nutzer möglichst realistisch abzubilden,
 wofür es verschiedene Arten von Ansätzen gibt.\newline
 Wie in \cite{Aschenbruck2011} geschildert, können synthetische Modelle bestimmte Abhängigkeiten modellieren.
 Zeitliche Abhängigkeiten sorgen z.B. dafür, dass die Bewegung einer Entität durch dessen Bewegung in der Vergangenheit
-beeinflusst wird. Außerdem können räumliche Abhängigkeiten darfür sorgen, dass die Bewegung einer Entität durch die umgebenden 
+beeinflusst wird. Außerdem können räumliche Abhängigkeiten dafür sorgen, dass die Bewegung einer Entität durch die umgebenden 
 Entitäten beeinflusst wird (Group-Mobility). Auch geographische Restriktionen können Teil des Modells sein.
 Des Weiteren wird in \cite{Aschenbruck2011} darauf hingewiesen, dass auch Modelle wie
 \textquote{Random-Waypoint} und \textquote{Random-Walk} existieren, welche keine dieser Abhängigkeiten
-aufweisen. Diese Modelle sind einfach zu implementieren, jedoch nicht sehr realistisch.
-Insgesamt existiert eine Vielzahl von Mobilitätsmodellen mit verschiedenen Ansätzen, welche in unterschiedlichen
-Szenarien geeignet sein können.
+aufweisen. Diese Modelle sind einfach zu implementieren, jedoch nicht sehr realistisch, wenn es um die Modellierung
+menschlicher Mobilität geht. Insgesamt existiert eine Vielzahl von Mobilitätsmodellen mit verschiedenen Ansätzen, 
+welche in unterschiedlichen Szenarien geeignet sein können.
 
 \subsection{Datenverkehr}
 \label{sec:traffic}
 
-Zu einer sinnvollen Evaluation der Performanz eines Kommunikationssystems gehört auch die Simulation des Datenverkehrs
-innerhalb dieses Systems. Wie bereits bei der Bewegungsmodellierung, kann auch hier von tatsächlichen Beobachtungen in
-existierenden Netzen ausgegangen werden, sofern diese vorliegen.\newline
+Um den Anforderungen des mobilen Datenverkehrs gerecht zu werden und sinnvolle Strategien zu entwickeln,
+ist es von zentraler Bedeutung, diese Anforderungen zu kennen, auch im Hinblick auf die Skalierbarkeit der
+Netzwerkressourcen. \cite{Oliveira2014} Dementsprechend gehört zur Planung und Evaluation eines mobilen 
+Kommunikationssystems auch die Simulation des Datenverkehrs innerhalb dieses Systems. Wie bereits bei der
+Bewegungsmodellierung, kann auch hier von tatsächlichen 
+Beobachtungen in existierenden Netzen ausgegangen werden, sofern solche vorliegen.\newline
 Einfacher Datenverkehr besteht aus einzelnen Ankünften diskreter Entitäten.
 Bei diesen Entitäten kann es sich z.B. um Pakete handeln. Darüber hinaus gibt es Datenverkehr, 
-bei welchem mehrere Entitäten zusammen in sogenannten \textquote{Batch-Arrivals} eintreffen.
-Im einfachsten Fall wird in einer Simulation eine zufällige Sequenz von Zwischenankunftszeiten \footnote{Zeit zwischen zwei 
-aufeinanderfolgenden \textquote{Arrivals}.} generiert. Neben Ankunftszeiten und Batch-Größen ist es zudem häufig sinnvoll,
-die Last zu modellieren. \cite{Frost1994} Die Last wird in \cite{Frost1994} als die Menge der Arbeit $W_n$ im System beschrieben,
-die die $n$-te eintreffende Entität erfordert.
+bei welchem mehrere Entitäten zusammen in sogenannten \textquote{Batch-Arrivals} eintreffen. \cite{Frost1994}
+Die Grundlagen der Simulation des Datenverkehrs lassen sich basierend auf \cite{Frost1994} wie folgt zusammenfassen.
+Im einfachsten Fall wird in einer Simulation eine zufällige Sequenz von Zwischenankunftszeiten\footnote{Zeit zwischen zwei 
+aufeinanderfolgenden Paketankünften.} generiert. Neben Ankunftszeiten und Batch-Größen ist es zudem häufig sinnvoll,
+die Last zu modellieren. Die Last entspricht der Menge der Arbeit $W_n$ im System, die die $n$-te eintreffende Entität 
+erfordert.
 % Ein einfaches Modell des Datenverkehrs ist \textsc{CBR} (Constant Bitrate), bei welchem eine Anzahl von Paketankünften
 % pro Zeiteinheit definiert wird. Die Paketgröße ist dabei ebenfalls konstant. Dieses Modell ist sehr simpel und dementsprechend
 % leicht zu implementieren, dafür jedoch in der Regel nicht besonders realistisch.\newline
 % Neben \textsc{CBR}- gibt es den typischerweise realistischeren \textsc{VBR}-Traffic (Variable Bitrate), 
 % welcher z.B. beim Videostreaming auftritt, bei dem kodierte Frames eine variable, zufällige Größe besitzen.\cite{Frost1994}
-Um einen realistischen, heterogenen Traffic-Mix zu erhalten, sollten in einem Modell laut \cite{Frost1994} verschiedene
+Um einen realistischen, heterogenen Traffic-Mix zu erhalten, sollten in einem Modell verschiedene
 Ströme des Datenverkehrs gemultiplext werden, z.B. Sprachverbindungen, Video-Übertragungen und Datei-Transporte.
-Eine weitere wichtige Eigenschaft des Datenverkehrs ist die sogenannte \textquote{Burstiness}, also die Stoßhaftigkeit.
-Traffic entsteht in Schüben, z.B. für komprimierte Videos und Datentransfers. Die Ankünfte der Pakete bilden visuelle
-Cluster. Der Datenverkehr in Breitbandnetzen wird von dieser Art Traffic dominiert. \cite{Frost1994}
 \newline\newline
-Wie bereits bei der Bewegungsmodellierung gibt es auch hier eine Vielzahl verschiedener Modelle, die in bestimmten Szenarien
-geeignet sein können, um realistischen Datenverkehr zu modellieren.
+Eine weitere wichtige Eigenschaft des Datenverkehrs ist die sogenannte \textquote{Burstiness}, also die Stoßhaftigkeit.
+Datenverkehr entsteht typischerweise in Schüben, z.B. für komprimierte Videos und Datentransfers. Die Ankünfte der Pakete
+bilden visuelle Cluster. Der Datenverkehr in Breitbandnetzen wird von dieser Art des Datenverkehrs dominiert. \cite{Frost1994}
+Wie bereits bei der Bewegungsmodellierung, gibt es auch bei der Modellierung des Datenverkehrs eine Vielzahl verschiedener
+Modelle, die in bestimmten Szenarien geeignet sein können, um realistischen Datenverkehr zu modellieren.
 
 \section{Korrelationen zwischen Mobilität und Datenverkehr}
 \label{sec:correlations}
