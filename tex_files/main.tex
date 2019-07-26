@@ -137,7 +137,7 @@ Einfacher Datenverkehr besteht aus einzelnen Ankünften diskreter Entitäten.
 Bei diesen Entitäten kann es sich z.B. um Pakete handeln. Darüber hinaus gibt es Datenverkehr, 
 bei welchem mehrere Entitäten zusammen in sogenannten \textquote{Batch-Arrivals} eintreffen. \cite{Frost1994}
 Die Grundlagen der Simulation des Datenverkehrs lassen sich basierend auf \cite{Frost1994} wie folgt zusammenfassen.
-Im einfachsten Fall wird in einer Simulation eine zufällige Sequenz von Zwischenankunftszeiten\footnote{Zeit zwischen zwei 
+Im einfachsten Fall wird in einer Simulation eine zufällige Sequenz von Zwischenankunftszeiten \footnote{Zeit zwischen zwei 
 aufeinanderfolgenden Paketankünften.} generiert. Neben Ankunftszeiten und Batch-Größen ist es zudem häufig sinnvoll,
 die Last zu modellieren. Die Last entspricht der Menge der Arbeit $W_n$ im System, die die $n$-te eintreffende Entität 
 erfordert.
@@ -158,32 +158,32 @@ Modelle, die in bestimmten Szenarien geeignet sein können, um realistischen Dat
 \section{Korrelationen zwischen Mobilität und Datenverkehr}
 \label{sec:correlations}
 
-Wie in den Abschnitten \ref{sec:mobility} und \ref{sec:traffic} eingeführt, hängt die Performanz eines mobilen
-Netzwerks erheblich von den Mustern der Mobilität und des Datenverkehrs innerhalb des Netzwerks ab.
-Bezogen auf die dort vorgestellten Mobilitäts- und Trafficmodelle handelt es sich bei \cite{Alipour2018}
-eher um eine Art \textquote{Meta-Paper}, es werden keine konkreten Modelle der Mobilität oder des Datenverkehrs vorgestellt.
-Stattdessen wird untersucht, ob kombinierte Modelle reale Netzwerke treffender repräsentieren als die bisher
-üblichen isolierten Varianten. Dabei werden Korrelationen zwischen beiden Faktoren untersucht.
-\newline\newline
+Wie in den Abschnitten \ref{sec:mobility} und \ref{sec:traffic} eingeführt, hängt die Performanz eines
+Netzwerks erheblich von den Mustern der Mobilität und des Datenverkehrs innerhalb dieses Netzwerks ab.
+Es gibt in der Literatur zahlreiche Veröffentlichungen, die konkrete Modelle der Mobilität oder des Datenverkehrs
+vorstellen. Verglichen mit diesen Veröffentlichungen handelt es sich bei \cite{Alipour2018} eher um eine Art 
+\textquote{Meta-Paper}, in welchem keine konkreten Modelle vorgestellt werden. Stattdessen wird untersucht, 
+ob kombinierte Modelle, die sowohl die Mobilität, als auch den Datenverkehr berücksichtigen, reale Netzwerke 
+treffender repräsentieren als isolierte Varianten. Dabei werden Korrelationen zwischen beiden Faktoren untersucht.\newline
 Aktuelle Modelle betrachten entweder die Mobilität oder den Datenverkehr, erfassen jedoch nicht das Zusammenspiel beider Faktoren.
-Außerdem verwenden viele trace-basierte Mobilitätsmodelle Datensätze aus der Prä-Smartphone-Ära,
-was die heutige Relevanz dieser Modelle in Frage stellt. \cite{Alipour2018}\newline
+Außerdem verwenden viele Trace-basierte Mobilitätsmodelle Datensätze aus der Prä-Smartphone-Ära,
+was die heutige Relevanz dieser Modelle in Frage stellt. \cite{Alipour2018}
 Die Autoren von \cite{Alipour2018} beschäftigen sich mit Mobilitäts- und Datenverkehrmodellen für Laptops und Smartphones.
 Die Modelle sind datengetrieben, es werden $30$\textsc{TB} große Datensätze von $300$\textsc{K} Geräten betrachtet, 
-welche auf einem Campusgelände betrieben wurden. Zur Analyse dieser Daten wurde das Framework FLAMeS (\textbf{F}ramework for 
-\textbf{L}arge-scale \textbf{A}nalysis of \textbf{M}obil\textbf{e} \textbf{S}ocieties) entwickelt.
+welche auf einem Campusgelände betrieben wurden. Zur Analyse dieser Daten wurde das Framework FLAMeS \footnote{\textbf{F}ramework for 
+\textbf{L}arge-scale \textbf{A}nalysis of \textbf{M}obil\textbf{e} \textbf{S}ocieties.} entwickelt.
 Im Folgenden werden relevante Aspekte und Ergebnisse aus der Veröffentlichung zusammengefasst.\newline\newline
 Dass die beiden Faktoren der Mobilität und des Datenverkehrs sich trotz der bisher überwiegend isolierten Betrachtungen
 durchaus gegenseitig beeinflussen, veranschaulichen die Autoren durch folgende alltägliche Beispiele. 
 Eine Person verlangsamt ihren Gang, wenn diese eine Nachricht erhält. Ebenso kann die Netzwerkaktivität von der
 Mobilität und Position abhängen. Stationäre Nutzer konsumieren und produzieren in der Regel mehr Daten als jene, 
 die sich bewegen. Außerdem verwenden Personen an unterschiedlichen Orten unterschiedliche Anwendungen.
-Diese simplen Beispiele lassen eine gemeinsame Betrachtung beider Faktoren bereits als sinnvoll erscheinen.
+Diese profanen Beispiele lassen eine gemeinsame Betrachtung beider Faktoren bereits als sinnvoll erscheinen.
 Um diesen Zusammenhang genauer zu untersuchen, unterscheiden sie zwischen stationären Geräten (Laptops) und mobilen Geräten
 (Smartphones). Da Laptops auch durchaus als mobil angesehen werden können, präzisieren die Autoren die Unterscheidung
-durch \textquote{on-the-go}- und \textquote{stop-to-use}-Geräte. Das Framework FLAMeS ermöglicht es, stationäre und
-mobile Geräte zu differenzieren und in Bezug auf ihren Datenverkehr und ihre Mobilität zu untersuchen.
-Im Kern untersuchen die Autoren dabei drei Fragestellungen:
+durch \textquote{on-the-go}- und \textquote{stop-to-use}-Geräte. Das Framework FLAMeS ermöglicht es, 
+in diesem Sinne stationäre und mobile Geräte zu differenzieren und in Bezug auf ihren Datenverkehr und ihre 
+Mobilität zu untersuchen. Im Kern betrachten die Autoren dabei drei Fragestellungen:
 
 \begin{itemize}
     \item Wie unterscheiden sich Mobilitäts- und Datenverkehr-Charakteristiken zwischen den unterschiedlichen Gerätetypen,
@@ -192,9 +192,10 @@ Im Kern untersuchen die Autoren dabei drei Fragestellungen:
     \item Sollten neue Modelle entwickelt werden, die diese Unterschiede berücksichtigen?
 \end{itemize}
 
-Das FLAMeS-Systems besteht aus drei Phasen, in der ersten Phase findet die Datensammlung und ein Preprocessing statt.
-Anschließend kommt es in der zweiten Phase zur Mobilitäts- und Traffic-Analyse, wobei zwischen Laptops und Smartphones
-unterschieden wird. In der letzten Phase findet schließlich eine integrierte Analyse der Mobilität und des Traffics statt.
+Das FLAMeS-Systems besteht aus drei Phasen, in der ersten Phase findet die Datensammlung und ein Preprocessing statt
+(vgl. \ref{sec:phase1}). Anschließend kommt es in der zweiten Phase zur Mobilitäts- und Datenverkehr-Analyse, wobei zwischen
+Laptops und Smartphones unterschieden wird (vgl. \ref{sec:phase2_a}, \ref{sec:phase2_b}).
+In der letzten Phase findet schließlich eine integrierte Analyse der Mobilität und des Datenverkehrs statt (vgl. \ref{sec:phase3}).
 % \begin{figure}[H]
 % \centering
 % \includegraphics[width=0.65\textwidth]{img/FLAMeS.png}
@@ -203,6 +204,7 @@ unterschieden wird. In der letzten Phase findet schließlich eine integrierte An
 % \end{figure}
 
 \subsection{Datensammlung und Preprocessing}
+\label{sec:phase1}
 
 Die gesammelten Daten stammen aus zwei Quellen. Die erste Quelle sind WLAN-AP\footnote{Access-Point}-Logs. 
 Diese Logs wurden an $1760$ APs in $138$ Gebäuden über $479$ Tage auf dem
@@ -236,6 +238,7 @@ die vorlesungsfreie Zeit beginnt.
 \end{figure}
 
 \subsection{Mobilitätsanalyse}
+\label{sec:phase2_a}
 
 In diesem Abschnitt werden die Ergebnisse der Mobilitätsanalyse aus \cite{Alipour2018} zusammengefasst, in denen es
 um die zeitliche und räumliche Analyse der Mobilität der verschiedenen Geräteklassen geht.
@@ -257,6 +260,7 @@ Dazu werden die Session-Zeiten innerhalb eines Gebäudes aufsummiert.
 Laptops haben etwas längere Aufenthaltszeiten und werden in der Regel verwendet, wenn Nutzer länger an einem Ort verweilen.
 
 \subsection{Trafficanalyse}
+\label{sec:phase2_b}
 
 In diesem Abschnitt geht es um die zeitliche und räumliche Analyse des Datenverkehrs der verschiedenen Geräteklassen.
 Im Folgenden werden die Ergebnisse der Traffic-Analyse von \cite{Alipour2018} vorgestellt.
@@ -317,6 +321,8 @@ liefern keine zusätzlichen Informationen. \cite{Kumar2014} Die betrachteten Fea
 irrelevant noch redundant sein.
 
 \subsection{Integrierte Mobilitäts- und Traffic-Modelle}
+\label{sec:phase3}
+
 In diesem Abschnitt geht es um den eigentlichen Kern von \cite{Alipour2018}, nämlich der Untersuchung, ob es einen Bedarf
 für integrierte Mobility-Traffic-Modelle gibt. Um die Analyse und Interpretation zu vereinfachen und die 
 wichtigsten Eigenschaften zu identifizieren, wird mithilfe eines \textsc{CFS}\footnote{Correlation Feature Selection}-Algorithmus
