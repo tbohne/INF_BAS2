@@ -242,7 +242,7 @@ die vorlesungsfreie Zeit beginnt.
 \subsection{Mobilitätsanalyse}
 \label{sec:phase2_a}
 
-In diesem Abschnitt werden die Ergebnisse der Mobilitätsanalyse aus \cite{Alipour2018} zusammengefasst, in denen es
+In diesem Abschnitt werden die Ergebnisse der Mobilitätsanalyse aus \cite{Alipour2018} zusammengefasst, in welcher es
 um die zeitliche und räumliche Analyse der Mobilität der verschiedenen Geräteklassen geht.
 Die Startzeiten von WLAN-Sessions stimmen in Gebäuden, in denen Vorlesungen stattfinden mit den Startzeiten der Vorlesungen überein.
 In diesen Gebäuden fällt die Aktivität von Laptops nach dem Ende der Vorlesungszeiten stark, während die Aktivität von Mobilgeräten
@@ -261,53 +261,49 @@ Gebäude dieses Nutzers als jenes definiert, in welchem dieser an einem Tag die 
 Dazu werden die Session-Zeiten innerhalb eines Gebäudes aufsummiert.
 Laptops haben etwas längere Aufenthaltszeiten und werden in der Regel verwendet, wenn Nutzer länger an einem Ort verweilen.
 
-\subsection{Trafficanalyse}
+\subsection{Datenverkehranalyse}
 \label{sec:phase2_b}
 
-In diesem Abschnitt geht es um die zeitliche und räumliche Analyse des Datenverkehrs der verschiedenen Geräteklassen.
-Im Folgenden werden die Ergebnisse der Traffic-Analyse von \cite{Alipour2018} vorgestellt.
-Eine relevante Charakteristik ist die \textquote{Flow-Size}, also die Summe der Bytes aller Pakete eines Flows.
-An Wochentagen ist die durchschnittliche Größe von Flows bei Smartphones mehr als doppelt so groß wie jene von Laptop-Flows.
-Auch an Wochenenden ändert sich dies nicht signifikant. Die durchschnittliche Paketgröße von Smartphone-Flows
-ist ca. $50 \%$ größer als die von Laptops. Die Median-Größe der Pakete von Smartphones fällt an Wochenenden, 
-während diese bei Laptops gleich bleibt. Laptop-Flows zeigen zwischen Wochentagen und Wochenden in Bezug auf
-die durchschnittliche Paketgröße keine signifikante Veränderung.
-Trotz kleinerer Flows generiert ein durchschnittlicher Laptop $2.7$ mal so viel Traffic wie ein durchschnittliches Smartphone,
-weil ein Laptop für $3.7$ mal so viele Flows verantwortlich ist, wie ein Smartphone.
-\newline\newline
-Ebenfalls interessant ist die Laufzeit eines Flows. Beide Gerätetypen zeigen erhöhte Mittelwerte an Wochenenden.
+In diesem Abschnitt werden die Ergebnisse der zeitlichen und räumlichen Analyse des Datenverkehrs der verschiedenen Geräteklassen
+aus \cite{Alipour2018} vorgestellt. Eine relevante Charakteristik ist die Größe eines Flows, also die Summe der Bytes aller
+Pakete eines Flows. An Wochentagen ist die durchschnittliche Größe von Flows bei Smartphones mehr als doppelt so groß wie jene
+von Laptop-Flows. Auch an Wochenenden ändert sich dies nicht signifikant. Die durchschnittliche Paketgröße von Smartphone-Flows
+ist ca. $50 \%$ größer als die von Laptops. Im Median fällt die Größe der Pakete von Smartphones an Wochenenden, 
+während diese bei Laptops gleich bleibt. Laptop-Flows zeigen zwischen Wochentagen und Wochenenden in Bezug auf die 
+durchschnittliche Paketgröße keine signifikante Veränderung. Trotz kleinerer Flows generiert ein durchschnittlicher Laptop $2.7$
+mal so viel Datenverkehr wie ein durchschnittliches Smartphone, weil ein Laptop für $3.7$ mal so viele Flows verantwortlich ist.
+Ebenfalls aufschlussreich ist die Laufzeit eines Flows, beide Gerätetypen zeigen erhöhte Mittelwerte an Wochenenden.
 Da es zusätzlich weniger aktive Geräte an Wochenenden gibt, ist für die verbleibenden aktiven Geräte eine erhöhte Aktivität
-zu beobachten. Smartphones zeigen insgesamt mehr extreme Phasen der Inaktivität, die unter anderem durch größere
-Mobilität und Paketverluste verursacht werden können.
+zu beobachten. Smartphones zeigen insgesamt mehr extreme Phasen der Inaktivität, die die Autoren unter anderem durch größere
+Mobilität und Paketverluste erklären.
 Auch die verwendeten Protokolle sind von Interesse. TCP ist für $78.5 \%$ der Laptop-Flows verantwortlich
 und für $98.2 \%$ der Smartphone-Flows. Die höhere Präsenz von UDP bei Laptops ist zu erwarten, weil
 UDP-Verbindungen, die z.B. bei Multiplayer-Spielen, Video-Konferenzen und Filesharing auftreten,
-typischerweise weniger auf Mobilgeräten stattfinden.
+typischerweise weniger auf Mobilgeräten stattfinden. \cite{Alipour2018}
 Außerdem wurde die Last an den APs in sämtlichen Gebäuden täglich beobachtet. Dabei wurde darauf geachtet,
 die Beobachtungen außerhalb der Klausurenphase zu tätigen, um Veränderungen im Verhalten der Nutzer zu vermeiden.
-Es wurde die tägliche Rate der Paket- und Flowankünfte an den APs betrachtet. Die Median Flowraten sind
+Es wurde die tägliche Rate der Paket- und Flowankünfte an den APs betrachtet. Die Flowraten betragen im Median
 $42$\textsc{K} bzw. $20$\textsc{K} für Laptops und Smartphones an Wochentagen ($7.5$\textsc{K} bzw. $0.5$\textsc{K}
 an Wochenenden). Die durchschnittliche Anzahl von Laptop-Paketen, die täglich von APs verarbeitet werden,
 ist $1.6$ mal größer als die von Smartphones. An Wochenenden wird ein großer Anteil der APs nicht verwendet,
-was die Aussage einer geringeren Mobilität der Nutzer an Wochenenden unterstützt.
-Das tatsächliche Traffic-Volumen der APs beträgt an durchschnittlichen Wochentagen für $90 \%$ der APs
+was die Aussage einer geringeren Mobilität der Nutzer an Wochenenden unterstützt. \cite{Alipour2018}
+Das tatsächliche Datenverkehr-Volumen der APs beträgt an durchschnittlichen Wochentagen für $90 \%$ der APs
 weniger als $5$\textsc{GB} Laptop-Traffic ($2.5$\textsc{GB} an Wochenenden) und weniger als $3$\textsc{GB} Smartphone-Traffic
 ($1$\textsc{GB} an Wochenenden).
-Auch das Verhalten der Nutzer ist relevant. An Wochentagen \textcolor{red}{konsumieren} $90 \%$ der Laptops weniger als $700$\textsc{MB},
+Auch das Verhalten der Nutzer ist relevant. An Wochentagen konsumieren $90 \%$ der Laptops weniger als $700$\textsc{MB},
 während $90 \%$ der Smartphones weniger als $200$\textsc{MB} verbrauchen.
 Ein ähnliches Bild ergibt sich bei der Paketrate. An Wochentagen generieren Laptops durchschnittlich $318$\textsc{K} Pakete, 
 während Smartphones nur durchschnittlich $84$\textsc{K} Pakete am Tag generieren. 
 An Wochenenden erhöht sich die Paketrate und der Datenkonsum der wenigen verbleibenden Laptops deutlich,
 während bei den Smartphones nur leichte Veränderungen zu beobachten sind.
 Weiterhin gut geeignet, um Unterschiede zwischen Laptops und Smartphones zu verdeutlichen, sind die tatsächlichen Aktivitätszeiten.
-Dabei werden die Netflows herangezogen und nicht die WLAN-AP-Verbindungszeiten, denn dies ermöglicht es \textquote{Idle}-Zeiten
+Dabei werden die Netflows herangezogen und nicht die WLAN-AP-Verbindungszeiten, denn dies ermöglicht es, \textquote{Idle}-Zeiten
 von aktiven Zeiten zu unterscheiden. Laptops haben verglichen mit Smartphones $4$ mal höhere durchschnittliche Aktivitätszeiten.
 Insgesamt sind über $90 \%$ der Laptops weniger als $3.5$ Stunden am Tag aktiv und $90 \%$ der Smartphones weniger als eine Stunde.\newline
 Zusammenfassend lässt sich sagen, dass der Datanverbrauch von Smartphones mehr bursty mit größeren Flows und kleinerer aktiver
 Dauer ist. Außerdem sind an Wochenenden weniger Geräte am Campus, aber jene die verbleiben, sind überdurchschnittlich aktiv 
 und konsumieren überdurchschnittlich viele Daten. Insgesamt ist festzuhalten, dass Smartphones mobiler sind, 
-eine größere Anzahl von APs besuchen, größere Flow-Sizes haben und trotzdem für insgesamt weniger Netzwerklast 
-verantwortlich sind.
+eine größere Anzahl von APs besuchen, größere Flows haben und trotzdem für insgesamt weniger Netzwerklast verantwortlich sind.
 
 \subsection{Exkurs: Feature-Engineering}
 Die Identifizierung relevanter Features ist essenziell, um Data-Mining-Algorithmen effektiv mit realen Daten zu verwenden.
