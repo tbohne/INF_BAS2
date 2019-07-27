@@ -206,34 +206,36 @@ In der letzten Phase findet schließlich eine integrierte Analyse der Mobilität
 \subsection{Datensammlung und Preprocessing}
 \label{sec:phase1}
 
-Die gesammelten Daten stammen aus zwei Quellen. Die erste Quelle sind WLAN-AP\footnote{Access-Point}-Logs. 
-Diese Logs wurden an $1760$ APs in $138$ Gebäuden über $479$ Tage auf dem
-Campus einer Universität aufgezeichnet. Die Daten stammen von insgesamt $316$\textsc{K} Geräten aus den Jahren $2011$ und $2012$.
-Jeder Eintrag enthält die MAC-Adresse des Geräts, dessen zugewiesene IP-Adresse, den AP, mit welchem das Gerät verbunden ist
-und einen Zeitstempel.
+Die gesammelten Daten stammen aus zwei Quellen. Bei der ersten Quelle handelt es sich um WLAN-AP \footnote{Access-Point}-Logs,
+welche an $1760$ APs in $138$ Gebäuden über $479$ Tage auf dem Campus einer Universität aufgezeichnet wurden. 
+Die Daten stammen von insgesamt $316$\textsc{K} Geräten aus den Jahren $2011$ und $2012$. Jeder Eintrag enthält die 
+MAC-Adresse des Geräts, dessen zugewiesene IP-Adresse, den AP, mit welchem das Gerät verbunden ist und einen Zeitstempel.
 Die Orte der APs werden durch die Längen- und Breitengrade der Gebäude, in welchen sie sich befinden, mithilfe der Google Maps API
-approximiert. Daneben gibt es als weitere Quelle Netflow-Logs. Im selben Netzwerk wurden im April $2012$ über $76$ Mrd.
-Einträge in Netflow-Traces gesammelt. Ein \textquote{Flow} entspricht einer konsekutiven Sequenz von Paketen mit demselben
-Transportprotokoll, Start- und Ziel-IP und Port. \cite{Alipour2018}
-Anschließend werden die Netflow-Einträge durch das dynamische MAC-to-IP Mapping aus den DHCP-Logs mit den WLAN-Verbindungen aus den AP-Logs gematcht. Die Ergebnisse werden mittels rDNS\footnote{Reverse DNS} durch Ort und Webseiten-Informationen ergänzt. \cite{Alipour2018}
-Darauffolgend geht es darum, die Geräte in Laptops und Smartphones zu klassifizieren.
+approximiert. Als weitere Quelle dienen Netflow \footnote{Ermöglicht Exportieren von Informationen über den IP-Datenstrom eines 
+Netzwerks. \cite{RFC3954}}-Logs, die im selben Netzwerk im April $2012$ aus über $76$ Mrd.
+Einträgen in Netflow-Traces generiert wurden. Ein \textquote{Flow} entspricht einer konsekutiven Sequenz von Paketen
+mit demselben Transportprotokoll, Start- und Ziel-IP und Port. \cite{Alipour2018}
+Die Netflow-Records werden durch das dynamische MAC-to-IP-Mapping mit den WLAN-Verbindungen aus den AP-Logs gematcht
+und anschließend werden die Ergebnisse mittels rDNS \footnote{Reverse DNS} durch Ort und Webseiten-Informationen
+ergänzt. Nachdem die Datenbasis geschaffen ist, geht es darum, die Geräte in Laptops und Smartphones zu klassifizieren.\newline
 Zunächst kann der Hersteller des Geräts mit der OUI \footnote{Organizationally Unique Identifier - 24-Bit-Zahl, 
 die eindeutig den Hersteller identifiziert.} basierend auf den ersten drei Oktetten der MAC-Adresse identifiziert werden.
-Da viele Hersteller nur einen Gerätetyp herstellen, können auf diese Weise bereits
+Da viele Hersteller lediglich einen Gerätetyp herstellen, können auf diese Weise bereits
 $46 \%$ der Geräte klassifiziert werden. Die Heuristik, welche von den Autoren zur Klassifizierung verwendet wird,
 prüft zusätzlich, ob ein Gerät \textit{admob.com} kontatktiert, eine sehr verbreitete Plattform für Werbung auf Mobilgeräten.
-Ist dies der Fall, so wird ein Gerät als Mobilgerät klassifiziert. Auf diese Weise konnten $86 \%$ der Geräte in den AP-Logs
-und $97 \%$ der Netflow-Traces klassifiziert werden. Diese Art der Geräteklassifizierung wahre im Gegensatz zur Analyse von 
-HTTP-Headern, die möglicherweise zu noch genaueren Ergebnissen führt, die Privatsphäre der Nutzer.\newline
-Wie man Abb. \ref{fig:traces} entnehmen kann, ist die Anzahl der Flows und der
-Gesamt-Traffic bei Laptops deutlich höher als bei Mobilgeräten, obwohl es insgesamt deutlich mehr verbundene Mobilgeräte gibt.
-Wie zu erwarten, treten die Peaks an Wochentagen auf. Dass die Netzwerkaktivität nach dem 25. abnimmt, liegt daran, dass dort
+Ist dies der Fall, so wird dieses Gerät als Mobilgerät klassifiziert. Auf diese Weise konnten $86 \%$ der Geräte in den AP-Logs
+und $97 \%$ der Netflow-Traces klassifiziert werden. 
+Die Autoren heben besonders hervor, dass diese Art der Geräteklassifizierung im Gegensatz zur Analyse von 
+HTTP-Headern, die möglicherweise zu noch genaueren Ergebnissen führt, die Privatsphäre der Nutzer wahrt.\newline
+Wie man Abb. \ref{fig:traces} entnehmen kann, ist die Anzahl der Flows und das Gesamtvolumen des Datenverkehrs bei Laptops
+deutlich höher als bei Mobilgeräten, obwohl es insgesamt deutlich mehr verbundene Mobilgeräte gibt. Wie zu erwarten, 
+treten die Spitzen an Wochentagen auf. Dass die Netzwerkaktivität nach dem 25. abnimmt, liegt daran, dass dort
 die vorlesungsfreie Zeit beginnt.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.65\textwidth]{img/traces.png}
-    \caption{Kombinierte WLAN-AP- und Netflow-Traces über $25$ Tage. \cite{Alipour2018}}
+    \caption{Kombinierte WLAN-AP- und Netflow-Traces. \cite{Alipour2018}}
     \label{fig:traces}
 \end{figure}
 
