@@ -168,8 +168,8 @@ treffender repräsentieren als isolierte Varianten. Dabei werden Korrelationen z
 Aktuelle Modelle betrachten entweder die Mobilität oder den Datenverkehr, erfassen jedoch nicht das Zusammenspiel beider Faktoren.
 Außerdem verwenden viele Trace-basierte Mobilitätsmodelle Datensätze aus der Prä-Smartphone-Ära,
 was die heutige Relevanz dieser Modelle in Frage stellt. \cite{Alipour2018}
-Die Autoren von \cite{Alipour2018} beschäftigen sich mit Mobilitäts- und Datenverkehrmodellen für Laptops und Smartphones.
-Die Modelle sind datengetrieben, es werden $30$\textsc{TB} große Datensätze von $300$\textsc{K} Geräten betrachtet, 
+Die Autoren von \cite{Alipour2018} beschäftigen sich mit Aspekten der Mobilität und des Datenverkehrs von Laptops und Smartphones.
+Es handelt sich um datengetriebene Analysen, bei denen $30$\textsc{TB} große Datensätze von $300$\textsc{K} Geräten betrachtet werden,
 welche auf einem Campusgelände betrieben wurden. Zur Analyse dieser Daten wurde das Framework FLAMeS \footnote{\textbf{F}ramework for 
 \textbf{L}arge-scale \textbf{A}nalysis of \textbf{M}obil\textbf{e} \textbf{S}ocieties.} entwickelt.
 Im Folgenden werden relevante Aspekte und Ergebnisse aus der Veröffentlichung zusammengefasst.\newline\newline
@@ -192,10 +192,14 @@ Mobilität zu untersuchen. Im Kern betrachten die Autoren dabei drei Fragestellu
     \item Sollten neue Modelle entwickelt werden, die diese Unterschiede berücksichtigen?
 \end{itemize}
 
-Das FLAMeS-Systems besteht aus drei Phasen, in der ersten Phase findet die Datensammlung und ein Preprocessing statt
-(vgl. \ref{sec:phase1}). Anschließend kommt es in der zweiten Phase zur Mobilitäts- und Datenverkehr-Analyse, wobei zwischen
-Laptops und Smartphones unterschieden wird (vgl. \ref{sec:phase2_a}, \ref{sec:phase2_b}).
-In der letzten Phase findet schließlich eine integrierte Analyse der Mobilität und des Datenverkehrs statt (vgl. \ref{sec:phase3}).
+Das FLAMeS-System besteht aus drei Phasen, die im Folgenden näher erläutert werden. In der ersten Phase, die in Abschnitt
+\ref{sec:phase1} thematisiert wird, findet die Datensammlung und ein Preprocessing der gesammelten Daten statt.
+Anschließend wird in den Abschnitten \ref{sec:phase2_a} und \ref{sec:phase2_b} die zweite Phase erläutert, 
+in der es um eine Mobilitäts- und Datenverkehr-Analyse geht, wobei zwischen Laptops und Smartphones unterschieden wird. 
+In Abschnitt \ref{sec:phase3} wird nach einem kurzen Exkurs in Abschnitt \ref{sec:digression} die dritte Phase vorgestellt, 
+in welcher eine integrierte Analyse der Mobilität und des Datenverkehrs stattfindet. 
+Zuletzt werden die Ergebnisse des Kapitels in Abschnitt \ref{sec:summary} zusammengefasst.
+
 % \begin{figure}[H]
 % \centering
 % \includegraphics[width=0.65\textwidth]{img/FLAMeS.png}
@@ -211,13 +215,13 @@ welche an $1760$ APs in $138$ Gebäuden über $479$ Tage auf dem Campus einer Un
 Die Daten stammen von insgesamt $316$\textsc{K} Geräten aus den Jahren $2011$ und $2012$. Jeder Eintrag enthält die 
 MAC-Adresse des Geräts, dessen zugewiesene IP-Adresse, den AP, mit welchem das Gerät verbunden ist und einen Zeitstempel.
 Die Orte der APs werden durch die Längen- und Breitengrade der Gebäude, in welchen sie sich befinden, mithilfe der Google Maps API
-approximiert. Als weitere Quelle dienen Netflow \footnote{Ermöglicht Exportieren von Informationen über den IP-Datenstrom eines 
+approximiert. Als weitere Quelle dienen Netflow \footnote{Ermöglicht Export von Informationen über den IP-Datenstrom eines 
 Netzwerks. \cite{RFC3954}}-Logs, die im selben Netzwerk im April $2012$ aus über $76$ Mrd.
 Einträgen in Netflow-Traces generiert wurden. Ein \textquote{Flow} entspricht einer konsekutiven Sequenz von Paketen
 mit demselben Transportprotokoll, Start- und Ziel-IP und Port. \cite{Alipour2018}
 Die Netflow-Records werden durch das dynamische MAC-to-IP-Mapping mit den WLAN-Verbindungen aus den AP-Logs gematcht
 und anschließend werden die Ergebnisse mittels rDNS \footnote{Reverse DNS} durch Ort und Webseiten-Informationen
-ergänzt. Nachdem die Datenbasis geschaffen ist, geht es darum, die Geräte in Laptops und Smartphones zu klassifizieren.\newline
+ergänzt. Nachdem die Datenbasis geschaffen ist, geht es darum, die Geräte in Laptops und Smartphones zu klassifizieren.
 Zunächst kann der Hersteller des Geräts mit der OUI \footnote{Organizationally Unique Identifier - 24-Bit-Zahl, 
 die eindeutig den Hersteller identifiziert.} basierend auf den ersten drei Oktetten der MAC-Adresse identifiziert werden.
 Da viele Hersteller lediglich einen Gerätetyp herstellen, können auf diese Weise bereits
@@ -228,9 +232,9 @@ und $97 \%$ der Netflow-Traces klassifiziert werden.
 Die Autoren heben besonders hervor, dass diese Art der Geräteklassifizierung im Gegensatz zur Analyse von 
 HTTP-Headern, die möglicherweise zu noch genaueren Ergebnissen führt, die Privatsphäre der Nutzer wahrt.\newline
 Wie man Abb. \ref{fig:traces} entnehmen kann, ist die Anzahl der Flows und das Gesamtvolumen des Datenverkehrs bei Laptops
-deutlich höher als bei Mobilgeräten, obwohl es insgesamt deutlich mehr verbundene Mobilgeräte gibt. Wie zu erwarten, 
-treten die Spitzen an Wochentagen auf. Dass die Netzwerkaktivität nach dem 25. abnimmt, liegt daran, dass dort
-die vorlesungsfreie Zeit beginnt.
+erheblich größer als bei Smartphones, obwohl es insgesamt deutlich mehr verbundene Smartphones gibt. 
+Die Spitzen treten erwartungsgemäß jeweils an Wochentagen auf. 
+Die abrupte Abnahme der Netzwerkaktivität nach dem 25. ist im Beginn der vorlesungsfreien Zeit begründet.
 
 \begin{figure}[H]
     \centering
@@ -243,7 +247,7 @@ die vorlesungsfreie Zeit beginnt.
 \label{sec:phase2_a}
 
 In diesem Abschnitt werden die Ergebnisse der Mobilitätsanalyse aus \cite{Alipour2018} zusammengefasst, in welcher es
-um die zeitliche und räumliche Analyse der Mobilität der verschiedenen Geräteklassen geht.
+um die zeitliche und räumliche Analyse der Mobilität der verschiedenen Gerätetypen geht.
 Die Startzeiten von WLAN-Sessions stimmen in Gebäuden, in denen Vorlesungen stattfinden mit den Startzeiten der Vorlesungen überein.
 In diesen Gebäuden fällt die Aktivität von Laptops nach dem Ende der Vorlesungszeiten stark, während die Aktivität von Mobilgeräten
 noch etwas länger erhalten bleibt. Für die Bibliothek und soziale Einrichtungen auf dem Campus ist die Wahrscheinlichkeit
@@ -264,7 +268,7 @@ Laptops haben etwas längere Aufenthaltszeiten und werden in der Regel verwendet
 \subsection{Datenverkehranalyse}
 \label{sec:phase2_b}
 
-In diesem Abschnitt werden die Ergebnisse der zeitlichen und räumlichen Analyse des Datenverkehrs der verschiedenen Geräteklassen
+In diesem Abschnitt werden die Ergebnisse der zeitlichen und räumlichen Analyse des Datenverkehrs der verschiedenen Gerätetypen
 aus \cite{Alipour2018} vorgestellt. Eine relevante Charakteristik ist die Größe eines Flows, also die Summe der Bytes aller
 Pakete eines Flows. An Wochentagen ist die durchschnittliche Größe von Flows bei Smartphones mehr als doppelt so groß wie jene
 von Laptop-Flows. Auch an Wochenenden ändert sich dies nicht signifikant. Die durchschnittliche Paketgröße von Smartphone-Flows
@@ -306,29 +310,31 @@ und konsumieren überdurchschnittlich viele Daten. Insgesamt ist festzuhalten, d
 eine größere Anzahl von APs besuchen, größere Flows haben und trotzdem für insgesamt weniger Netzwerklast verantwortlich sind.
 
 \subsection{Exkurs: Feature-Engineering}
+\label{sec:digression}
+
 Die Identifizierung relevanter Features ist essenziell, um Data-Mining-Algorithmen effektiv mit realen Daten zu verwenden.
 Es wurden in der Literatur viele Feature-Selection Methoden vorgestellt, um Teilmengen der Features zu erhalten,
 die für die Klassifizierung und Clustering relevant sind.
 Machine-Learning-Methoden haben Schwierigkeiten, mit großen Zahlen von Input-Features
 umzugehen. Um diese Methoden dennoch effektiv anzuwenden, ist ein Preprocessing der Daten vonnöten. \cite{Kumar2014}
-Dieser Preprocessing-Schritt geschieht in der integrierten Mobilitäts- und Traffic-Analyse in \cite{Alipour2018} in
-Form von Feature-Selection. Feature-Selection ist der Prozess, in welchem relevante Features von irrelevanten unterschieden
-werden. Die irrelevanten Features werden nicht betrachtet, was die Genauigkeit, Geschwindigkeit und Verständlichkeit 
-der Methoden verbessert. Irrelevante Features sind jene, die keine nützlichen Informationen liefern und redundante Features
-liefern keine zusätzlichen Informationen. \cite{Kumar2014} Die betrachteten Features sollten dementsprechend weder
-irrelevant noch redundant sein.
+Dieser Preprocessing-Schritt geschieht in der integrierten Mobilitäts- und Traffic-Analyse in \cite{Alipour2018},
+welche in Abschnitt \ref{sec:phase3} besprochen wird, in Form von Feature-Selection. Feature-Selection ist der Prozess,
+in welchem relevante Features von irrelevanten unterschieden werden. Die irrelevanten Features werden nicht betrachtet, 
+was die Genauigkeit, Geschwindigkeit und Verständlichkeit der Methoden verbessert. Irrelevante Features sind jene, 
+die keine nützlichen Informationen liefern und redundante Features liefern keine zusätzlichen Informationen. \cite{Kumar2014}
+Die betrachteten Features sollten dementsprechend weder irrelevant noch redundant sein.
 
-\subsection{Integrierte Mobilitäts- und Traffic-Modelle}
+\subsection{Integrierte Mobilitäts- und Datenverkehr-Modelle}
 \label{sec:phase3}
 
 In diesem Abschnitt geht es um den eigentlichen Kern von \cite{Alipour2018}, nämlich der Untersuchung, ob es einen Bedarf
-für integrierte Mobility-Traffic-Modelle gibt. Um die Analyse und Interpretation zu vereinfachen und die 
-wichtigsten Eigenschaften zu identifizieren, wird mithilfe eines \textsc{CFS}\footnote{Correlation Feature Selection}-Algorithmus
+für integrierte Mobilitäts- und Datenverkehr-Modelle gibt. Um die Analyse und Interpretation zu vereinfachen und die 
+wichtigsten Features zu identifizieren, wird mithilfe eines \textsc{CFS} \footnote{Correlation Feature Selection}-Algorithmus
 \textquote{Feature-Engineering} betrieben. \textsc{CFS} ist eine Möglichkeit der Feature-Selection, die auf Korrelationen
 basiert. Die zentrale Hypothese des Ansatzes ist, dass gute Teilmengen der Features jene Features enthalten, die stark
 mit der Klasse, jedoch nicht untereinander korrelieren. \textsc{CFS} kombiniert diese Hypothese mit einem geeigneten
 Maß der Korrelation und einer heuristischen Suche. \cite{Hall2000}
-Bei den in \cite{Alipour2018} ermittelten Korrelationen handelt es sich um \textquote{Pearson-Korrelationen}.
+Bei den in \cite{Alipour2018} ermittelten Korrelationen handelt es sich um Pearson-Korrelationen.
 Die \textquote{Pearson-Correlation}-Methode vergibt Werte zwischen $-1$ und $1$, wobei $0$ überhaupt keiner Korrelation
 entspricht. Bei den Werten $1$ und $-1$ handelt es sich um totale positive bzw. negative Korrelationen.
 Eine positive Korrelation zwischen zwei Features $A$ und $B$ liegt vor, wenn bei steigendem Wert für $A$
@@ -336,77 +342,75 @@ auch der Wert von $B$ steigt. Wohingegen bei einer negativen Korrelation bei ein
 der Wert von $B$ fällt. \cite{Nettleton2014}
 \newline\newline
 \textbf{Mobilität}\newline
-Der \textsc{CFS}-Algorithmus wird mit $8$ Mobilitäts-Eigenschaften ausgeführt und selektiert $5$ Eigenschaften, 
+Der \textsc{CFS}-Algorithmus wird mit $8$ Mobilitäts-Features ausgeführt und selektiert $5$ Features, 
 die für eine kombinierte Analyse geeignet sind. Für Laptops existiert z.B. an Wochentagen eine starke Korrelation ($0.96$)
 zwischen der Zeit, die im bevorzugten Gebäude verbracht wird und der Dauer der Session, jedoch nur eine schwache Korrelation
 ($0.1$) an Wochenenden, was darauf hindeutet, dass die meiste Onlinezeit am Wochenende im bevorzugten
-Gebäude verbracht wird. \cite{Alipour2018} Die vollständigen Ergebnisse zu Korrelationen der Mobilität kann in
+Gebäude verbracht wird. \cite{Alipour2018} Die vollständigen Ergebnisse zu Korrelationen der Mobilität können in
 Abb. \ref{fig:} nachvollzogen werden.
 \newline\newline
-\textbf{Traffic}\newline
-Beim Traffic wird der \textsc{CFS}-Algorithmus mit $19$ Eigenschaften ausgeführt, von denen $11$
-selektiert werden. Auch beim Traffic existieren einige Korrelationen, die in Abb. \ref{fig:} nachvollzogen werden können.
+\textbf{Datenverkehr}\newline
+Bezüglich der Eigenschaften des Datenverkehrs wird der \textsc{CFS}-Algorithmus mit $19$ Features ausgeführt, von denen $11$
+selektiert werden. Auch beim Datenverkehr existieren einige Korrelationen, die in Abb. \ref{fig:} nachvollzogen werden können.
 Die wohl interessanteste Erkenntnis ist allerdings, dass die Aktivitätszeiten und die Anzahl von Flows und Paketen nur
-schwach korreliert, was bedeutet, dass Nutzer, die länger online sind, nicht notwendigerweise mehr Traffic erzeugen. \cite{Alipour2018}
+schwach korrelieren, was bedeutet, dass Nutzer, die länger online sind, nicht notwendigerweise mehr Datenverkehr erzeugen. \cite{Alipour2018}
 \newline\newline
-Ein wichtiger Schritt in Richtung integrierter Mobility-Traffic-Models ist die Analyse der Korrelationen
-zwischen beiden Dimensionen (Mobilität und Traffic) basierend auf der Teilmenge der Eigenschaften,
-die vom \textsc{CFS}-Algorithmus selektiert wurden.\newline
-Die Ergebnisse lassen sich wie folgt zusammenfassen. Smartphones haben erwartungsgemäß hohe Scores bei den Mobilitätsmetriken (Bewegungsradius,
-Anzahl besuchter unterschiedlicher Gebäude, ...), besitzen eine
+Ein wichtiger Schritt in Richtung integrierter Modelle ist die Analyse der Korrelationen
+zwischen beiden Dimensionen (Mobilität und Datenverkehr) basierend auf der Teilmenge der Features,
+die vom \textsc{CFS}-Algorithmus selektiert wurden. Die entsprechenden Ergebnisse aus \cite{Alipour2018} lassen sich wie 
+folgt zusammenfassen. Smartphones haben erwartungsgemäß hohe Scores bei den Mobilitätsmetriken (Bewegungsradius,
+Anzahl besuchter unterschiedlicher Gebäude etc.), besitzen eine
 insgesamt kleinere Anzahl von Flows und weniger Netzwerktraffic, aber produzieren im Durchschnitt größere Flows.
 Für Laptops gilt an Wochenenden, je mehr Zeit in bevorzugten Gebäuden verbracht wird, desto größer die Gesamtaktivitätszeit
 und Flow-Anzahl. Dieser Effekt existiert in abgeschwächter Form auch bei Smartphones. 
-An Wochentagen existieren diese Korrelationen nicht.\newline
-Die exakten Ergebnisse können in Abb. \ref{fig:} nachvollzogen werden.
-\newline\newline
-Mittels Machine Learning wurde untersucht, wie sich Mobilitäts- und Traffic-Features zwischen
-Smartphones und Laptops unterscheiden. Anschließend wurde nach natürlichen konvexen Clustern von Usern im
-Datensatz gesucht. Diese Schritte verifizieren, dass die Unterschiede der Mobilitäts- und Traffic-Charakteristiken
+An Wochentagen existieren diese Korrelationen nicht. Die exakten Ergebnisse können in Abb. \ref{fig:} nachvollzogen werden.
+Mittels Machine Learning wurde untersucht, wie sich Mobilitäts- und Datenverkehr-Features zwischen
+Smartphones und Laptops unterscheiden. Anschließend wurde nach natürlichen konvexen Clustern von Nutzern bzw. Geräten im
+Datensatz gesucht. Diese Schritte verifizieren, dass die Unterschiede der Mobilitäts- und Datenverkehr-Charakteristiken
 zwischen den Gerätetypen signifikant sind.
 \newline\newline
 \textbf{Supervised Classification}\newline
-Die Autoren haben Support Vector Maschinen (SVM) auf verschiedenen Teilmengen von Features
-verwendet, um die Zulässigkeit der Gerätetyp-Inferenz und die Beziehung zwischen Mobilitäts- und Traffic-Charakteristiken
+Die Autoren verwenden Support Vector Maschinen (SVM) auf verschiedenen Teilmengen von Features, 
+um die Zulässigkeit der Gerätetyp-Inferenz und die Beziehung zwischen Mobilitäts- und Datenverkehr-Charakteristiken
 zu untersuchen. Insgesamt wurde die Genauigkeit verschiedener Modelle analysiert. Dabei hat sich herausgestellt,
-dass kombinierte Modelle, die sowohl Traffic als auch Mobilität berücksichtigen, mit $\approx 81 \%$ genauer sind als isolierte Modelle
-(Mobilität $\approx 65 \%$, Traffic $\approx 79 \%$). Außerdem erhöht sich die Genauigkeit auf $\approx 86 \%$, wenn
+dass kombinierte Modelle, die sowohl Datenverkehr als auch Mobilität berücksichtigen, mit $\approx 81 \%$ genauer sind als isolierte Modelle
+(Mobilität $\approx 65 \%$, Datenverkehr $\approx 79 \%$). Außerdem erhöht sich die Genauigkeit auf $\approx 86 \%$, wenn
 zudem zwischen Wochentagen und Wochenenden differenziert wird.
 \newline\newline
 \textbf{Unsupervised Clustering}\newline
-Um natürliche konvexe Cluster zu untersuchen, wurde ein $k$-Means-Algorithmus verwendet.
-Wenn nur Mobilitäts-Features verwendet werden, werden ca. $60 \%$ der Geräte korrekt geclustert.
-Werden dagegen nur Traffic-Features genutzt, erreicht man eine Genauigkeit von $81.2 \%$.
-Werden Mobilität und Traffic kombiniert, erhöht sich die Genauigkeit leicht auf $81.5 \%$.
+Um natürliche konvexe Cluster zu untersuchen, verwenden die Autoren einen $k$-Means-Algorithmus.
+Werden ausschließlich Mobilitäts-Features genutzt, so werden ca. $60 \%$ der Geräte korrekt geclustert.
+Ein ausschließlicher Fokus auf Datenverkehr-Features führt zu einer Genauigkeit von $81.2 \%$.
+Bei einer Kombination der Features erhöht sich die Genauigkeit leicht auf $81.5 \%$.
 \newline\newline
-\textbf{Mixture Model}\newline
+\textbf{Kombiniertes Modell}\newline
 Um einen Schritt in Richtung der Synthetisierung von Traces basierend auf den Datensätzen zu machen,
-wurden Gaussian-Mixture-Models (GMM) mit kombinierten Mobilitäts- und Traffic-Features trainiert.
+haben die Autoren Gaussian-Mixture-Models (GMM) mit kombinierten Features trainiert.
 Anschlißend wurde Kolmogorov-Smirnov (KS) Statistik verwendet, um die generierten Samples mit Echtdaten zu vergleichen.
 Dabei hat sich herausgestellt, dass das kombinierte Modell in der Lage ist, das Verhalten beider Gerätetypen abzubilden.
-Das kombinierte Modell produziert Samples, dessen Traffic-Features den Originaldaten besser entsprechen, als ein GMM,
-welches nur mit Traffic-Features trainiert wurde, was darauf hindeutet, dass eine Beziehung zwischen Mobilität und Traffic besteht.
-Allerdings bringt das GMM des kombinierten Modells in Bezug auf Mobilitäts-Features verglichen mit dem Modell, welches 
-ausschließlich mit Mobility-Features trainiert wurde, keine Verbesserung.
-\newline\newline
-Insgesamt sehen die Autoren ein signifikantes Potenzial integrierter Mobilitäts- und Traffic-Modelle, welche die Unterschiede
-und Beziehungen von Features zwischen Gerätetypen, Zeit und Ort besser abbilden können als isolierte Modelle.
+Das kombinierte Modell produziert Samples, dessen Datenverkehr-Features den Originaldaten besser entsprechen, als ein GMM,
+welches ausschließlich mit Datenverkehr-Features trainiert wurde, was darauf hindeutet, dass eine Beziehung zwischen Mobilität
+und Datenverkehr besteht. Allerdings bringt das GMM des kombinierten Modells in Bezug auf Mobilitäts-Features verglichen mit
+dem Modell, welches ausschließlich mit Mobilitäts-Features trainiert wurde, keine Verbesserung.
 
 \subsection{Zusammenfassung}
+\label{sec:summary}
 
-In \cite{Alipour2018} wurde die Frage gestellt, ob es sinnvoll ist, Modelle zu entwickeln, die sowohl
+In \cite{Alipour2018} geht es im Kern um die Frage, ob es sinnvoll ist, Modelle zu entwickeln, die sowohl
 Mobilitäts-, als auch Datenverkehrcharakteristiken berücksichtigen. Es wurde darin gezeigt, dass solche
 kombinierten Betrachtungen potenziell zu deutlich realistischeren Ergebnissen gelangen können,
 als die in der Regel zu simplen isolierten Betrachtungen.
 Es wurde ein Framework entwickelt, um die Datensätze eines bestehenden Netzwerks dahingehend zu analysieren.
 Zunächst ging es dabei um Geräteklassifizierung und anschließend um eine Untersuchung der Mobilitäts-
-und Traffic-Metriken, wobei die verschiedenen Gerätetypen über Raum und Zeit hinweg miteinander verglichen wurden.
+und Datenverkehr-Metriken, wobei die verschiedenen Gerätetypen über Raum und Zeit hinweg miteinander verglichen wurden.
 Nachdem gezeigt wurde, dass es signifikante Unterschiede zwischen den Gerätetypen gibt,
-wurde mittels Machine-Learning ein gemischtes Modell trainiert, welches Datenpunkte generiert
-und es konnte gezeigt werden, dass kombinierte Mobilitäts- und Traffic-Features die Unterschiede in den
-Metriken besser abbilden, als isolierte Modelle. Die eingangs erwähnten Fragestellungen wurden beantwortet
-und da viele der Erkenntnisse von aktuellen Modellen nicht berücksichtigt werden, liefert
-das Paper wichtige Grundlagen für das Design zukünftiger, integrierter Modelle.
+wurde mittels Machine-Learning ein kombiniertes Modell trainiert, welches Datenpunkte generiert
+und es konnte gezeigt werden, dass kombinierte Mobilitäts- und Datenverkehr-Features die Unterschiede in den
+Metriken besser abbilden, als isolierte Modelle. Insgesamt sehen die Autoren ein signifikantes Potenzial integrierter 
+Modelle, welche die Unterschiede und Beziehungen von Features zwischen Gerätetypen, Zeit und
+Ort besser abbilden können als isolierte Modelle. Somit wurden die eingangs erwähnten Fragestellungen in einer Weise
+beantwortet, die zukünftige Forschung zu integrierten Modellen nahelegt. Da viele der Erkenntnisse von aktuellen 
+Modellen nicht berücksichtigt werden, liefert die Veröffentlichung wichtige Grundlagen für das Design zukünftiger Modelle.
 
 \section{Vorhersagbarkeit menschlicher Mobilität}
 \label{sec:mobility_predictability}
@@ -415,11 +419,11 @@ ist bereits ausführlich diskutiert worden. Um möglichst akurate Simulationen d
 die Mobilität von realen Benutzern möglichst genau vorherzusagen. Mit dieser Vorhersagbarkeit haben sich die Autoren
 von \cite{Alipour2018} in einer weiteren Veröffentlichung mit dem Titel \textquote{Practical Prediction of Human
 Movements Across Device Types and Spatiotemporal Granularities}\cite{Alipour2019} aus diesem Jahr beschäftigt.
-Sie kommen in der Arbeit zu dem Schluss, dass die Bewegung von Laptops oder allgemein \textquote{sit-to-use}-Geräten
-signifikant besser vorherzusagen ist als jene von Smartphones bzw. Mobilgeräten.\newline
-Sie haben signifikante Korrelationen zwischen Vorhersagegenauigkeit, Mobilitäts-Features
-und Traffic-Features gefunden. Sie planen, den Nutzen der Vorhersagbarkeit als Feature 
-in integrierten Mobilitäts- und Traffic-Modellen weiter zu untersuchen.
+Sie gelangen darin zu dem Schluss, dass die Bewegung von Laptops oder allgemein \textquote{sit-to-use}-Geräten
+erheblich besser vorherzusagen ist als jene von Smartphones bzw. Mobilgeräten.\newline
+Aufgrund signifikanter Korrelationen zwischen Vorhersagegenauigkeit, Mobilitäts- und Datenverkehr-Features
+planen die Autoren den Nutzen der Vorhersagegenauigkeit als Feature in integrierten Mobilitäts- und Datenverkehr-Modellen
+weiter zu untersuchen.
 
 \section{Fazit und Ausblick}
 \label{sec:conclusion}
@@ -464,5 +468,12 @@ praktisch erreichen lassen, ausfallen werden.
 \bibliographystyle{IEEEtranSA}
 %\bibliographystyle{acm}
 \bibliography{sources.bib}
+
+\vfill
+\pagebreak
+
+\begin{appendix}
+\section{Anhang}
+\end{appendix}
 
 \end{document}
