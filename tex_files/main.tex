@@ -347,11 +347,11 @@ die für eine kombinierte Analyse geeignet sind. Für Laptops existiert z.B. an 
 zwischen der Zeit, die im bevorzugten Gebäude verbracht wird und der Dauer der Session, jedoch nur eine schwache Korrelation
 ($0.1$) an Wochenenden, was darauf hindeutet, dass die meiste Onlinezeit am Wochenende im bevorzugten
 Gebäude verbracht wird. \cite{Alipour2018} Die vollständigen Ergebnisse zu Korrelationen der Mobilität können in
-Abb. \ref{fig:} nachvollzogen werden.
+Abb. \ref{fig:mobility_correlations} nachvollzogen werden.
 \newline\newline
 \textbf{Datenverkehr}\newline
 Bezüglich der Eigenschaften des Datenverkehrs wird der \textsc{CFS}-Algorithmus mit $19$ Features ausgeführt, von denen $11$
-selektiert werden. Auch beim Datenverkehr existieren einige Korrelationen, die in Abb. \ref{fig:} nachvollzogen werden können.
+selektiert werden. Auch beim Datenverkehr existieren einige Korrelationen, die in Abb. \ref{fig:traffic_correlations} nachvollzogen werden können.
 Die wohl interessanteste Erkenntnis ist allerdings, dass die Aktivitätszeiten und die Anzahl von Flows und Paketen nur
 schwach korrelieren, was bedeutet, dass Nutzer, die länger online sind, nicht notwendigerweise mehr Datenverkehr erzeugen. \cite{Alipour2018}
 \newline\newline
@@ -363,8 +363,8 @@ Anzahl besuchter unterschiedlicher Gebäude etc.), besitzen eine
 insgesamt kleinere Anzahl von Flows und weniger Netzwerktraffic, aber produzieren im Durchschnitt größere Flows.
 Für Laptops gilt an Wochenenden, je mehr Zeit in bevorzugten Gebäuden verbracht wird, desto größer die Gesamtaktivitätszeit
 und Flow-Anzahl. Dieser Effekt existiert in abgeschwächter Form auch bei Smartphones. 
-An Wochentagen existieren diese Korrelationen nicht. Die exakten Ergebnisse können in Abb. \ref{fig:} nachvollzogen werden.
-Mittels Machine Learning wurde untersucht, wie sich Mobilitäts- und Datenverkehr-Features zwischen
+An Wochentagen existieren diese Korrelationen nicht. Die exakten Ergebnisse können in Abb. \ref{fig:mobility_traffic_correlations}
+nachvollzogen werden. Mittels Machine Learning wurde untersucht, wie sich Mobilitäts- und Datenverkehr-Features zwischen
 Smartphones und Laptops unterscheiden. Anschließend wurde nach natürlichen konvexen Clustern von Nutzern bzw. Geräten im
 Datensatz gesucht. Diese Schritte verifizieren, dass die Unterschiede der Mobilitäts- und Datenverkehr-Charakteristiken
 zwischen den Gerätetypen signifikant sind.
@@ -508,9 +508,9 @@ praktisch erreichen lassen, ausfallen werden.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.55\textwidth]{img/mobility_traffic_correlations.png}
-    \label{fig:mobility_traffic_correlations}
     \caption{Korrelationen zwischen Mobilitäts- und Traffic-Features (Wochentage oben, Wochendenden unten,
     Smartphones links, Laptops rechts). \cite{Alipour2018}}
+    \label{fig:mobility_traffic_correlations}
 \end{figure}
 
 \end{appendix}
