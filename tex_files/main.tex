@@ -73,9 +73,9 @@ Analyzing Mobility-Traffic Correlations in Large WLAN Traces}}}\\
 Die stetig wachsende Zahl vernetzter Geräte führt zu enormen Herausforderungen bei der Entwicklung
 und Planung der dafür erforderlichen Infrastruktur. Beim Konzipieren neuer Netzwerke ist es von zentraler
 Bedeutung, diese in möglichst realistischer Weise zu simulieren, um sinnvolle Designentscheidungen
-treffen zu können. Dabei spielen zwei Bereiche eine essenzielle Rolle, die Bewegung der Nutzer bzw. Geräte
+treffen zu können. Dabei spielen zwei Faktoren eine essenzielle Rolle, die Bewegung der Nutzer bzw. Geräte
 sowie der Datenverkehr innerhalb des Netzwerks.
-Diese Ausarbeitung befasst sich mit Korrelationen zwischen diesen Bereichen,
+Diese Ausarbeitung befasst sich mit Korrelationen zwischen diesen Faktoren,
 welche primär anhand der Ergebnisse des Papers \textquote{Flutes vs. Cellos: Analyzing Mobility-Traffic
 Correlations in Large WLAN Traces} \cite{Alipour2018} aus dem Jahr 2018 erörtert werden.
 Ziel des Papers ist es im Wesentlichen, einen ersten Schritt in Richtung integrierter Mobilitäts- und Datenverkehr-Modelle 
@@ -83,9 +83,8 @@ zu ermöglichen, um in Zukunft realistischere Test-Szenarien und Benchmarks zu e
 Darüber hinaus werden an einigen Stellen weiterführende Quellen einbezogen, um den Themenüberblick zu ergänzen.\newline
 Zunächst werden in Kapitel \ref{sec:basics} die Grundlagen der Mobilität und des Datenverkehrs in Rechnernetzen
 eingeführt. Anschließend geht es in Kapitel \ref{sec:correlations} um Korrelationen zwischen beiden
-Bereichen, die anhand der Ergebnisse aus \cite{Alipour2018} vorgestellt werden.
-Darauffolgend thematisiert Kapitel \ref{sec:mobility_predictability} die Vorhersagbarkeit menschlicher Mobilität,
-bevor schließlich in Kapitel \ref{sec:conclusion} ein Fazit und ein Ausblick formuliert wird.
+Faktoren, die anhand der Ergebnisse aus \cite{Alipour2018} vorgestellt werden,
+bevor schließlich in Kapitel \ref{sec:conclusion} ein Fazit formuliert wird.
 
 \section{Grundlagen}
 \label{sec:basics}
@@ -113,15 +112,16 @@ der Bewegung von Nutzern in tatsächlich existierenden Systemen. Diese liefern b
 und einer ausreichend langen Beobachtungsphase sehr akurate Informationen, setzen allerdings voraus, dass ein solches Netzwerk
 bereits existiert. \cite{Camp2002} Zum anderen existieren Modelle mit synthetischen Bewegungsmustern für Netzwerkumgebungen, 
 für die noch keine Traces vorliegen. In diesen Fällen geht es darum, die Bewegung der Nutzer möglichst realistisch abzubilden,
-wofür es verschiedene Arten von Ansätzen gibt.\newline
+wofür es verschiedene Arten von Ansätzen gibt.
 Wie in \cite{Aschenbruck2011} geschildert, können synthetische Modelle bestimmte Abhängigkeiten modellieren.
 Zeitliche Abhängigkeiten sorgen z.B. dafür, dass die Bewegung einer Entität durch dessen Bewegung in der Vergangenheit
 beeinflusst wird. Außerdem können räumliche Abhängigkeiten dafür sorgen, dass die Bewegung einer Entität durch die umgebenden 
 Entitäten beeinflusst wird (Group-Mobility). Auch geographische Restriktionen können Teil des Modells sein.
-Des Weiteren wird in \cite{Aschenbruck2011} darauf hingewiesen, dass auch Modelle wie
-\textquote{Random-Waypoint} und \textquote{Random-Walk} existieren, welche keine dieser Abhängigkeiten
-aufweisen. Diese Modelle sind einfach zu implementieren, jedoch nicht sehr realistisch, wenn es um die Modellierung
-menschlicher Mobilität geht. Insgesamt existiert eine Vielzahl von Mobilitätsmodellen mit verschiedenen Ansätzen, 
+% Des Weiteren wird in \cite{Aschenbruck2011} darauf hingewiesen, dass auch Modelle wie
+% \textquote{Random-Waypoint} und \textquote{Random-Walk} existieren, welche keine dieser Abhängigkeiten
+% aufweisen. Diese Modelle sind einfach zu implementieren, jedoch nicht sehr realistisch, wenn es um die Modellierung
+% menschlicher Mobilität geht.
+Insgesamt existiert eine Vielzahl von Mobilitätsmodellen mit verschiedenen Ansätzen, 
 welche in unterschiedlichen Szenarien geeignet sein können.
 
 \subsection{Datenverkehr}
@@ -129,31 +129,29 @@ welche in unterschiedlichen Szenarien geeignet sein können.
 
 Um den Anforderungen des mobilen Datenverkehrs gerecht zu werden und sinnvolle Strategien zu entwickeln,
 ist es von zentraler Bedeutung, diese Anforderungen zu kennen, auch im Hinblick auf die Skalierbarkeit der
-Netzwerkressourcen. \cite{Oliveira2014} Dementsprechend gehört zur Planung und Evaluation eines mobilen 
-Kommunikationssystems auch die Simulation des Datenverkehrs innerhalb dieses Systems. Wie bereits bei der
-Bewegungsmodellierung, kann auch hier von tatsächlichen 
-Beobachtungen in existierenden Netzen ausgegangen werden, sofern solche vorliegen.\newline
-Einfacher Datenverkehr besteht aus einzelnen Ankünften diskreter Entitäten.
-Bei diesen Entitäten kann es sich z.B. um Pakete handeln. Darüber hinaus gibt es Datenverkehr, 
-bei welchem mehrere Entitäten zusammen in sogenannten \textquote{Batch-Arrivals} eintreffen. \cite{Frost1994}
+Netzwerkressourcen. \cite{Oliveira2014} Dementsprechend gehört zur Planung und Evaluation eines Netzwerks 
+auch die Simulation des Datenverkehrs innerhalb dieses Netzwerks. Wie bereits bei der Bewegungsmodellierung, 
+kann auch hier von tatsächlichen Beobachtungen in existierenden Netzwerken ausgegangen werden, sofern solche vorliegen.\newline
+Eine einfache Form des Datenverkehrs besteht aus einzelnen Ankünften diskreter Entitäten (z.B. Pakete).
+Darüber hinaus gibt es Datenverkehr, bei welchem mehrere Entitäten zusammen in sogenannten \textquote{Batch-Arrivals} 
+eintreffen. \cite{Frost1994}
 Die Grundlagen der Simulation des Datenverkehrs lassen sich basierend auf \cite{Frost1994} wie folgt zusammenfassen.
 Im einfachsten Fall wird in einer Simulation eine zufällige Sequenz von Zwischenankunftszeiten \footnote{Zeit zwischen zwei 
 aufeinanderfolgenden Paketankünften.} generiert. Neben Ankunftszeiten und Batch-Größen ist es zudem häufig sinnvoll,
-die Last zu modellieren. Die Last entspricht der Menge der Arbeit $W_n$ im System, die die $n$-te eintreffende Entität 
+die Last zu modellieren. Die Last entspricht der Menge der Arbeit im System, die eine eintreffende Entität
 erfordert.
 % Ein einfaches Modell des Datenverkehrs ist \textsc{CBR} (Constant Bitrate), bei welchem eine Anzahl von Paketankünften
 % pro Zeiteinheit definiert wird. Die Paketgröße ist dabei ebenfalls konstant. Dieses Modell ist sehr simpel und dementsprechend
 % leicht zu implementieren, dafür jedoch in der Regel nicht besonders realistisch.\newline
 % Neben \textsc{CBR}- gibt es den typischerweise realistischeren \textsc{VBR}-Traffic (Variable Bitrate), 
 % welcher z.B. beim Videostreaming auftritt, bei dem kodierte Frames eine variable, zufällige Größe besitzen.\cite{Frost1994}
-Um einen realistischen, heterogenen Traffic-Mix zu erhalten, sollten in einem Modell verschiedene
-Ströme des Datenverkehrs gemultiplext werden, z.B. Sprachverbindungen, Video-Übertragungen und Datei-Transporte.
-\newline\newline
+Um in einem Modell einen realistischen, heterogenen Traffic-Mix zu erhalten, wird in \cite{Frost1994} ein Multiplexing
+verschiedener Ströme des Datenverkehrs empfohlen, z.B. Sprachverbindungen, Video-Übertragungen und Datei-Transporte.
 Eine weitere wichtige Eigenschaft des Datenverkehrs ist die sogenannte \textquote{Burstiness}, also die Stoßhaftigkeit.
-Datenverkehr entsteht typischerweise in Schüben, z.B. für komprimierte Videos und Datentransfers. Die Ankünfte der Pakete
-bilden visuelle Cluster. Der Datenverkehr in Breitbandnetzen wird von dieser Art des Datenverkehrs dominiert. \cite{Frost1994}
-Wie bereits bei der Bewegungsmodellierung, gibt es auch bei der Modellierung des Datenverkehrs eine Vielzahl verschiedener
-Modelle, die in bestimmten Szenarien geeignet sein können, um realistischen Datenverkehr zu modellieren.
+Datenverkehr entsteht typischerweise in Schüben, z.B. für komprimierte Videos und Datentransfers. 
+Breitbandnetzen werden von dieser Art des Datenverkehrs dominiert. \cite{Frost1994}
+Wie bereits bei der Bewegungsmodellierung, gibt es auch bei der realistischen Modellierung des Datenverkehrs
+eine Vielzahl verschiedener Ansätze für unterschiedliche Szenarien.
 
 \section{Korrelationen zwischen Mobilität und Datenverkehr}
 \label{sec:correlations}
@@ -164,15 +162,15 @@ Es gibt in der Literatur zahlreiche Veröffentlichungen, die konkrete Modelle de
 vorstellen. Verglichen mit diesen Veröffentlichungen handelt es sich bei \cite{Alipour2018} eher um eine Art 
 \textquote{Meta-Paper}, in welchem keine konkreten Modelle vorgestellt werden. Stattdessen wird untersucht, 
 ob kombinierte Modelle, die sowohl die Mobilität, als auch den Datenverkehr berücksichtigen, reale Netzwerke 
-treffender repräsentieren als isolierte Varianten. Dabei werden Korrelationen zwischen beiden Faktoren untersucht.\newline
+treffender repräsentieren als isolierte Varianten. Dazu werden Korrelationen zwischen beiden Faktoren untersucht.\newline
 Aktuelle Modelle betrachten entweder die Mobilität oder den Datenverkehr, erfassen jedoch nicht das Zusammenspiel beider Faktoren.
 Außerdem verwenden viele Trace-basierte Mobilitätsmodelle Datensätze aus der Prä-Smartphone-Ära,
-was die heutige Relevanz dieser Modelle in Frage stellt. \cite{Alipour2018}
+was ihre heutige Relevanz in Frage stellt. \cite{Alipour2018}
 Die Autoren von \cite{Alipour2018} beschäftigen sich mit Aspekten der Mobilität und des Datenverkehrs von Laptops und Smartphones.
 Es handelt sich um datengetriebene Analysen, bei denen $30$\textsc{TB} große Datensätze von $300$\textsc{K} Geräten betrachtet werden,
-welche auf einem Campusgelände betrieben wurden. Zur Analyse dieser Daten wurde das Framework FLAMeS \footnote{\textbf{F}ramework for 
-\textbf{L}arge-scale \textbf{A}nalysis of \textbf{M}obil\textbf{e} \textbf{S}ocieties.} entwickelt.
-Im Folgenden werden relevante Aspekte und Ergebnisse aus der Veröffentlichung zusammengefasst.\newline\newline
+welche auf einem Campusgelände betrieben wurden. Zur Analyse dieser Daten entwickeln sie das Framework FLAMeS 
+\footnote{\textbf{F}ramework for \textbf{L}arge-scale \textbf{A}nalysis of \textbf{M}obil\textbf{e} \textbf{S}ocieties.}.
+Im Folgenden werden relevante Aspekte und Ergebnisse aus der Veröffentlichung zusammengefasst.\newline
 Dass die beiden Faktoren der Mobilität und des Datenverkehrs sich trotz der bisher überwiegend isolierten Betrachtungen
 durchaus gegenseitig beeinflussen, veranschaulichen die Autoren durch folgende alltägliche Beispiele. 
 Eine Person verlangsamt ihren Gang, wenn diese eine Nachricht erhält. Ebenso kann die Netzwerkaktivität von der
@@ -183,21 +181,19 @@ Um diesen Zusammenhang genauer zu untersuchen, unterscheiden sie zwischen statio
 (Smartphones). Da Laptops auch durchaus als mobil angesehen werden können, präzisieren die Autoren die Unterscheidung
 durch \textquote{on-the-go}- und \textquote{stop-to-use}-Geräte. Das Framework FLAMeS ermöglicht es, 
 in diesem Sinne stationäre und mobile Geräte zu differenzieren und in Bezug auf ihren Datenverkehr und ihre 
-Mobilität zu untersuchen. Im Kern betrachten die Autoren dabei drei Fragestellungen:
-
+Mobilität zu untersuchen. Im Kern werden dabei drei Fragestellungen betrachtet:
 \begin{itemize}
     \item Wie unterscheiden sich Mobilitäts- und Datenverkehr-Charakteristiken zwischen den unterschiedlichen Gerätetypen,
     Zeiten und Orten?
     \item Wie stehen diese Charakteristiken zueinander in Beziehung?
     \item Sollten neue Modelle entwickelt werden, die diese Unterschiede berücksichtigen?
 \end{itemize}
-
-Das FLAMeS-System besteht aus drei Phasen, die im Folgenden näher erläutert werden. In der ersten Phase, die in Abschnitt
+Das FLAMeS-System besteht aus drei Phasen, die im Folgenden näher erläutert werden. In der ersten Phase, welche in Abschnitt
 \ref{sec:phase1} thematisiert wird, findet die Datensammlung und ein Preprocessing der gesammelten Daten statt.
 Anschließend wird in den Abschnitten \ref{sec:phase2_a} und \ref{sec:phase2_b} die zweite Phase erläutert, 
-in der es um eine Mobilitäts- und Datenverkehr-Analyse geht, wobei zwischen Laptops und Smartphones unterschieden wird. 
+in welcher es um eine Mobilitäts- und Datenverkehr-Analyse geht, wobei zwischen Laptops und Smartphones unterschieden wird. 
 In Abschnitt \ref{sec:phase3} wird nach einem kurzen Exkurs in Abschnitt \ref{sec:digression} die dritte Phase vorgestellt, 
-in welcher eine integrierte Analyse der Mobilität und des Datenverkehrs stattfindet. 
+in der eine integrierte Analyse der Mobilität und des Datenverkehrs stattfindet. 
 Zuletzt werden die Ergebnisse des Kapitels in Abschnitt \ref{sec:summary} zusammengefasst.
 
 % \begin{figure}[H]
@@ -216,21 +212,22 @@ Die Daten stammen von insgesamt $316$\textsc{K} Geräten aus den Jahren $2011$ u
 MAC-Adresse des Geräts, dessen zugewiesene IP-Adresse, den AP, mit welchem das Gerät verbunden ist und einen Zeitstempel.
 Die Orte der APs werden durch die Längen- und Breitengrade der Gebäude, in welchen sie sich befinden, mithilfe der Google Maps API
 approximiert. Als weitere Quelle dienen Netflow \footnote{Ermöglicht Export von Informationen über den IP-Datenstrom eines 
-Netzwerks. \cite{RFC3954}}-Logs, die im selben Netzwerk im April $2012$ aus über $76$ Mrd.
-Einträgen in Netflow-Traces generiert wurden. Ein \textquote{Flow} entspricht einer konsekutiven Sequenz von Paketen
+Netzwerks. \cite{RFC3954}}-Logs, die im selben Netzwerk aus über $76$ Mrd. Einträgen in Netflow-Traces generiert werden.
+Ein \textquote{Flow} entspricht einer konsekutiven Sequenz von Paketen
 mit demselben Transportprotokoll, Start- und Ziel-IP und Port. \cite{Alipour2018}
-Die Netflow-Records werden durch das dynamische MAC-to-IP-Mapping mit den WLAN-Verbindungen aus den AP-Logs gematcht
-und anschließend werden die Ergebnisse mittels rDNS \footnote{Reverse DNS} durch Ort und Webseiten-Informationen
-ergänzt. Nachdem die Datenbasis geschaffen ist, geht es darum, die Geräte in Laptops und Smartphones zu klassifizieren.
-Zunächst kann der Hersteller des Geräts mit der OUI \footnote{Organizationally Unique Identifier - 24-Bit-Zahl, 
-die eindeutig den Hersteller identifiziert.} basierend auf den ersten drei Oktetten der MAC-Adresse identifiziert werden.
+Um die Daten aus den unterschiedlichen Quellen zu vereinen, matchen die Autoren die Netflow-Records 
+durch das dynamische MAC-to-IP-Mapping mit den WLAN-Verbindungen aus den AP-Logs und ergänzen
+die Ergebnisse mittels rDNS \footnote{Reverse DNS} durch Ort und Webseiten-Informationen.
+Nachdem die Datenbasis geschaffen ist, geht es darum, die Geräte in Laptops und Smartphones zu klassifizieren.
+Zunächst kann der Hersteller des Geräts mit der OUI \footnote{Organizationally Unique Identifier: 24-Bit-ID, 
+die eindeutig den Hersteller identifiziert. \cite{RFC5342}} basierend auf den ersten drei Oktetten der MAC-Adresse identifiziert werden.
 Da viele Hersteller lediglich einen Gerätetyp herstellen, können auf diese Weise bereits
 $46 \%$ der Geräte klassifiziert werden. Die Heuristik, welche von den Autoren zur Klassifizierung verwendet wird,
 prüft zusätzlich, ob ein Gerät \textit{admob.com} kontatktiert, eine sehr verbreitete Plattform für Werbung auf Mobilgeräten.
-Ist dies der Fall, so wird dieses Gerät als Mobilgerät klassifiziert. Auf diese Weise konnten $86 \%$ der Geräte in den AP-Logs
-und $97 \%$ der Netflow-Traces klassifiziert werden. 
+Ist dies der Fall, so wird dieses Gerät als Mobilgerät klassifiziert. Auf diese Weise können $86 \%$ der Geräte in den AP-Logs
+und $97 \%$ der Netflow-Traces klassifiziert werden.
 Die Autoren heben besonders hervor, dass diese Art der Geräteklassifizierung im Gegensatz zur Analyse von 
-HTTP-Headern, die möglicherweise zu noch genaueren Ergebnissen führt, die Privatsphäre der Nutzer wahrt.\newline
+HTTP-Headern, welche möglicherweise zu noch genaueren Ergebnissen führt, die Privatsphäre der Nutzer wahrt.\newline
 Wie man Abb. \ref{fig:traces} entnehmen kann, ist die Anzahl der Flows und das Gesamtvolumen des Datenverkehrs bei Laptops
 erheblich größer als bei Smartphones, obwohl es insgesamt deutlich mehr verbundene Smartphones gibt. 
 Die Spitzen treten erwartungsgemäß jeweils an Wochentagen auf. 
@@ -238,7 +235,7 @@ Die abrupte Abnahme der Netzwerkaktivität nach dem 25. ist im Beginn der vorles
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.65\textwidth]{img/traces.png}
+    \includegraphics[width=0.55\textwidth]{img/traces.png}
     \caption{Kombinierte WLAN-AP- und Netflow-Traces. \cite{Alipour2018}}
     \label{fig:traces}
 \end{figure}
@@ -269,33 +266,31 @@ Laptops haben etwas längere Aufenthaltszeiten und werden in der Regel verwendet
 \label{sec:phase2_b}
 
 In diesem Abschnitt werden die Ergebnisse der zeitlichen und räumlichen Analyse des Datenverkehrs der verschiedenen Gerätetypen
-aus \cite{Alipour2018} vorgestellt. Eine relevante Charakteristik ist die Größe eines Flows, also die Summe der Bytes aller
-Pakete eines Flows. An Wochentagen ist die durchschnittliche Größe von Flows bei Smartphones mehr als doppelt so groß wie jene
-von Laptop-Flows. Auch an Wochenenden ändert sich dies nicht signifikant. Die durchschnittliche Paketgröße von Smartphone-Flows
-ist ca. $50 \%$ größer als die von Laptops. Im Median fällt die Größe der Pakete von Smartphones an Wochenenden, 
+aus \cite{Alipour2018} vorgestellt. Eine relevante Eigenschaft ist die Größe eines Flows, also die Summe der Bytes aller
+Pakete eines Flows. An Wochentagen sind Smartphone-Flows durchschnittlich mehr als doppelt so groß wie Laptop-Flows.
+Auch an Wochenenden ändert sich dies nicht signifikant. Die durchschnittliche Paketgröße von Smartphone-Flows
+ist ca. $50 \%$ größer als jene von Laptops. Im Median fällt die Größe der Pakete von Smartphones an Wochenenden, 
 während diese bei Laptops gleich bleibt. Laptop-Flows zeigen zwischen Wochentagen und Wochenenden in Bezug auf die 
 durchschnittliche Paketgröße keine signifikante Veränderung. Trotz kleinerer Flows generiert ein durchschnittlicher Laptop $2.7$
 mal so viel Datenverkehr wie ein durchschnittliches Smartphone, weil ein Laptop für $3.7$ mal so viele Flows verantwortlich ist.
-Ebenfalls aufschlussreich ist die Laufzeit eines Flows, beide Gerätetypen zeigen erhöhte Mittelwerte an Wochenenden.
-Da es zusätzlich weniger aktive Geräte an Wochenenden gibt, ist für die verbleibenden aktiven Geräte eine erhöhte Aktivität
+Ebenfalls aufschlussreich ist die Laufzeit eines Flows, wobei beide Gerätetypen erhöhte Mittelwerte an Wochenenden zeigen.
+Da es zusätzlich weniger aktive Geräte an Wochenenden gibt, ist für die verbleibenden Geräte eine erhöhte Aktivität
 zu beobachten. Smartphones zeigen insgesamt mehr extreme Phasen der Inaktivität, die die Autoren unter anderem durch größere
-Mobilität und Paketverluste erklären.
-Auch die verwendeten Protokolle sind von Interesse. TCP ist für $78.5 \%$ der Laptop-Flows verantwortlich
-und für $98.2 \%$ der Smartphone-Flows. Die höhere Präsenz von UDP bei Laptops ist zu erwarten, weil
-UDP-Verbindungen, die z.B. bei Multiplayer-Spielen, Video-Konferenzen und Filesharing auftreten,
-typischerweise weniger auf Mobilgeräten stattfinden. \cite{Alipour2018}
+Mobilität und Paketverluste erklären. Auch die verwendeten Protokolle sind von Interesse. 
+TCP ist für $78.5 \%$ der Laptop-Flows verantwortlich und für $98.2 \%$ der Smartphone-Flows. 
+Die höhere Präsenz von UDP bei Laptops ist zu erwarten, weil UDP-Verbindungen, die z.B. bei Multiplayer-Spielen, 
+Video-Konferenzen und Filesharing auftreten, typischerweise weniger auf Mobilgeräten stattfinden. \cite{Alipour2018}
 Außerdem wurde die Last an den APs in sämtlichen Gebäuden täglich beobachtet. Dabei wurde darauf geachtet,
 die Beobachtungen außerhalb der Klausurenphase zu tätigen, um Veränderungen im Verhalten der Nutzer zu vermeiden.
 Es wurde die tägliche Rate der Paket- und Flowankünfte an den APs betrachtet. Die Flowraten betragen im Median
-$42$\textsc{K} bzw. $20$\textsc{K} für Laptops und Smartphones an Wochentagen ($7.5$\textsc{K} bzw. $0.5$\textsc{K}
-an Wochenenden). Die durchschnittliche Anzahl von Laptop-Paketen, die täglich von APs verarbeitet werden,
+$42$\textsc{K} bzw. $20$\textsc{K} für Laptops und Smartphones an Wochentagen und $7.5$\textsc{K} bzw. $0.5$\textsc{K}
+an Wochenenden. Die durchschnittliche Anzahl von Laptop-Paketen, die täglich von APs verarbeitet werden,
 ist $1.6$ mal größer als die von Smartphones. An Wochenenden wird ein großer Anteil der APs nicht verwendet,
 was die Aussage einer geringeren Mobilität der Nutzer an Wochenenden unterstützt. \cite{Alipour2018}
 Das tatsächliche Datenverkehr-Volumen der APs beträgt an durchschnittlichen Wochentagen für $90 \%$ der APs
 weniger als $5$\textsc{GB} Laptop-Traffic ($2.5$\textsc{GB} an Wochenenden) und weniger als $3$\textsc{GB} Smartphone-Traffic
-($1$\textsc{GB} an Wochenenden).
-Auch das Verhalten der Nutzer ist relevant. An Wochentagen konsumieren $90 \%$ der Laptops weniger als $700$\textsc{MB},
-während $90 \%$ der Smartphones weniger als $200$\textsc{MB} verbrauchen.
+($1$\textsc{GB} an Wochenenden). Auch das Verhalten der Nutzer ist von Relevanz. An Wochentagen konsumieren $90 \%$ der 
+Laptops weniger als $700$\textsc{MB}, während $90 \%$ der Smartphones weniger als $200$\textsc{MB} verbrauchen.
 Ein ähnliches Bild ergibt sich bei der Paketrate. An Wochentagen generieren Laptops durchschnittlich $318$\textsc{K} Pakete, 
 während Smartphones nur durchschnittlich $84$\textsc{K} Pakete am Tag generieren. 
 An Wochenenden erhöht sich die Paketrate und der Datenkonsum der wenigen verbleibenden Laptops deutlich,
@@ -412,8 +407,9 @@ Ort besser abbilden können als isolierte Modelle. Somit wurden die eingangs erw
 beantwortet, die zukünftige Forschung zu integrierten Modellen nahelegt. Da viele der Erkenntnisse von aktuellen 
 Modellen nicht berücksichtigt werden, liefert die Veröffentlichung wichtige Grundlagen für das Design zukünftiger Modelle.
 
-\section{Vorhersagbarkeit menschlicher Mobilität}
-\label{sec:mobility_predictability}
+\section{Fazit und Ausblick}
+\label{sec:conclusion}
+
 Die Relevanz von Simulationen der Mobilität von Geräten bzw. Benutzern innerhalb eines Netzwerks
 ist bereits ausführlich diskutiert worden. Um möglichst akurate Simulationen durchzuführen, wäre es erstrebenswert,
 die Mobilität von realen Benutzern möglichst genau vorherzusagen. Mit dieser Vorhersagbarkeit haben sich die Autoren
@@ -424,10 +420,7 @@ erheblich besser vorherzusagen ist als jene von Smartphones bzw. Mobilgeräten.\
 Aufgrund signifikanter Korrelationen zwischen Vorhersagegenauigkeit, Mobilitäts- und Datenverkehr-Features
 planen die Autoren den Nutzen der Vorhersagegenauigkeit als Feature in integrierten Mobilitäts- und Datenverkehr-Modellen
 weiter zu untersuchen.
-
-\section{Fazit und Ausblick}
-\label{sec:conclusion}
-
+\newline\newline
 Da ein Modell eine Repräsentation bestimmter Aspekte eines real existierenden Konzepts ist,
 ist es von zentraler Bedeutung, diese Aspekte mit Bedacht zu wählen, sodass möglichst nur
 Aspekte modelliert werden, welche tatsächlich relevant sind. Gleichzeitig sollten sämtliche relevanten
