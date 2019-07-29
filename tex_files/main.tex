@@ -72,8 +72,8 @@ Analyzing Mobility-Traffic Correlations in Large WLAN Traces}}}\\
 
 Die stetig wachsende Zahl vernetzter Geräte führt zu enormen Herausforderungen bei der Entwicklung
 und Planung der dafür erforderlichen Infrastruktur. Beim Konzipieren neuer Netzwerke ist es von zentraler
-Bedeutung, diese in möglichst realistischer Weise zu simulieren, um sinnvolle Designentscheidungen
-treffen zu können. Dabei spielen zwei Faktoren eine essenzielle Rolle, die Bewegung der Nutzer bzw. Geräte
+Bedeutung, das Verhalten der Nutzer in möglichst realistischer Weise zu simulieren, um sinnvolle Designentscheidungen
+treffen zu können. Dabei spielen laut \cite{Alipour2018} zwei Faktoren eine essenzielle Rolle, die Bewegung der Nutzer bzw. Geräte
 sowie der Datenverkehr innerhalb des Netzwerks.
 Diese Ausarbeitung befasst sich mit Korrelationen zwischen diesen Faktoren,
 welche primär anhand der Ergebnisse des Papers \textquote{Flutes vs. Cellos: Analyzing Mobility-Traffic
@@ -81,7 +81,7 @@ Correlations in Large WLAN Traces} \cite{Alipour2018} aus dem Jahr 2018 erörter
 Ziel des Papers ist es im Wesentlichen, einen ersten Schritt in Richtung integrierter Mobilitäts- und Datenverkehr-Modelle 
 zu ermöglichen, um in Zukunft realistischere Test-Szenarien und Benchmarks zu entwickeln.
 Darüber hinaus werden an einigen Stellen weiterführende Quellen einbezogen, um den Themenüberblick zu ergänzen.\newline
-Zunächst werden in Kapitel \ref{sec:basics} die Grundlagen der Mobilität und des Datenverkehrs in Rechnernetzen
+Zunächst werden in Kapitel \ref{sec:basics} die Grundlagen der Mobilität und des Datenverkehrs in Drahtlosnetzwerken
 eingeführt. Anschließend geht es in Kapitel \ref{sec:correlations} um Korrelationen zwischen beiden
 Faktoren, die anhand der Ergebnisse aus \cite{Alipour2018} vorgestellt werden,
 bevor schließlich in Kapitel \ref{sec:conclusion} ein Fazit formuliert wird.
@@ -98,10 +98,10 @@ vom Datenverkehr in ebensolchen.
 \label{sec:mobility}
 
 Die Performanz eines kabellosen Kommunikationsnetzwerks hängt unter anderem von der Bewegung 
-der Nutzer bzw. Geräte innerhalb dieses Netzwerks ab. Dementsprechend ist es erstrebenswert,
-z.B. bei der Planung neuer Netze Simulationen mit möglichst realistischen Bewegungsmustern durchzuführen.
+der Nutzer bzw. Geräte innerhalb dieses Netzwerks ab. \cite{Camp2002} Dementsprechend ist es erstrebenswert,
+z.B. bei der Planung neuer Netzwerke, Simulationen mit möglichst realistischen Bewegungsmustern durchzuführen.
 Ein Mobilitätsmodell beschreibt das Bewegungsmuster mobiler Benutzer bzw. Geräte,
-also die Art, in welcher sich deren Standort, Geschwindigkeit und Beschleunigung im Laufe der Zeit ändern. \cite{Camp2002}
+also die Art, in welcher sich deren Standort, Geschwindigkeit und Beschleunigung im Laufe der Zeit ändern. \cite{Chaturvedi2014}
 In \cite{Camp2002} wird dabei zwischen zwei grundsätzlichen Modellen unterschieden, den \textquote{Entity-Mobility-Models},
 also Modellen, bei denen die Bewegung einzelner Entitäten modelliert wird und den \textquote{Group-Mobility-Models},
 bei welchen es darum geht, die Bewegung einer Gruppe von Nutzern bzw. Geräten zu modellieren,
@@ -148,8 +148,8 @@ erfordert.
 Um in einem Modell einen realistischen, heterogenen Traffic-Mix zu erhalten, wird in \cite{Frost1994} ein Multiplexing
 verschiedener Ströme des Datenverkehrs empfohlen, z.B. Sprachverbindungen, Video-Übertragungen und Datei-Transporte.
 Eine weitere wichtige Eigenschaft des Datenverkehrs ist die sogenannte \textquote{Burstiness}, also die Stoßhaftigkeit.
-Datenverkehr entsteht typischerweise in Schüben, z.B. für komprimierte Videos und Datentransfers. 
-Breitbandnetzen werden von dieser Art des Datenverkehrs dominiert. \cite{Frost1994}
+Datenverkehr entsteht typischerweise in Schüben, z.B. für komprimierte Videos und Datentransfers,
+Breitbandnetze werden von dieser Art des Datenverkehrs dominiert. \cite{Frost1994}
 Wie bereits bei der Bewegungsmodellierung, gibt es auch bei der realistischen Modellierung des Datenverkehrs
 eine Vielzahl verschiedener Ansätze für unterschiedliche Szenarien.
 
@@ -404,7 +404,6 @@ liefert die Veröffentlichung wichtige Grundlagen für das Design zukünftiger M
 
 \section{Fazit und Ausblick}
 \label{sec:conclusion}
-
 
 Da ein Modell eine Repräsentation bestimmter Aspekte eines real existierenden Konzepts ist,
 ist es von zentraler Bedeutung, diese Aspekte mit Bedacht zu wählen, sodass möglichst nur
