@@ -143,7 +143,7 @@ Eine einfache Form des Datenverkehrs besteht aus einzelnen Ankünften diskreter 
 Darüber hinaus gibt es Datenverkehr, bei welchem mehrere Entitäten zusammen in sogenannten \textquote{Batch-Arrivals} 
 eintreffen. \cite{Frost1994}
 Die Grundlagen der Simulation des Datenverkehrs lassen sich basierend auf \cite{Frost1994} wie folgt zusammenfassen.
-Im einfachsten Fall wird in einer Simulation eine zufällige Sequenz von Zwischenankunftszeiten \footnote{Zeit zwischen zwei 
+Im einfachsten Fall wird in einer Simulation eine zufällige Sequenz von Zwischenankunftszeiten\footnote{Zeit zwischen zwei 
 aufeinanderfolgenden Paketankünften.} generiert. Neben Ankunftszeiten und Batch-Größen ist es zudem häufig sinnvoll,
 die Last zu modellieren, welche der Menge der Arbeit im System entspricht, die eine eintreffende Entität erfordert.
 % Ein einfaches Modell des Datenverkehrs ist \textsc{CBR} (Constant Bitrate), bei welchem eine Anzahl von Paketankünften
@@ -174,8 +174,8 @@ Außerdem verwenden viele Trace-basierte Mobilitätsmodelle Datensätze aus der 
 was ihre heutige Relevanz in Frage stellt. \cite{Alipour2018}
 Die Autoren von \cite{Alipour2018} beschäftigen sich mit Aspekten der Mobilität und des Datenverkehrs von Laptops und Smartphones.
 Es handelt sich um datengetriebene Analysen, bei denen $30$\textsc{TB} große Datensätze von $300$\textsc{K} Geräten betrachtet werden,
-welche auf einem Campusgelände betrieben wurden. Zur Analyse dieser Daten entwickeln sie das Framework FLAMeS 
-\footnote{\textbf{F}ramework for \textbf{L}arge-scale \textbf{A}nalysis of \textbf{M}obil\textbf{e} \textbf{S}ocieties.}.
+welche auf einem Campusgelände betrieben wurden. Zur Analyse dieser Daten entwickeln sie das Framework FLAMeS\footnote{
+\textbf{F}ramework for \textbf{L}arge-scale \textbf{A}nalysis of \textbf{M}obil\textbf{e} \textbf{S}ocieties.}.
 Im Folgenden werden relevante Aspekte und Ergebnisse aus der Veröffentlichung zusammengefasst.\newline
 Dass die beiden Faktoren der Mobilität und des Datenverkehrs sich trotz der bisher überwiegend isolierten Betrachtungen
 durchaus gegenseitig beeinflussen, veranschaulichen die Autoren durch folgende alltägliche Beispiele. 
@@ -212,20 +212,20 @@ Zuletzt werden die Ergebnisse des Kapitels in Abschnitt \ref{sec:summary} zusamm
 \subsection{Datensammlung und Preprocessing}
 \label{sec:phase1}
 
-Die gesammelten Daten stammen aus zwei Quellen. Bei der ersten Quelle handelt es sich um WLAN-AP \footnote{Access-Point}-Logs,
+Die gesammelten Daten stammen aus zwei Quellen. Bei der ersten Quelle handelt es sich um WLAN-AP\footnote{Access-Point}-Logs,
 welche an $1760$ APs in $138$ Gebäuden über $479$ Tage auf dem Campus einer Universität aufgezeichnet wurden. 
 Die Daten stammen von insgesamt $316$\textsc{K} Geräten aus den Jahren $2011$ und $2012$. Jeder Eintrag enthält die 
 MAC-Adresse des Geräts, dessen zugewiesene IP-Adresse, den AP, mit welchem das Gerät verbunden ist und einen Zeitstempel.
 Die Orte der APs werden durch die Längen- und Breitengrade der Gebäude, in welchen sie sich befinden, mithilfe der Google Maps API
-approximiert. Als weitere Quelle dienen Netflow \footnote{Ermöglicht Export von Informationen über den IP-Datenstrom eines 
+approximiert. Als weitere Quelle dienen Netflow\footnote{Ermöglicht Export von Informationen über den IP-Datenstrom eines 
 Netzwerks. \cite{RFC3954}}-Logs, die im selben Netzwerk aus über $76$ Mrd. Einträgen in Netflow-Traces generiert werden.
 Ein \textquote{Flow} entspricht einer konsekutiven Sequenz von Paketen
 mit demselben Transportprotokoll, Start- und Ziel-IP und Port. \cite{Alipour2018}
 Um die Daten aus den unterschiedlichen Quellen zu vereinen, matchen die Autoren die Netflow-Records 
 durch das dynamische MAC-to-IP-Mapping mit den WLAN-Verbindungen aus den AP-Logs und ergänzen
-die Ergebnisse mittels rDNS \footnote{Reverse DNS} durch Ort und Webseiten-Informationen.
+die Ergebnisse mittels rDNS\footnote{Reverse DNS} durch Ort und Webseiten-Informationen.
 Nachdem die Datenbasis geschaffen ist, geht es darum, die Geräte in Laptops und Smartphones zu klassifizieren.
-Zunächst kann der Hersteller des Geräts mit der OUI \footnote{Organizationally Unique Identifier: 24-Bit-ID, 
+Zunächst kann der Hersteller des Geräts mit der OUI\footnote{Organizationally Unique Identifier: 24-Bit-ID, 
 die eindeutig den Hersteller identifiziert. \cite{RFC5342}} basierend auf den ersten drei Oktetten der MAC-Adresse identifiziert werden.
 Da viele Hersteller lediglich einen Gerätetyp herstellen, können auf diese Weise bereits
 $46 \%$ der Geräte klassifiziert werden. Die Heuristik, welche von den Autoren zur Klassifizierung verwendet wird,
@@ -328,7 +328,7 @@ Die betrachteten Features sollten dementsprechend weder irrelevant noch redundan
 
 In diesem Abschnitt geht es um den eigentlichen Kern von \cite{Alipour2018}, der Untersuchung, ob es einen Bedarf
 für integrierte Mobilitäts- und Datenverkehr-Modelle gibt. Zur Identifikation der wichtigsten Features wird
-mithilfe eines \textsc{CFS} \footnote{Correlation Feature Selection}-Algorithmus
+mithilfe eines \textsc{CFS}\footnote{Correlation Feature Selection}-Algorithmus
 Feature-Engineering (vgl. Abschnitt \ref{sec:digression}) betrieben. \textsc{CFS} ist eine Möglichkeit der Feature-Selection,
 die auf Korrelationen basiert. Die zentrale Hypothese des Ansatzes ist, dass gute Teilmengen der Features jene Features enthalten,
 die stark mit der Klasse, jedoch nicht untereinander korrelieren. \textsc{CFS} kombiniert diese Hypothese mit einem geeigneten
@@ -466,7 +466,7 @@ weshalb in Zukunft weitere Betrachtungen und konkretere Ansätze kombinierter Mo
 \begin{figure}[H]
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
-        \includegraphics[width=0.7\textwidth]{img/mobility_correlations.png}
+        \includegraphics[width=0.8\textwidth]{img/mobility_correlations.png}
         \caption{Korrelationen \cite{Alipour2018}}
     \end{subfigure}
     \hfill
