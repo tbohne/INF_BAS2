@@ -138,8 +138,7 @@ eintreffen. \cite{Frost1994}
 Die Grundlagen der Simulation des Datenverkehrs lassen sich basierend auf \cite{Frost1994} wie folgt zusammenfassen.
 Im einfachsten Fall wird in einer Simulation eine zufällige Sequenz von Zwischenankunftszeiten \footnote{Zeit zwischen zwei 
 aufeinanderfolgenden Paketankünften.} generiert. Neben Ankunftszeiten und Batch-Größen ist es zudem häufig sinnvoll,
-die Last zu modellieren. Die Last entspricht der Menge der Arbeit im System, die eine eintreffende Entität
-erfordert.
+die Last zu modellieren, welche der Menge der Arbeit im System entspricht, die eine eintreffende Entität erfordert.
 % Ein einfaches Modell des Datenverkehrs ist \textsc{CBR} (Constant Bitrate), bei welchem eine Anzahl von Paketankünften
 % pro Zeiteinheit definiert wird. Die Paketgröße ist dabei ebenfalls konstant. Dieses Modell ist sehr simpel und dementsprechend
 % leicht zu implementieren, dafür jedoch in der Regel nicht besonders realistisch.\newline
@@ -161,7 +160,7 @@ Netzwerks erheblich von den Mustern der Mobilität und des Datenverkehrs innerha
 Es gibt in der Literatur zahlreiche Veröffentlichungen, die konkrete Modelle der Mobilität oder des Datenverkehrs
 vorstellen. Verglichen mit diesen Veröffentlichungen handelt es sich bei \cite{Alipour2018} eher um eine Art 
 \textquote{Meta-Paper}, in welchem keine konkreten Modelle vorgestellt werden. Stattdessen wird untersucht, 
-ob kombinierte Modelle, die sowohl die Mobilität, als auch den Datenverkehr berücksichtigen, reale Netzwerke 
+ob kombinierte Modelle, die sowohl die Mobilität als auch den Datenverkehr berücksichtigen, reale Netzwerke 
 treffender repräsentieren als isolierte Varianten. Dazu werden Korrelationen zwischen beiden Faktoren untersucht.\newline
 Aktuelle Modelle betrachten entweder die Mobilität oder den Datenverkehr, erfassen jedoch nicht das Zusammenspiel beider Faktoren.
 Außerdem verwenden viele Trace-basierte Mobilitätsmodelle Datensätze aus der Prä-Smartphone-Ära,
@@ -267,8 +266,8 @@ Laptops besitzen etwas längere Aufenthaltszeiten und werden in der Regel verwen
 
 In diesem Abschnitt werden die Ergebnisse der zeitlichen und räumlichen Analyse des Datenverkehrs der verschiedenen Gerätetypen
 aus \cite{Alipour2018} vorgestellt. Eine relevante Eigenschaft ist die Größe eines Flows, also die Summe der Bytes aller
-Pakete eines Flows. An Wochentagen sind Smartphone-Flows durchschnittlich mehr als doppelt so groß wie Laptop-Flows.
-Auch an Wochenenden ändert sich dies nicht signifikant. Die durchschnittliche Paketgröße von Smartphone-Flows
+Pakete eines Flows. An Wochentagen sind Smartphone-Flows durchschnittlich mehr als doppelt so groß wie Laptop-Flows
+und auch an Wochenenden ändert sich dies nicht signifikant. Die durchschnittliche Paketgröße von Smartphone-Flows
 ist ca. $50 \%$ größer als jene von Laptops. Im Median fällt die Größe der Pakete von Smartphones an Wochenenden, 
 während diese bei Laptops gleich bleibt. Laptop-Flows zeigen zwischen Wochentagen und Wochenenden in Bezug auf die 
 durchschnittliche Paketgröße keine signifikante Veränderung. Trotz kleinerer Flows generiert ein durchschnittlicher Laptop $2.7$
@@ -299,35 +298,33 @@ Weiterhin gut geeignet, um Unterschiede zwischen Laptops und Smartphones zu verd
 Dabei werden die Netflows herangezogen und nicht die WLAN-AP-Verbindungszeiten, denn dies ermöglicht es, \textquote{Idle}-Zeiten
 von aktiven Zeiten zu unterscheiden. Laptops haben verglichen mit Smartphones $4$ mal höhere durchschnittliche Aktivitätszeiten.
 Insgesamt sind über $90 \%$ der Laptops weniger als $3.5$ Stunden am Tag aktiv und $90 \%$ der Smartphones weniger als eine Stunde.\newline
-Zusammenfassend lässt sich sagen, dass der Datenverkehr von Smartphones mehr bursty mit größeren Flows und kleinerer aktiver
-Dauer ist. Außerdem sind an Wochenenden weniger Geräte am Campus, aber jene, die verbleiben, sind überdurchschnittlich aktiv 
-und konsumieren überdurchschnittlich viele Daten. Insgesamt ist festzuhalten, dass Smartphones mobiler sind, 
-eine größere Anzahl von APs besuchen, größere Flows haben und trotzdem für insgesamt weniger Netzwerklast verantwortlich sind.
+Zusammenfassend kommen die Autoren zu dem Ergebnis, dass der Datenverkehr von Smartphones mehr \textquote{bursty} mit größeren Flows und kleinerer 
+aktiver Dauer ist. Außerdem befinden sich an Wochenenden weniger Geräte auf dem Campus, aber jene, die verbleiben, sind überdurchschnittlich
+aktiv und konsumieren überdurchschnittlich viele Daten. Insgesamt ist festzuhalten, dass Smartphones trotz größerer Flows etc. 
+für insgesamt deutlich weniger Netzwerklast verantwortlich sind.
 
 \subsection{Exkurs: Feature-Engineering}
 \label{sec:digression}
 
 Die Identifizierung relevanter Features ist essenziell, um Data-Mining-Algorithmen effektiv mit realen Daten zu verwenden.
-Es werden in der Literatur viele Feature-Selection Methoden vorgestellt, um Teilmengen der Features zu erhalten,
-die für die Klassifizierung und Clustering relevant sind.
-Machine-Learning-Methoden haben Schwierigkeiten, mit großen Zahlen von Input-Features
-umzugehen. Um diese Methoden dennoch effektiv anzuwenden, ist ein Preprocessing der Daten vonnöten. \cite{Kumar2014}
+Machine-Learning-Methoden haben Schwierigkeiten, mit großen Zahlen von Input-Features umzugehen, 
+um diese Methoden dennoch effektiv anzuwenden, ist ein Preprocessing der Daten vonnöten. \cite{Kumar2014}
 Dieser Preprocessing-Schritt geschieht in der integrierten Mobilitäts- und Datenverkehr-Analyse in \cite{Alipour2018},
 welche in Abschnitt \ref{sec:phase3} besprochen wird, in Form von Feature-Selection. Feature-Selection ist der Prozess,
 in welchem relevante Features von irrelevanten unterschieden werden. Die irrelevanten Features werden nicht betrachtet, 
-was die Genauigkeit, Geschwindigkeit und Verständlichkeit der Methoden verbessert. Irrelevante Features sind jene, 
-die keine nützlichen Informationen liefern und redundante Features liefern keine zusätzlichen Informationen. \cite{Kumar2014}
+was die Genauigkeit, Geschwindigkeit und Verständlichkeit der Methoden verbessert. \cite{Kumar2014} Irrelevante Features sind jene, 
+die keine relevanten Informationen liefern und redundante Features liefern keine zusätzlichen Informationen.
 Die betrachteten Features sollten dementsprechend weder irrelevant noch redundant sein.
 
 \subsection{Integrierte Mobilitäts- und Datenverkehr-Modelle}
 \label{sec:phase3}
 
 In diesem Abschnitt geht es um den eigentlichen Kern von \cite{Alipour2018}, der Untersuchung, ob es einen Bedarf
-für integrierte Mobilitäts- und Datenverkehr-Modelle gibt. Um die Analyse und Interpretation zu vereinfachen und die 
-wichtigsten Features zu identifizieren, wird mithilfe eines \textsc{CFS} \footnote{Correlation Feature Selection}-Algorithmus
-\textquote{Feature-Engineering} (vgl. \ref{sec:digression}) betrieben. \textsc{CFS} ist eine Möglichkeit der Feature-Selection, die auf Korrelationen
-basiert. Die zentrale Hypothese des Ansatzes ist, dass gute Teilmengen der Features jene Features enthalten, die stark
-mit der Klasse, jedoch nicht untereinander korrelieren. \textsc{CFS} kombiniert diese Hypothese mit einem geeigneten
+für integrierte Mobilitäts- und Datenverkehr-Modelle gibt. Zur Identifikation der wichtigsten Features wird
+mithilfe eines \textsc{CFS} \footnote{Correlation Feature Selection}-Algorithmus
+Feature-Engineering (vgl. Abschnitt \ref{sec:digression}) betrieben. \textsc{CFS} ist eine Möglichkeit der Feature-Selection,
+die auf Korrelationen basiert. Die zentrale Hypothese des Ansatzes ist, dass gute Teilmengen der Features jene Features enthalten,
+die stark mit der Klasse, jedoch nicht untereinander korrelieren. \textsc{CFS} kombiniert diese Hypothese mit einem geeigneten
 Maß der Korrelation und einer heuristischen Suche. \cite{Hall2000}
 Bei den in \cite{Alipour2018} ermittelten Korrelationen handelt es sich um Pearson-Korrelationen.
 Die \textquote{Pearson-Correlation}-Methode vergibt Werte zwischen $-1$ und $1$, wobei $0$ überhaupt keiner Korrelation
@@ -335,8 +332,9 @@ entspricht. Bei den Werten $1$ und $-1$ handelt es sich um totale positive bzw. 
 Eine positive Korrelation zwischen zwei Features $A$ und $B$ liegt vor, wenn bei steigendem Wert für $A$
 auch der Wert von $B$ steigt. Wohingegen bei einer negativen Korrelation bei einer Steigerung des Werts von $A$, 
 der Wert von $B$ fällt. \cite{Nettleton2014}
+\newline\newline\newline
+\textbf{Korrelationen zwischen Mobilitäts- bzw. Datenverkehrmetriken}
 \newline\newline
-\textbf{Korrelationen zwischen Mobilitäts- bzw. Datenverkehrmetriken}\newline
 Der \textsc{CFS}-Algorithmus wird mit $8$ Mobilitäts-Features ausgeführt und selektiert $5$ Features, 
 die für eine kombinierte Analyse geeignet sind. Für Laptops existiert z.B. an Wochentagen eine starke Korrelation ($0.96$)
 zwischen der Zeit, welche im bevorzugten Gebäude verbracht wird und der Dauer der Session, jedoch nur eine schwache Korrelation
@@ -347,17 +345,17 @@ Bezüglich der Eigenschaften des Datenverkehrs wird der \textsc{CFS}-Algorithmus
 selektiert werden. Auch beim Datenverkehr existieren einige Korrelationen, die in Abb. \ref{fig:traffic_correlations} nachvollzogen werden können.
 Die wohl interessanteste Erkenntnis ist allerdings, dass die Aktivitätszeiten und die Anzahl von Flows und Paketen nur
 schwach korrelieren, was bedeutet, dass Nutzer, die länger online sind, nicht notwendigerweise mehr Datenverkehr erzeugen. \cite{Alipour2018}
-\newline
+\newline\newline
 Ein wichtiger Schritt in Richtung integrierter Modelle ist die Analyse der Korrelationen
 zwischen beiden Dimensionen (Mobilität und Datenverkehr) basierend auf der Teilmenge der Features bzw. Metriken,
-die vom \textsc{CFS}-Algorithmus selektiert wurden. Die entsprechenden Ergebnisse aus \cite{Alipour2018} lassen sich wie 
+die vom \textsc{CFS}-Algorithmus selektiert werden. Die entsprechenden Ergebnisse aus \cite{Alipour2018} lassen sich wie 
 folgt zusammenfassen. Smartphones haben erwartungsgemäß hohe Scores bei den Mobilitätsmetriken (Bewegungsradius,
 Anzahl besuchter unterschiedlicher Gebäude etc.), besitzen eine
 insgesamt kleinere Anzahl von Flows und sorgen für weniger Datenverkehr, aber produzieren im Durchschnitt größere Flows.
 Für Laptops gilt an Wochenenden, je mehr Zeit in bevorzugten Gebäuden verbracht wird, desto größer die Gesamtaktivitätszeit
 und Flow-Anzahl. Dieser Effekt existiert in abgeschwächter Form auch bei Smartphones. 
-An Wochentagen existieren diese Korrelationen nicht. Die exakten Ergebnisse können in Abb. \ref{fig:mobility_traffic_correlations}
-nachvollzogen werden. Mittels Machine-Learning untersuchen die Autoren, wie sich Mobilitäts- und Datenverkehr-Features zwischen
+An Wochentagen existieren diese Korrelationen nicht. Die exakten Ergebnisse sind in Abb. \ref{fig:mobility_traffic_correlations}
+dargestellt. Mittels Machine-Learning untersuchen die Autoren, wie sich Mobilitäts- und Datenverkehr-Features zwischen
 Smartphones und Laptops unterscheiden. Anschließend wird nach natürlichen konvexen Clustern von Nutzern bzw. Geräten im
 Datensatz gesucht. Diese Schritte verifizieren, dass die Unterschiede der Mobilitäts- und Datenverkehr-Charakteristiken
 zwischen den Gerätetypen signifikant sind.\newline
@@ -365,22 +363,23 @@ zwischen den Gerätetypen signifikant sind.\newline
 Die Autoren verwenden Support-Vector-Maschinen (SVM) auf verschiedenen Teilmengen von Features, 
 um die Zulässigkeit der Gerätetyp-Inferenz und die Beziehung zwischen Mobilitäts- und Datenverkehr-Charakteristiken
 zu untersuchen. Insgesamt wird die Genauigkeit verschiedener Modelle analysiert. Dabei stellt sich heraus,
-dass kombinierte Modelle, welche sowohl Datenverkehr als auch Mobilität berücksichtigen, 
+dass kombinierte Modelle, welche sowohl den Datenverkehr als auch die Mobilität berücksichtigen, 
 mit $\approx 81 \%$ genauer sind als isolierte Modelle (Mobilität $\approx 65 \%$, Datenverkehr $\approx 79 \%$).
-Außerdem erhöht sich die Genauigkeit auf $\approx 86 \%$, wenn zudem zwischen Wochentagen und Wochenenden differenziert wird.\newline
+Außerdem erhöht sich die Genauigkeit auf $\approx 86 \%$, wenn zudem zwischen Wochentagen und Wochenenden differenziert wird.
 % \newline\newline
 % \textbf{Unsupervised Clustering}\newline
-Um natürliche konvexe Cluster zu untersuchen, verwenden die Autoren einen $k$-Means-Algorithmus.
+Um natürliche konvexe Cluster zu untersuchen, verwenden sie einen $k$-Means-Algorithmus.
 Werden ausschließlich Mobilitäts-Features genutzt, so werden ca. $60 \%$ der Geräte korrekt geclustert.
 Ein ausschließlicher Fokus auf Datenverkehr-Features führt zu einer Genauigkeit von $81.2 \%$.
 Bei einer Kombination der Features erhöht sich die Genauigkeit leicht auf $81.5 \%$.
+\newline\newline\newline
+\textbf{Kombiniertes Modell}
 \newline\newline
-\textbf{Kombiniertes Modell}\newline
-Um erste Traces basierend auf den Datensätzen zu generieren, haben die Autoren Gaussian-Mixture-Models (GMM) mit
-kombinierten Features trainiert. Anschlißend wurde Kolmogorov-Smirnov (KS) Statistik verwendet, um die generierten
+Um erste Traces basierend auf den Datensätzen zu generieren, trainieren die Autoren schließlich Gaussian-Mixture-Models (GMM) mit
+kombinierten Features. Anschließend verwenden sie Kolmogorov-Smirnov (KS) Statistik, um die generierten
 Samples mit Echtdaten zu vergleichen. Das kombinierte Modell produziert Samples, dessen Datenverkehr-Features
-den Originaldaten besser entsprechen, als ein GMM, welches ausschließlich mit Datenverkehr-Features trainiert wurde,
-was darauf hindeutet, dass eine Beziehung zwischen Mobilität und Datenverkehr besteht. 
+den Originaldaten besser entsprechen als ein GMM, welches ausschließlich mit Datenverkehr-Features trainiert wurde,
+was darauf hindeutet, dass eine Beziehung zwischen Mobilität und Datenverkehr besteht. \cite{Alipour2018}
 Allerdings bringt das GMM des kombinierten Modells in Bezug auf Mobilitäts-Features verglichen mit
 dem Modell, welches ausschließlich mit Mobilitäts-Features trainiert wurde, keine Verbesserung.
 
@@ -388,19 +387,20 @@ dem Modell, welches ausschließlich mit Mobilitäts-Features trainiert wurde, ke
 \label{sec:summary}
 
 In \cite{Alipour2018} geht es im Kern um die Frage, ob es sinnvoll ist, Modelle zu entwickeln, die sowohl
-Mobilitäts-, als auch Datenverkehrcharakteristiken berücksichtigen. Es wird darin gezeigt, dass solche
-kombinierten Betrachtungen, verglichen mit den in der Regel zu simplen isolierten Betrachtungen, potenziell zu
-deutlich realistischeren Ergebnissen gelangen können.
-Es wird ein Framework vorgestellt, um die Datensätze eines bestehenden Netzwerks dahingehend zu analysieren.
+Mobilitäts- als auch Datenverkehrcharakteristiken eines Drahtlosnetzwerks berücksichtigen.
+Die Autoren stellen ein Framework vor, um die Datensätze eines bestehenden Netzwerks dahingehend zu analysieren.
 Zunächst geht es dabei um Geräteklassifizierung und anschließend um eine Untersuchung der Mobilitäts-
 und Datenverkehr-Metriken, wobei die verschiedenen Gerätetypen über Raum und Zeit hinweg miteinander verglichen werden.
 Nach dem Hervorheben signifikanter Unterschiede zwischen den Gerätetypen, wird mittels Machine-Learning ein kombiniertes Modell
 trainiert. Dieses Modell bildet die Unterschiede in den Metriken besser ab als isolierte Modelle.
 Insgesamt sehen die Autoren ein signifikantes Potenzial integrierter Modelle, welche die Unterschiede und Beziehungen 
-von Features zwischen Gerätetypen, Zeit und Ort besser repräsentieren können als isolierte Modelle. 
+von Features zwischen Gerätetypen, Zeit und Ort besser repräsentieren als gengenwärtige Modelle. 
 Somit werden die eingangs erwähnten Fragestellungen in einer Weise beantwortet, die zukünftige Forschung zu
 integrierten Modellen nahelegt. Da viele der Erkenntnisse von aktuellen Modellen nicht berücksichtigt werden, 
 liefert die Veröffentlichung wichtige Grundlagen für das Design zukünftiger Modelle.
+
+\vfill
+\pagebreak
 
 \section{Fazit und Ausblick}
 \label{sec:conclusion}
@@ -418,7 +418,7 @@ auf das Design und die Parametrisierung von zukünftigen Modellen eingehen.
 Die Details können im Rahmen dieser Ausarbeitung nicht mehr erörtert werden, es ist jedoch wichtig, zu erwähnen,
 dass die Autoren auf zusätzliche Faktoren hinweisen, so können Mobilität und Datenverkehr nicht nur
 zwischen den Gerätetypen unterschieden werden, sondern zusätzlich zwischen unterschiedlichen Nutzergruppen.
-Die Tatsache, dass unter anderem Alter und Geschlecht eines Nutzers einen Einfluss auf dessen Datenverkehr haben können,
+Die Tatsache, dass unter anderem Alter und Geschlecht eines Nutzers einen Einfluss auf dessen erzeugten Datenverkehr haben können,
 wird auch in \cite{Oliveira2014} thematisiert. Dort wird darauf hingewiesen, dass es wichtig ist,
 zu berücksichtigen, in welchem kulturellen Kontext Daten aufgezeichnet werden.\newline
 Auch wenn die Autoren von \cite{Alipour2018} die Konzeption und Validierung eines konkreten Modells
@@ -426,7 +426,7 @@ zukünftiger Forschung überlassen, liefern sie wichtige Erkenntnisse für den E
 die für zahlreiche praktische Anwendungen von Relevanz sein können.
 Bereits das alltägliche Beispiel der Person, die ihren Gang verlangsamt um eine empfangene Nachricht zu lesen,
 verdeutlicht, dass Mobilität und Datenverkehr bei Mobilgeräten nicht isoliert betrachtet werden sollten.
-In \cite{Alipour2018} wird diese intuitive Idee eines Zusammenhangs belegt.\newline
+In \cite{Alipour2018} wird diese intuitive Idee eines Zusammenhangs bestätigt.\newline
 Die Relevanz von Simulationen der Mobilität von Geräten bzw. Benutzern innerhalb eines Netzwerks
 ist bereits ausführlich diskutiert worden. Um möglichst akurate Simulationen durchzuführen, wäre es erstrebenswert,
 die Mobilität von realen Benutzern möglichst genau vorherzusagen. Mit dieser Vorhersagbarkeit haben sich die Autoren
@@ -437,7 +437,7 @@ erheblich besser vorherzusagen ist als jene von Smartphones bzw. Mobilgeräten.
 Aufgrund signifikanter Korrelationen zwischen Vorhersagegenauigkeit, Mobilitäts- und Datenverkehr-Features
 planen die Autoren den Nutzen der Vorhersagegenauigkeit als Feature in integrierten Mobilitäts- und Datenverkehr-Modellen
 weiter zu untersuchen.\newline
-Bei der möglichst realistischen Modellierung von Netzwerken handelt es sich um ein aktives Forschungsfeld,
+Bei der möglichst realistischen Modellierung der Netzwerkaktivität handelt es sich um ein aktives Forschungsfeld,
 weshalb in Zukunft weitere Betrachtungen und konkretere Ansätze kombinierter Modelle zu erwarten sind.
 
 \vfill
