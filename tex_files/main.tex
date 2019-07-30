@@ -364,8 +364,7 @@ und Flow-Anzahl. Dieser Effekt existiert in abgeschwächter Form auch bei Smartp
 An Wochentagen existieren diese Korrelationen nicht. Die exakten Ergebnisse sind in Abb. \ref{fig:mobility_traffic_correlations}
 dargestellt. Mittels Machine-Learning untersuchen die Autoren, wie sich Mobilitäts- und Datenverkehr-Features zwischen
 Smartphones und Laptops unterscheiden. Anschließend wird nach natürlichen konvexen Clustern von Nutzern bzw. Geräten im
-Datensatz gesucht. Diese Schritte verifizieren, dass die Unterschiede der Mobilitäts- und Datenverkehr-Charakteristiken
-zwischen den Gerätetypen signifikant sind.\newline
+Datensatz gesucht. Mit diesen Schritten verifizieren sie, dass die Unterschiede der Mobilitäts- und Datenverkehr-Charakteristiken zwischen den Gerätetypen signifikant sind.\newline
 % \textbf{Supervised Classification}\newline
 Die Autoren verwenden Support-Vector-Maschinen (SVM) auf verschiedenen Teilmengen von Features, 
 um die Zulässigkeit der Gerätetyp-Inferenz und die Beziehung zwischen Mobilitäts- und Datenverkehr-Charakteristiken
@@ -383,7 +382,7 @@ Bei einer Kombination der Features erhöht sich die Genauigkeit leicht auf $81.5
 \textbf{Kombiniertes Modell}
 \newline\newline
 Um erste Traces basierend auf den Datensätzen zu generieren, trainieren die Autoren schließlich Gaussian-Mixture-Models (GMM) mit
-kombinierten Features. Anschließend verwenden sie Kolmogorov-Smirnov (KS) Statistik, um die generierten
+kombinierten Features. Anschließend verwenden sie Kolmogorov-Smirnov-Statistik, um die generierten
 Samples mit Echtdaten zu vergleichen. Das kombinierte Modell produziert Samples, dessen Datenverkehr-Features
 den Originaldaten besser entsprechen als ein GMM, welches ausschließlich mit Datenverkehr-Features trainiert wurde,
 was darauf hindeutet, dass eine Beziehung zwischen Mobilität und Datenverkehr besteht. \cite{Alipour2018}
@@ -403,8 +402,7 @@ trainiert. Dieses Modell bildet die Unterschiede in den Metriken besser ab als i
 Insgesamt sehen die Autoren ein signifikantes Potenzial integrierter Modelle, welche die Unterschiede und Beziehungen 
 von Features zwischen Gerätetypen, Zeit und Ort besser repräsentieren als gengenwärtige Modelle. 
 Somit werden die eingangs erwähnten Fragestellungen in einer Weise beantwortet, die zukünftige Forschung zu
-integrierten Modellen nahelegt. Da viele der Erkenntnisse von aktuellen Modellen nicht berücksichtigt werden, 
-liefert die Veröffentlichung wichtige Grundlagen für das Design zukünftiger Modelle.
+integrierten Modellen nahelegt.
 
 \vfill
 \pagebreak
@@ -418,23 +416,22 @@ Aspekte modelliert werden, welche tatsächlich relevant sind. Gleichzeitig sollt
 Aspekte Teil des Modells sein. Übertragen auf Netzwerkmodelle sind die bisher existierenden Modelle
 basierend auf den Erkenntnissen aus \cite{Alipour2018} nicht detailliert genug. Es werden entweder
 Datenverkehr- oder Mobilitätscharakteristiken modelliert, jedoch nicht das Zusammenspiel beider Faktoren.
-Die betrachtete Veröffentlichung liefert demnach einen wichtigen Anstoß zur Entwicklung besserer Netzwerkmodelle.
-Die Autoren von \cite{Alipour2018} haben eine erweiterte Version des Papers veröffentlicht,
+Die betrachtete Veröffentlichung liefert demnach einen wichtigen Anstoß zur Entwicklung besserer Modelle
+der Nutzeraktivität in Netzwerken. Die Autoren von \cite{Alipour2018} haben eine erweiterte Version des Papers veröffentlicht,
 in welcher sie tiefer auf bestimmte zuvor betrachtete Aspekte eingehen und weitere Erkenntnisse in Bezug
 auf das Design und die Parametrisierung von zukünftigen Modellen eingehen.
-Die Details können im Rahmen dieser Ausarbeitung nicht mehr erörtert werden, es ist jedoch wichtig, zu erwähnen,
+Die Details können im Rahmen dieser Ausarbeitung nicht mehr erörtert werden, es ist jedoch erwähnenswert,
 dass die Autoren auf zusätzliche Faktoren hinweisen, so können Mobilität und Datenverkehr nicht nur
 zwischen den Gerätetypen unterschieden werden, sondern zusätzlich zwischen unterschiedlichen Nutzergruppen.
-Die Tatsache, dass unter anderem Alter und Geschlecht eines Nutzers einen Einfluss auf dessen erzeugten Datenverkehr haben können,
-wird auch in \cite{Oliveira2014} thematisiert. Dort wird darauf hingewiesen, dass es wichtig ist,
-zu berücksichtigen, in welchem kulturellen Kontext Daten aufgezeichnet werden.\newline
+Die Tatsache, dass unter anderem Alter und Geschlecht eines Nutzers einen Einfluss auf dessen erzeugten Datenverkehr haben können, wird auch in \cite{Oliveira2014} thematisiert. Dort wird darauf hingewiesen, dass es wichtig ist,
+den kulturellen Kontext aufgezeichneter Daten zu berücksichtigen.\newline
 Auch wenn die Autoren von \cite{Alipour2018} die Konzeption und Validierung eines konkreten Modells
 zukünftiger Forschung überlassen, liefern sie wichtige Erkenntnisse für den Entwurf von integrierten Modellen,
 die für zahlreiche praktische Anwendungen von Relevanz sein können.
-Bereits das alltägliche Beispiel der Person, die ihren Gang verlangsamt um eine empfangene Nachricht zu lesen,
+Bereits das alltägliche Beispiel der Person, die ihren Gang verlangsamt, um eine empfangene Nachricht zu lesen,
 verdeutlicht, dass Mobilität und Datenverkehr bei Mobilgeräten nicht isoliert betrachtet werden sollten.
 In \cite{Alipour2018} wird diese intuitive Idee eines Zusammenhangs bestätigt.\newline
-Die Relevanz von Simulationen der Mobilität von Geräten bzw. Benutzern innerhalb eines Netzwerks
+Die Relevanz von Simulationen der Mobilität innerhalb eines Netzwerks
 ist bereits ausführlich diskutiert worden. Um möglichst akurate Simulationen durchzuführen, wäre es erstrebenswert,
 die Mobilität von realen Benutzern möglichst genau vorherzusagen. Mit dieser Vorhersagbarkeit haben sich die Autoren
 von \cite{Alipour2018} in einer weiteren Veröffentlichung mit dem Titel \textquote{Practical Prediction of Human
