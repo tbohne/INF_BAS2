@@ -1,0 +1,210 @@
+%------------------------------------------------
+%	PACKAGES AND THEMES
+%------------------------------------------------
+
+% this is a 4:3 layout.
+\documentclass{beamer}
+% for 16:9 use this command:
+% \documentclass[aspectratio=169]{beamer}
+
+\mode<presentation> {
+\usetheme{metropolis}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{navigation symbols}{} % hide navigation symbols
+}
+
+\usepackage{graphicx} % images
+\usepackage{algorithm2e}
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\usepackage{algpseudocode}
+\usepackage{booktabs} % allows the use of \toprule, \midrule and \bottomrule in tables
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathtools}
+\usepackage{xcolor}
+\usepackage{listings} % code
+\usepackage{pgf,tikz} % drawing
+\usepackage{pifont} % new symbols
+\usepackage{hyperref} % pretty links
+% \usepackage{algorithmicx}
+% \usepackage{algpseudocode}
+% \usepackage[linesnumbered,ruled]{algorithm2e}
+
+\usepackage{lmodern}
+\usepackage{subcaption}
+\usepackage{textcomp}
+% \usepackage{array}
+% \usepackage{longtable}
+% \usepackage{verbatim}
+%\usepackage{tabularx}
+\captionsetup[figure]{font=footnotesize}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+% \usepackage{comment}
+% \usepackage{enumitem}
+% \usepackage[binary-units=true]{siunitx}
+% \usepackage{thmtools}
+\usepackage{csquotes}
+\usepackage{tikz}
+\usepackage{float}
+\usetikzlibrary{automata,positioning}
+
+% color settings for links
+\hypersetup{
+    colorlinks=true,
+    urlcolor=blue,
+    linkcolor=black,
+    citecolor=green!50!black
+}
+
+\definecolor{mygreen}{RGB}{1,135,1}
+
+\newcommand{\cmark}{\ding{51}}  % checkmark
+\newcommand{\xmark}{\ding{55}}  % xmark
+\newcommand\scalemath[2]{\scalebox{#1}{\mbox{\ensuremath{\displaystyle #2}}}}
+
+% \useoutertheme{miniframes} % navigation design
+\useinnertheme{circles} % use non shiny circles (itemize, etc.)
+
+% Main slide colors
+% dunkel, hell, mittel
+% \definecolor{pale}{RGB}{232, 236, 237}
+% \definecolor{prim}{RGB}{53, 109, 120}
+% \definecolor{sec}{RGB}{104, 170, 183}
+% \definecolor{tert}{RGB}{109, 155, 168}
+% \definecolor{quat}{RGB}{9, 59, 68}
+
+\definecolor{pale}{RGB}{232, 236, 237}
+% \definecolor{prim}{RGB}{153, 194, 173}
+% good: \definecolor{prim}{RGB}{27, 33, 42}
+\definecolor{prim}{RGB}{32, 43, 50}
+\definecolor{sec}{RGB}{217, 232, 224}
+\definecolor{tert}{RGB}{0, 82, 41}
+% save
+\definecolor{quat}{RGB}{0, 82, 41}
+
+\setbeamercolor{palette primary}{bg=prim,fg=pale}
+\setbeamercolor{palette secondary}{bg=sec,fg=pale}
+\setbeamercolor{palette tertiary}{bg=tert,fg=pale}
+\setbeamercolor{palette quaternary}{bg=quat,fg=pale}
+\setbeamercolor{structure}{fg=prim} % itemize, enumerate, etc
+\setbeamercolor{section in toc}{fg=prim} % TOC sections
+
+% Block colors
+\definecolor{example_color}{RGB}{93, 137, 98}
+\definecolor{alert_color}{RGB}{175, 79, 72}
+
+\setbeamercolor{normal text}{fg=prim!20!black,bg=pale!25!white}
+\setbeamercolor{alerted text}{fg=alert_color!25!black}
+\setbeamercolor{example text}{fg=example_color!25!black}
+
+\setbeamercolor{block title example}{fg=white,bg=example_color}
+\setbeamercolor{block body example}{fg=black,bg=example_color!10!white}
+\setbeamercolor{block title alerted}{fg=white,bg=alert_color}
+\setbeamercolor{block body alerted}{fg=black,bg=alert_color!10!white}
+
+% Override palette coloring
+\setbeamercolor{subsection in head/foot}{bg=quat,fg=pale}
+
+\setbeamertemplate{frametitle}{%
+    \nointerlineskip%
+
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1ex]{frametitle}
+        \hspace*{1ex}\insertframetitle%
+        \ifx\insertframesubtitle@empty\else%
+        {~\tiny\textcolor{quat!35!black}{\insertframesubtitle}}%
+        \fi%
+    \end{beamercolorbox}%
+}
+
+% math-command for bigger norm
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+
+% use this to include other files
+% in this case style definitions for code
+% alternative: \include{dateiname}
+\input{listings_style.tex}
+
+\lstset{style=latex}
+
+%------------------------------------------------
+%	TITLE PAGE
+%------------------------------------------------
+
+\selectlanguage{ngerman}
+\title[]{Heuristische Lösungsverfahren für Stacking-Probleme mit Transportkosten}
+
+\author{Tim Bohne}
+\institute[]
+{
+\textit{AG Kombinatorische Optimierung}
+\medskip
+}
+\date{\today}
+
+% make slide at the beginnig of each section
+\AtBeginSection[]{
+{\setbeamercolor{background canvas}{bg=white}}}
+
+% where images are locatied
+\graphicspath{{./images/}}
+
+\begin{document}
+
+\begin{frame}[plain] % plain slides dont have navigation bars etc.
+\titlepage % Print the title page as the first slide
+\end{frame}
+
+\begin{frame}
+\frametitle{Übersicht} % table of contents slide
+\tableofcontents
+\end{frame}
+
+%------------------------------------------------
+\section{Stacking-Probleme}
+%------------------------------------------------
+% \subsection*{}
+
+\begin{frame}
+\frametitle{Stacking-Probleme}
+\begin{itemize}
+\item Im Umfeld von Lagerhallen und Container-Terminals
+\item Eintreffende Items müssen Stacks zugeordnet werden, sodass bestimmte Nebenbedingungen respektiert werden
+\item Storage Area ist in fixierten Stacks organisiert, die eine limitierte gemeinsame Stack Kapazität besitzen
+% \item Item-Zugriff erfolgt nach dem \textquote{Last-In–First-Out}-Prinzip
+\item Es wird nur der Loading-Prozess betrachtet
+\end{itemize}
+\begin{figure}
+\centering
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Literatur Überblick}
+
+\begin{itemize}
+  \item \textbf{Kim et al. (2000)}: Deriving decision rules to locate export containers in container yards
+  \item \textbf{Kang et al. (2006)}: Deriving stacking strategies for export containers with uncertain weight information
+  \item \textbf{Delgado et al. (2012)}: A constraint programming model for fast optimal stowage of container vessel bays
+  \item \textbf{Jaehn (2013)}: Positioning of loading units in a transshipment yard storage area
+  \item \textbf{Bruns et al. (2015)}: Complexity results for storage loading problems with stacking constraints
+  \item \textbf{Le et al. (2016)}: MIP-based approaches for robust storage loading problems with stacking constraints
+  % \item \textbf{Caserta et. al. (2012)}: A mathematical formulation and complexity considerations for the blocks relocation problem.
+\end{itemize}
+
+\end{frame}
+
+% %------------------------------------------------
+
+% \begin{frame}[c,plain]
+% \centering
+% \Huge{\textcolor{quat}{Danke für eure Aufmerksamkeit!\\[1cm] Fragen?}}
+% \end{frame}
+
+% %------------------------------------------------
+
+\end{document}
