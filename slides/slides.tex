@@ -172,7 +172,7 @@
 \frametitle{Motivation}
 \textit{\textquote{Analyzing Mobility-Traffic Correlations in Large WLAN Traces: Flutes vs. Cellos}}
 \newline\newline\newline
-\textbf{Isolierte Betrachgung}\newline
+\textbf{Isolierte Betrachtung}\newline
 Aktuelle Modelle erfassen nicht das Zusammenspiel von Mobilität und Datenverkehr\newline\newline
 \textbf{Veraltete Daten}\newline
 Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
@@ -182,21 +182,25 @@ Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
 \end{frame}
 
 \begin{frame}
-\frametitle{}
-\begin{itemize}
-  \item Datengetriebene Analysen ($30$\textsc{TB} von $300$\textsc{K} Geräten)
-  \item Framework FLAMeS\footnote{\textbf{F}ramework for \textbf{L}arge-scale \textbf{A}nalysis of 
-  \textbf{M}obil\textbf{e} \textbf{S}ocieties.} zur Analyse
-\end{itemize}
-\end{frame}
-
-\begin{frame}
   \frametitle{Fragestellungen}
   \begin{itemize}
     \item Wie unterscheiden sich Mobilitäts- und Datenverkehr- Charakteristiken zwischen den unterschiedlichen Gerätetypen,
     Zeiten und Orten?\newline
     \item Wie stehen diese Charakteristiken zueinander in Beziehung?\newline
     \item Sollten neue Modelle entwickelt werden, die diese Unterschiede berücksichtigen?
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Analyse realer Netzwerkaktivität}
+\begin{itemize}
+  \item Datengetriebene Analysen ($30$\textsc{TB} von $300$\textsc{K} Geräten)
+  \item Framework FLAMeS\footnote{\textbf{F}ramework for \textbf{L}arge-scale \textbf{A}nalysis of 
+  \textbf{M}obil\textbf{e} \textbf{S}ocieties.} zur Analyse
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{images/FLAMeS.png}\newline  
+  \end{figure}  
 \end{itemize}
 \end{frame}
 
@@ -240,44 +244,48 @@ Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
 \end{frame}
 
 \begin{frame}
-  \frametitle{Zeitliche und räumliche Analyse der Mobilität}
+  \frametitle{Phase II: Zeitliche und räumliche Analyse der Mobilität}
   \begin{itemize}
-    \item Startzeiten von WLAN-Sessions stimmen mit Startzeiten von Vorlesungen überein
-    \item Aktivität von Laptops fällt nach Ende von Vorlesungszeiten, Smartphoneaktivität bleibt länger erhalten
-    \item Wahrscheinlichkeit für neue Sessions am Abend in sozialen Einrichtungen und der Bibliothek höher
-    \item Vorlesungen geben Wochentagen Struktur (z.B. eingeschränkter Bewegungsradius, ...)
-    \item Nach einer initialen Phase findet eine substanzielle Reduktion der Mobilität von Laptops statt
-    \item Smartphones sind \textquote{always-on}-Geräte und somit leichter zu erfassen
-    \item Laptops besitzen längere Aufenthaltszeiten und werden verwendet, wenn Nutzer länger an einem Ort verweilern
+    \item WLAN-Sessions $\approx$ Startzeiten von Vorlesungen
+    \item Aktivität von Laptops fällt nach Ende der Vorlesungszeiten
+    \item Abend-Sessions vermehrt in sozialen Einrichtungen / Bib.
+    \item Vorlesungen geben Wochentagen Struktur
+    \item Substanzielle Reduktion der Mobilität von Laptops
+    \item Smartphones \textquote{Always-on-Devices} $\implies$ leichter zu erfassen
+    \item Laptops besitzen längere Aufenthaltszeiten 
   \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Zeitliche und räumliche Analyse des Datenverkehrs}
+  \frametitle{Phase II: Zeitliche und räumliche Analyse des Datenverkehrs}
   \begin{itemize}
-    \item Smartphone-Flows mehr als doppelt so groß wie Laptop-Flows ($\approx$ Paketgröße ebenfalls größer)
-    \item Laptops verursachen $\approx 2.7$ mal so viel Traffic ($3.7$ mal so viele Flows)
-    \item An Wochenenden weniger aktive Geräte, aber verbleibende Geräte besonders aktiv
-    \item Smartphones mehr extreme Phasen der Inaktivität (größere Mobilität und Paketverluste)
-    \item Laptop-Flows ($78.5 \%$ TCP), Smartphone-Flows ($98.2 \%$ TCP)
-    \item Durchschnittl. Anzahl von Laptop-Paketen, die täglich von APs verarbeitet werden, ist $1.6$ mal größer als die von Smartphones    
+    \item Smartphone-Flows und Pakete größer
+    \item Laptops verursachen $\boldsymbol{\o \thinspace 3.7}$ mal so viele Flows\newline
+    \phantom \quad\quad\quad\quad\quad\quad\quad\quad\thinspace\thinspace\thinspace\thinspace\thinspace $\boldsymbol{\o \thinspace 1.6}$ mal mehr Pakete\newline
+    \phantom \quad\quad\quad\quad\quad\quad\thinspace\thinspace $\implies \boldsymbol{\o \thinspace 2.7}$ mal so viel Traffic
+    \item Wochenenden: Verbleibende Geräte besonders aktiv
+    \item Smartphones mehr extreme Phasen der Inaktivität
+    \item Laptops ($\boldsymbol{78.5 \%}$ TCP), Smartphones ($\boldsymbol{98.2 \%}$ TCP)
+    \item Großteil der APs an Wochenenden nicht verwendet
   \end{itemize}
   
 \end{frame}
 
 \begin{frame}
-  \frametitle{Zeitliche und räumliche Analyse des Datenverkehrs}
+  \frametitle{Phase II: Zeitliche und räumliche Analyse des Datenverkehrs}
   \begin{itemize}
-    \item Großteil der APs an Wochenenden nicht verwendet (unterstützt Aussage geringerer Mobilität an Wochenenden)
-    \item Volumen an Wochentagen für $90 \%$ der AP: $<5$ \textsc{GB} Laptop-Traffic, $<3$ \textsc{GB} Smartphone-Traffic
-    \item Datenkonsum an Wochentagen für $90 \%$ der Geräte: Laptops $<700$ \textsc{MB}, Smartphones $<200$ \textsc{MB}
-    \item Laptops haben $4$ mal höhere durchschnittliche Aktivitätszeiten
-    \item Aktivitätszeiten für $90 \%$ der Geräte: $<3.5$ Std. bei Laptops, $<1$ Std. bei Smartphones
+    
+    \item Volumen an Wochentagen für $90 \%$ der AP:\newline
+    $\boldsymbol{<5}$ \textbf{\textsc{GB}} Laptop-Traffic, $\boldsymbol{<3}$ \textbf{\textsc{GB}} Smartphone-Traffic\newline
+    \item Datenkonsum an Wochentagen für $90 \%$ der Geräte:\newline
+    Laptops $\boldsymbol{<700}$ \textbf{\textsc{MB}}, Smartphones $\boldsymbol{<200}$ \textbf{\textsc{MB}}\newline
+    \item Aktivitätszeiten für $90 \%$ der Geräte:\newline
+    $\boldsymbol{<3.5}$ Std. bei Laptops, $\boldsymbol{<1}$ Std. bei Smartphones
   \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Zeitliche und räumliche Analyse des Datenverkehrs}
+  \frametitle{Phase II: Zeitliche und räumliche Analyse des Datenverkehrs}
   \begin{itemize}
     \item Smartphone-Traffic mehr bursty mit größeren Flows und kleinerer aktiver Dauer
     \item An Wochenenden weniger Geräte, die überdurchschnittlich aktiv sind
@@ -287,12 +295,93 @@ Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
 
 \begin{frame}
   \frametitle{Korrelationen}
+  CFS selektiert $5 / 11$ Mobilitäts- und $11 / 19$ Traffic-Features
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/correlations.png}\newline
+    \caption*{Korrelationen zwischen Mobilitäts- und Traffic-Features (Wochentage oben, Wochendenden unten,
+    Smartphones links, Laptops rechts).}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Analyse verschiedener Modelle}
+  \begin{itemize}
+    \item Kombinierte Modelle mit $\approx 81\%$ genauer als isolierte Modelle (Mobilität $\approx 65 \%$, Datenverkehr $\approx 79 \%$)
+    \item Genauigkeit erhöht sich auf $\approx 86\%$, wenn zwischen Wochendenden und Wochentagen differenziert wird    
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Kombiniertes Modell}
+  \begin{itemize}
+    \item Generierung erster Traces: GMM mit kombinierten Features
+    \item Vergleich der generierten Samples mit Echtdaten
+    \item Datenverkehr-Features der Samples entsprechen den Originaldaten besser als isoliert trainierte GMM
+    \item Keine Verbesserung in Bezug auf die Mobilität
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Zusammenfassung}
+  \begin{itemize}
+    \item Framework FLAMeS zur Analyse bestehender Traces
+    \item Geräteklassifizierung
+    \item Untersuchung der Mobilitäts- und Datenverkehrmetriken (Gerätetypen, Zeit, Ort)
+    \item Signifikante Unterschiede zwischen den Gerätetypen
+    \item Machine Learning --> Kombiniertes Modell --> bildet Unterschiede besser ab als isolierte Modelle
+  \end{itemize}  
+\end{frame}
+
+\begin{frame}
+  \frametitle{Fragestellungen}
+  \begin{itemize}
+    \item Wie unterscheiden sich Mobilitäts- und Datenverkehr- Charakteristiken zwischen den unterschiedlichen Gerätetypen,
+    Zeiten und Orten?\newline
+    \item Wie stehen diese Charakteristiken zueinander in Beziehung?\newline
+    \item Sollten neue Modelle entwickelt werden, die diese Unterschiede berücksichtigen?
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Fazit}
 
   \begin{itemize}
-    \item CFS selektiert $5$ Mobilitäts- und $11$ Traffic-Features
+    \item Bisher existierende Modelle nicht detailliert genug
+    \item Intuitive Idee eines Zusammenhangs bestätigt
+    \item Anstoß für Entwicklung zukünftiger kombinierter Modelle
+    \item Konzeption und Validierung eines konkreten Modells wird zukünftiger Forschung überlassen
+    
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Nutzergruppen}
+
+  \begin{itemize}
+    \item Mobilität und Datenverkehr nicht nur zwischen Gerätetypen unterschiedlich
+    \item Alter und Geschlecht eines Nutzers berücksichtigen
+    \item Kulturellen Kontext aufgezeichneter Daten berücksichtigen
+    
   \end{itemize}
   
 \end{frame}
+
+\begin{frame}
+  \frametitle{Ausblick}
+  
+  \begin{itemize}
+    \item Vorhersagbarkeit menschlicher Mobilität
+    \item Bewegung von \textquote{sit-to-use}-Geräten besser vorhersagbar
+    \item Signifikante Korrelationen zwischen Vorhersagegenauigkeit, Mobilitäts- und Traffic-Features
+    \item Untersuchung der Vorhersagegenauigkeit als Feature in integrierten Modellen
+    \item Realistische Modellierung der Netzwerkaktivität ist aktives Forschungsfeld
+    
+  \end{itemize}
+  
+\end{frame}
+
+
 
 % %------------------------------------------------
 
