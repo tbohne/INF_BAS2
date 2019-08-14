@@ -136,12 +136,12 @@
 %------------------------------------------------
 
 \selectlanguage{ngerman}
-\title[]{Heuristische Lösungsverfahren für Stacking-Probleme mit Transportkosten}
+\title[]{Mobility-Traffic Correlations}
 
 \author{Tim Bohne}
 \institute[]
 {
-\textit{AG Kombinatorische Optimierung}
+\textit{Bachelor-Seminar: Mobility and Traffic in Computer Networks}
 \medskip
 }
 \date{\today}
@@ -165,37 +165,133 @@
 \end{frame}
 
 %------------------------------------------------
-\section{Stacking-Probleme}
+\section{Korrelationen zwischen Mobilität und Datenverkehr}
 %------------------------------------------------
-% \subsection*{}
 
 \begin{frame}
-\frametitle{Stacking-Probleme}
-\begin{itemize}
-\item Im Umfeld von Lagerhallen und Container-Terminals
-\item Eintreffende Items müssen Stacks zugeordnet werden, sodass bestimmte Nebenbedingungen respektiert werden
-\item Storage Area ist in fixierten Stacks organisiert, die eine limitierte gemeinsame Stack Kapazität besitzen
-% \item Item-Zugriff erfolgt nach dem \textquote{Last-In–First-Out}-Prinzip
-\item Es wird nur der Loading-Prozess betrachtet
-\end{itemize}
+\frametitle{Motivation}
+\textit{\textquote{Analyzing Mobility-Traffic Correlations in Large WLAN Traces: Flutes vs. Cellos}}
+\newline\newline\newline
+\textbf{Isolierte Betrachgung}\newline
+Aktuelle Modelle erfassen nicht das Zusammenspiel von Mobilität und Datenverkehr\newline\newline
+\textbf{Veraltete Daten}\newline
+Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
 \begin{figure}
 \centering
 \end{figure}
 \end{frame}
 
 \begin{frame}
-\frametitle{Literatur Überblick}
-
+\frametitle{}
 \begin{itemize}
-  \item \textbf{Kim et al. (2000)}: Deriving decision rules to locate export containers in container yards
-  \item \textbf{Kang et al. (2006)}: Deriving stacking strategies for export containers with uncertain weight information
-  \item \textbf{Delgado et al. (2012)}: A constraint programming model for fast optimal stowage of container vessel bays
-  \item \textbf{Jaehn (2013)}: Positioning of loading units in a transshipment yard storage area
-  \item \textbf{Bruns et al. (2015)}: Complexity results for storage loading problems with stacking constraints
-  \item \textbf{Le et al. (2016)}: MIP-based approaches for robust storage loading problems with stacking constraints
-  % \item \textbf{Caserta et. al. (2012)}: A mathematical formulation and complexity considerations for the blocks relocation problem.
+  \item Datengetriebene Analysen ($30$\textsc{TB} von $300$\textsc{K} Geräten)
+  \item Framework FLAMeS\footnote{\textbf{F}ramework for \textbf{L}arge-scale \textbf{A}nalysis of 
+  \textbf{M}obil\textbf{e} \textbf{S}ocieties.} zur Analyse
 \end{itemize}
+\end{frame}
 
+\begin{frame}
+  \frametitle{Fragestellungen}
+  \begin{itemize}
+    \item Wie unterscheiden sich Mobilitäts- und Datenverkehr- Charakteristiken zwischen den unterschiedlichen Gerätetypen,
+    Zeiten und Orten?\newline
+    \item Wie stehen diese Charakteristiken zueinander in Beziehung?\newline
+    \item Sollten neue Modelle entwickelt werden, die diese Unterschiede berücksichtigen?
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Phase I: Datensammlung \& Preprocessing}
+  \textbf{Quelle 1: WLAN-AP-Logs}
+  \begin{itemize}
+    \item MAC-Adresse
+    \item IP-Adresse
+    \item Verbundener Access Point
+    \item Timestamp
+  \end{itemize}
+  \textbf{Quelle 2: Netflow-Logs}
+  \begin{itemize}
+    \item Transportprotokoll
+    \item Start- und Ziel-IP
+    \item Port
+  \end{itemize}
+  \textbf{Datenbasis}: \textbf{Quelle 1} + \textbf{Quelle 2} (MAC-to-IP-Mapping)
+\end{frame}
+
+\begin{frame}
+  \frametitle{Phase I: Datensammlung \& Preprocessing}
+  \textbf{Heuristik zur Geräteklassifizierung}
+  \begin{itemize}
+    \item Hersteller mittels OUI identifizieren
+    \item Kontakt zu \textit{admob.com} prüfen
+  \end{itemize}
+  \includegraphics[width=0.8\textwidth]{images/MAC_iPhone.png}\newline
+  Wireshark OUI Lookup Tool $\implies$ Apple, Inc.\newline\newline
+  Ergebnis: $86\%$ der Geräte in den AP-Logs und $97\%$ der Netflow-Traces klassifiziert
+\end{frame}
+
+\begin{frame}
+  \frametitle{Phase I: Datensammlung \& Preprocessing}
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/traces.png}
+    \caption*{Kombinierte WLAN-AP- und Netflow-Traces}
+  \end{figure}  
+\end{frame}
+
+\begin{frame}
+  \frametitle{Zeitliche und räumliche Analyse der Mobilität}
+  \begin{itemize}
+    \item Startzeiten von WLAN-Sessions stimmen mit Startzeiten von Vorlesungen überein
+    \item Aktivität von Laptops fällt nach Ende von Vorlesungszeiten, Smartphoneaktivität bleibt länger erhalten
+    \item Wahrscheinlichkeit für neue Sessions am Abend in sozialen Einrichtungen und der Bibliothek höher
+    \item Vorlesungen geben Wochentagen Struktur (z.B. eingeschränkter Bewegungsradius, ...)
+    \item Nach einer initialen Phase findet eine substanzielle Reduktion der Mobilität von Laptops statt
+    \item Smartphones sind \textquote{always-on}-Geräte und somit leichter zu erfassen
+    \item Laptops besitzen längere Aufenthaltszeiten und werden verwendet, wenn Nutzer länger an einem Ort verweilern
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Zeitliche und räumliche Analyse des Datenverkehrs}
+  \begin{itemize}
+    \item Smartphone-Flows mehr als doppelt so groß wie Laptop-Flows ($\approx$ Paketgröße ebenfalls größer)
+    \item Laptops verursachen $\approx 2.7$ mal so viel Traffic ($3.7$ mal so viele Flows)
+    \item An Wochenenden weniger aktive Geräte, aber verbleibende Geräte besonders aktiv
+    \item Smartphones mehr extreme Phasen der Inaktivität (größere Mobilität und Paketverluste)
+    \item Laptop-Flows ($78.5 \%$ TCP), Smartphone-Flows ($98.2 \%$ TCP)
+    \item Durchschnittl. Anzahl von Laptop-Paketen, die täglich von APs verarbeitet werden, ist $1.6$ mal größer als die von Smartphones    
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}
+  \frametitle{Zeitliche und räumliche Analyse des Datenverkehrs}
+  \begin{itemize}
+    \item Großteil der APs an Wochenenden nicht verwendet (unterstützt Aussage geringerer Mobilität an Wochenenden)
+    \item Volumen an Wochentagen für $90 \%$ der AP: $<5$ \textsc{GB} Laptop-Traffic, $<3$ \textsc{GB} Smartphone-Traffic
+    \item Datenkonsum an Wochentagen für $90 \%$ der Geräte: Laptops $<700$ \textsc{MB}, Smartphones $<200$ \textsc{MB}
+    \item Laptops haben $4$ mal höhere durchschnittliche Aktivitätszeiten
+    \item Aktivitätszeiten für $90 \%$ der Geräte: $<3.5$ Std. bei Laptops, $<1$ Std. bei Smartphones
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Zeitliche und räumliche Analyse des Datenverkehrs}
+  \begin{itemize}
+    \item Smartphone-Traffic mehr bursty mit größeren Flows und kleinerer aktiver Dauer
+    \item An Wochenenden weniger Geräte, die überdurchschnittlich aktiv sind
+    \item Smartphones trotz größerer Flows etc. für deutlich weniger Last verantwortlich
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Korrelationen}
+
+  \begin{itemize}
+    \item CFS selektiert $5$ Mobilitäts- und $11$ Traffic-Features
+  \end{itemize}
+  
 \end{frame}
 
 % %------------------------------------------------
