@@ -165,7 +165,7 @@
 \end{frame}
 
 %------------------------------------------------
-\section{Korrelationen zwischen Mobilität und Datenverkehr}
+\section{Motivation}
 %------------------------------------------------
 
 \begin{frame}
@@ -192,6 +192,19 @@ Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
 \end{frame}
 
 \begin{frame}
+  \frametitle{Intuitive Beispiele}
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.55\textwidth]{images/smartphone_walking.png}
+    \includegraphics[width=0.55\textwidth]{images/watching_tv.jpeg}
+  \end{figure}
+\end{frame}
+
+%------------------------------------------------
+\section{FLAMeS-Framework}
+%------------------------------------------------
+
+\begin{frame}
 \frametitle{Analyse realer Netzwerkaktivität}
 \begin{itemize}
   \item Datengetriebene Analysen ($30$\textsc{TB} von $300$\textsc{K} Geräten)
@@ -203,6 +216,10 @@ Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
   \end{figure}  
 \end{itemize}
 \end{frame}
+
+%------------------------------------------------
+\subsection{\textbf{Phase I}: Datensammlung \& Preprocessing}
+%------------------------------------------------
 
 \begin{frame}
   \frametitle{Phase I: Datensammlung \& Preprocessing}
@@ -243,6 +260,10 @@ Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
   \end{figure}  
 \end{frame}
 
+%------------------------------------------------
+\subsection{\textbf{Phase II}: Analyse der erhobenen Daten}
+%------------------------------------------------
+
 \begin{frame}
   \frametitle{Phase II: Zeitliche und räumliche Analyse der Mobilität}
   \begin{itemize}
@@ -268,7 +289,6 @@ Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
     \item Laptops ($\boldsymbol{78.5 \%}$ TCP), Smartphones ($\boldsymbol{98.2 \%}$ TCP)
     \item Großteil der APs an Wochenenden nicht verwendet
   \end{itemize}
-  
 \end{frame}
 
 \begin{frame}
@@ -292,6 +312,10 @@ Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
     \end{itemize}
 \end{frame}
 
+%------------------------------------------------
+\subsection{\textbf{Phase III}: Korrelationen und integrierte Modelle}
+%------------------------------------------------
+
 \begin{frame}
   \frametitle{Exkurs: Feature-Engineering}
 
@@ -305,7 +329,6 @@ Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
     \item \textquote{Person-Correlation}-Methode
   \end{itemize}  
 \end{frame}
-
 
 \begin{frame}
   \frametitle{Phase III: Korrelationen}
@@ -326,7 +349,7 @@ Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
 \end{frame}
 
 \begin{frame}
-  \frametitle{Phase III: Korrelationen}
+  \frametitle{Phase III: Korrelationen zwischen Mobilität und Datenverkehr}
   \begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{images/correlations.png}
@@ -366,6 +389,10 @@ Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
   \end{itemize}  
 \end{frame}
 
+%------------------------------------------------
+\section{Fazit und Ausblick}
+%------------------------------------------------
+
 \begin{frame}
   \frametitle{Weitere Ansätze}
   \textbf{Nutzergruppen}
@@ -396,14 +423,5 @@ Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
     \item Realistische Modellierung der Netzwerkaktivität ist aktives Forschungsfeld
   \end{itemize}  
 \end{frame}
-
-% %------------------------------------------------
-
-% \begin{frame}[c,plain]
-% \centering
-% \Huge{\textcolor{quat}{Danke für eure Aufmerksamkeit!\\[1cm] Fragen?}}
-% \end{frame}
-
-% %------------------------------------------------
 
 \end{document}
