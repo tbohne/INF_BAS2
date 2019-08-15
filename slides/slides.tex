@@ -273,47 +273,66 @@ Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
 
 \begin{frame}
   \frametitle{Phase II: Zeitliche und räumliche Analyse des Datenverkehrs}
-  \begin{itemize}
-    
-    \item Volumen an Wochentagen für $90 \%$ der AP:\newline
-    $\boldsymbol{<5}$ \textbf{\textsc{GB}} Laptop-Traffic, $\boldsymbol{<3}$ \textbf{\textsc{GB}} Smartphone-Traffic\newline
-    \item Datenkonsum an Wochentagen für $90 \%$ der Geräte:\newline
-    Laptops $\boldsymbol{<700}$ \textbf{\textsc{MB}}, Smartphones $\boldsymbol{<200}$ \textbf{\textsc{MB}}\newline
-    \item Aktivitätszeiten für $90 \%$ der Geräte:\newline
-    $\boldsymbol{<3.5}$ Std. bei Laptops, $\boldsymbol{<1}$ Std. bei Smartphones
-  \end{itemize}
+
+  \begin{figure}[H]
+    \centering
+    \resizebox{0.6\textwidth}{!}{
+    \begin{tabular}{|c|c|c|}
+      \cline{1-3}
+       & Laptops & Smartphones \\ \cline{1-3}
+      AP Volumen (\textbf{\textsc{GB}}) & $\boldsymbol{<5}$ & $\boldsymbol{<3}$ \\ \cline{1-3}
+      Datenkonsum (\textbf{\textsc{MB}}) & $\boldsymbol{<700}$ & $\boldsymbol{<200}$ \\ \cline{1-3}
+      Aktivitätszeit (\textbf{Std.}) & $\boldsymbol{<3.5}$ & $\boldsymbol{<1}$ \\ \cline{1-3}
+    \end{tabular}}
+    \end{figure}
+
+    \begin{itemize}
+      \item Smartphone-Traffic bursty mit größeren Flows und kleinerer aktiver Dauer
+      \item Smartphones insgesamt für deutlich weniger Last verantwortlich
+    \end{itemize}
+
 \end{frame}
 
 \begin{frame}
-  \frametitle{Phase II: Zeitliche und räumliche Analyse des Datenverkehrs}
-  \begin{itemize}
-    \item Smartphone-Traffic mehr bursty mit größeren Flows und kleinerer aktiver Dauer
-    \item An Wochenenden weniger Geräte, die überdurchschnittlich aktiv sind
-    \item Smartphones trotz größerer Flows etc. für deutlich weniger Last verantwortlich
-  \end{itemize}
+  \frametitle{Phase III: Korrelationen}
+  CFS selektiert $5 / 8$ Mobilitäts- und $11 / 19$ Traffic-Features
+
+  \begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.4\textwidth}
+      \includegraphics[width=1.2\textwidth]{images/mobility_correlations.png}
+      \caption*{Mobilität}
+    \end{subfigure}
+    \hspace{10px}
+    \begin{subfigure}[b]{0.4\textwidth}
+      \includegraphics[width=1.2\textwidth]{images/traffic_correlations.png}  
+      \caption*{Traffic}
+    \end{subfigure}    
+  \end{figure}  
 \end{frame}
 
 \begin{frame}
-  \frametitle{Korrelationen}
-  CFS selektiert $5 / 11$ Mobilitäts- und $11 / 19$ Traffic-Features
+  \frametitle{Phase III: Korrelationen}
   \begin{figure}
     \centering
-    \includegraphics[width=0.8\textwidth]{images/correlations.png}\newline
+    \includegraphics[width=0.8\textwidth]{images/correlations.png}
     \caption*{Korrelationen zwischen Mobilitäts- und Traffic-Features (Wochentage oben, Wochendenden unten,
     Smartphones links, Laptops rechts).}
   \end{figure}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Analyse verschiedener Modelle}
+  \frametitle{Phase III: Analyse verschiedener Modelle}
+  \textbf{Unterschiede der Mobilitäts- und Traffic-Charakteristiken zwischen den Gerätetypen signifikant?}
   \begin{itemize}
-    \item Kombinierte Modelle mit $\approx 81\%$ genauer als isolierte Modelle (Mobilität $\approx 65 \%$, Datenverkehr $\approx 79 \%$)
+    \item SVM: Kombinierte Modelle mit $\approx 81\%$ genauer als isolierte Modelle (Mobilität $\approx 65 \%$, Datenverkehr $\approx 79 \%$)
     \item Genauigkeit erhöht sich auf $\approx 86\%$, wenn zwischen Wochendenden und Wochentagen differenziert wird    
+    \item $k$-Means-Clustering: Kombinierte Features $\approx81.5 \%$ (Mobilität $\approx 60 \%$, Traffic $\approx 81.2 \%$)
   \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Kombiniertes Modell}
+  \frametitle{Phase III: Kombiniertes Modell}
   \begin{itemize}
     \item Generierung erster Traces: GMM mit kombinierten Features
     \item Vergleich der generierten Samples mit Echtdaten
