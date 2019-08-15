@@ -206,19 +206,19 @@ Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
 
 \begin{frame}
   \frametitle{Phase I: Datensammlung \& Preprocessing}
-  \textbf{Quelle 1: WLAN-AP-Logs}
-  \begin{itemize}
-    \item MAC-Adresse
-    \item IP-Adresse
-    \item Verbundener Access Point
-    \item Timestamp
-  \end{itemize}
-  \textbf{Quelle 2: Netflow-Logs}
-  \begin{itemize}
-    \item Transportprotokoll
-    \item Start- und Ziel-IP
-    \item Port
-  \end{itemize}
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{images/AP_entry.png}
+    \caption*{Quelle 1: WLAN-AP-Logs}
+  \end{figure}
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{images/netflow_entry.png}
+    \caption*{Quelle 2: Netflow-Logs}
+  \end{figure}
+  
   \textbf{Datenbasis}: \textbf{Quelle 1} + \textbf{Quelle 2} (MAC-to-IP-Mapping)
 \end{frame}
 
@@ -290,8 +290,22 @@ Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
       \item Smartphone-Traffic bursty mit größeren Flows und kleinerer aktiver Dauer
       \item Smartphones insgesamt für deutlich weniger Last verantwortlich
     \end{itemize}
-
 \end{frame}
+
+\begin{frame}
+  \frametitle{Exkurs: Feature-Engineering}
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{images/feature_engineering.png}
+  \end{figure}
+
+  \begin{itemize}
+    \item Correlation Feature Selection (CFS)
+    \item \textquote{Person-Correlation}-Methode
+  \end{itemize}  
+\end{frame}
+
 
 \begin{frame}
   \frametitle{Phase III: Korrelationen}
@@ -353,54 +367,35 @@ Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
 \end{frame}
 
 \begin{frame}
-  \frametitle{Fragestellungen}
+  \frametitle{Weitere Ansätze}
+  \textbf{Nutzergruppen}
   \begin{itemize}
-    \item Wie unterscheiden sich Mobilitäts- und Datenverkehr- Charakteristiken zwischen den unterschiedlichen Gerätetypen,
-    Zeiten und Orten?\newline
-    \item Wie stehen diese Charakteristiken zueinander in Beziehung?\newline
-    \item Sollten neue Modelle entwickelt werden, die diese Unterschiede berücksichtigen?
-\end{itemize}
+    \item Mobilität und Datenverkehr nicht nur zwischen Gerätetypen unterschiedlich
+    \item Alter und Geschlecht eines Nutzers berücksichtigen
+    \item Kulturellen Kontext aufgezeichneter Daten berücksichtigen    
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{Fazit}
-
   \begin{itemize}
     \item Bisher existierende Modelle nicht detailliert genug
     \item Intuitive Idee eines Zusammenhangs bestätigt
     \item Anstoß für Entwicklung zukünftiger kombinierter Modelle
-    \item Konzeption und Validierung eines konkreten Modells wird zukünftiger Forschung überlassen
-    
+    \item Konzeption und Validierung eines konkreten Modells wird zukünftiger Forschung überlassen    
   \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Nutzergruppen}
-
-  \begin{itemize}
-    \item Mobilität und Datenverkehr nicht nur zwischen Gerätetypen unterschiedlich
-    \item Alter und Geschlecht eines Nutzers berücksichtigen
-    \item Kulturellen Kontext aufgezeichneter Daten berücksichtigen
-    
-  \end{itemize}
-  
 \end{frame}
 
 \begin{frame}
   \frametitle{Ausblick}
-  
   \begin{itemize}
     \item Vorhersagbarkeit menschlicher Mobilität
     \item Bewegung von \textquote{sit-to-use}-Geräten besser vorhersagbar
     \item Signifikante Korrelationen zwischen Vorhersagegenauigkeit, Mobilitäts- und Traffic-Features
     \item Untersuchung der Vorhersagegenauigkeit als Feature in integrierten Modellen
     \item Realistische Modellierung der Netzwerkaktivität ist aktives Forschungsfeld
-    
-  \end{itemize}
-  
+  \end{itemize}  
 \end{frame}
-
-
 
 % %------------------------------------------------
 
