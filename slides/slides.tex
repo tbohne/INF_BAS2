@@ -227,16 +227,24 @@ Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
   \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{images/AP_entry.png}
-    \caption*{Quelle 1: WLAN-AP-Logs}
+    \caption*{\textbf{Quelle 1}: WLAN-AP-Logs}
   \end{figure}
 
   \begin{figure}
     \centering
-    \includegraphics[width=1\textwidth]{images/netflow_entry.png}
-    \caption*{Quelle 2: Netflow-Logs}
+    \includegraphics[width=0.8\textwidth]{images/netflow_entry_p1.png}
+    \includegraphics[width=0.8\textwidth]{images/netflow_entry_p2.png}
+    \caption*{\textbf{Quelle 2}: Netflow-Logs}
   \end{figure}
   
-  \textbf{Datenbasis}: \textbf{Quelle 1} + \textbf{Quelle 2} (MAC-to-IP-Mapping)
+  \textbf{Datenbasis}:
+  
+  \begin{itemize}
+    \item \textbf{Quelle 1} + \textbf{Quelle 2} (DHCP MAC-to-IP-Mapping)
+    \item Zusätzl. Informationen durch rDNS
+    
+  \end{itemize}
+      
 \end{frame}
 
 \begin{frame}
@@ -248,7 +256,7 @@ Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
   \end{itemize}
   \includegraphics[width=0.8\textwidth]{images/MAC_iPhone.png}\newline
   Wireshark OUI Lookup Tool $\implies$ Apple, Inc.\newline\newline
-  Ergebnis: $86\%$ der Geräte in den AP-Logs und $97\%$ der Netflow-Traces klassifiziert
+  \textbf{Ergebnis}: $86\%$ der Geräte in den AP-Logs und $97\%$ der Netflow-Traces klassifiziert
 \end{frame}
 
 \begin{frame}
@@ -281,9 +289,9 @@ Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
   \frametitle{Phase II: Zeitliche und räumliche Analyse des Datenverkehrs}
   \begin{itemize}
     \item Smartphone-Flows und Pakete größer
-    \item Laptops verursachen $\boldsymbol{\o \thinspace 3.7}$ mal so viele Flows\newline
-    \phantom \quad\quad\quad\quad\quad\quad\quad\quad\thinspace\thinspace\thinspace\thinspace\thinspace $\boldsymbol{\o \thinspace 1.6}$ mal mehr Pakete\newline
-    \phantom \quad\quad\quad\quad\quad\quad\thinspace\thinspace $\implies \boldsymbol{\o \thinspace 2.7}$ mal so viel Traffic
+    \item Laptops verursachen $\boldsymbol{\o \thinspace 3.7}$ (\#Smartphone-Flows)\newline
+    \phantom \quad\quad\quad\quad\quad\quad\quad\quad\thinspace\thinspace\thinspace\thinspace\thinspace $\boldsymbol{\o \thinspace 1.6}$ (\#Smartphone-Pakete)\newline
+    \phantom \quad\quad\quad\quad\quad\quad\thinspace\thinspace $\implies \boldsymbol{\o \thinspace 2.7}$ (Smartphone-Traffic)
     \item Wochenenden: Verbleibende Geräte besonders aktiv
     \item Smartphones mehr extreme Phasen der Inaktivität
     \item Laptops ($\boldsymbol{78.5 \%}$ TCP), Smartphones ($\boldsymbol{98.2 \%}$ TCP)
@@ -296,7 +304,7 @@ Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
 
   \begin{figure}[H]
     \centering
-    \resizebox{0.6\textwidth}{!}{
+    \resizebox{0.75\textwidth}{!}{
     \begin{tabular}{|c|c|c|}
       \cline{1-3}
        & Laptops & Smartphones \\ \cline{1-3}
@@ -306,9 +314,11 @@ Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
     \end{tabular}}
     \end{figure}
 
+    \underline{Smartphones:}
     \begin{itemize}
-      \item Smartphone-Traffic bursty mit größeren Flows und kleinerer aktiver Dauer
-      \item Smartphones insgesamt für deutlich weniger Last verantwortlich
+      \item Bursty Traffic mit größeren Flows und kleinerer aktiver Dauer
+      \item Für insgesamt deutlich weniger Last verantwortlich
+      \item Besitzen hohe Scores bei Mobilitätsmetriken
     \end{itemize}
 \end{frame}
 
@@ -326,24 +336,24 @@ Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
 
   \begin{itemize}
     \item Correlation Feature Selection (CFS)
-    \item \textquote{Person-Correlation}-Methode
+    \item \textquote{Pearson-Correlation}-Methode $[-1, 1]$
   \end{itemize}  
 \end{frame}
 
 \begin{frame}
-  \frametitle{Phase III: Korrelationen}
-  CFS selektiert $5 / 8$ Mobilitäts- und $11 / 19$ Traffic-Features
+  \frametitle{Phase III: Isolierte Korrelationen}
+  CFS selektiert $\boldsymbol{5 / 8}$ Mobilitäts- und $\boldsymbol{11 / 19}$ Traffic-Features
 
   \begin{figure}[H]
     \centering
     \begin{subfigure}[b]{0.4\textwidth}
       \includegraphics[width=1.2\textwidth]{images/mobility_correlations.png}
-      \caption*{Mobilität}
+      \caption*{\textbf{Mobilität}}
     \end{subfigure}
     \hspace{10px}
     \begin{subfigure}[b]{0.4\textwidth}
       \includegraphics[width=1.2\textwidth]{images/traffic_correlations.png}  
-      \caption*{Traffic}
+      \caption*{\textbf{Traffic}}
     \end{subfigure}    
   \end{figure}  
 \end{frame}
@@ -352,9 +362,8 @@ Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
   \frametitle{Phase III: Korrelationen zwischen Mobilität und Datenverkehr}
   \begin{figure}
     \centering
-    \includegraphics[width=0.8\textwidth]{images/correlations.png}
-    \caption*{Korrelationen zwischen Mobilitäts- und Traffic-Features (Wochentage oben, Wochendenden unten,
-    Smartphones links, Laptops rechts).}
+    \includegraphics[width=\textwidth]{images/correlations.png}
+    \caption*{Korrelationen zwischen Mobilitäts- und Traffic-Features.}
   \end{figure}
 \end{frame}
 
