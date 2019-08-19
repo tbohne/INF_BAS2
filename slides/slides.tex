@@ -169,16 +169,13 @@
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{Motivation}
-\textit{\textquote{Analyzing Mobility-Traffic Correlations in Large WLAN Traces: Flutes vs. Cellos}}
-\newline\newline\newline
-\textbf{Isolierte Betrachtung}\newline
-Aktuelle Modelle erfassen nicht das Zusammenspiel von Mobilität und Datenverkehr\newline\newline
-\textbf{Veraltete Daten}\newline
-Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
-\begin{figure}
-\centering
-\end{figure}
+  \frametitle{Motivation}
+  \textit{\textquote{Analyzing Mobility-Traffic Correlations in Large WLAN Traces: Flutes vs. Cellos}}
+  \newline\newline
+  \textbf{Isolierte Betrachtung}\newline
+  Aktuelle Modelle erfassen nicht das Zusammenspiel von Mobilität und Datenverkehr\newline\newline
+  \textbf{Veraltete Daten}\newline
+  Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
 \end{frame}
 
 \begin{frame}
@@ -205,16 +202,14 @@ Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{Analyse realer Netzwerkaktivität}
-\begin{itemize}
-  \item Datengetriebene Analysen ($30$\textsc{TB} von $300$\textsc{K} Geräten)
-  \item Framework FLAMeS\footnote{\textbf{F}ramework for \textbf{L}arge-scale \textbf{A}nalysis of 
-  \textbf{M}obil\textbf{e} \textbf{S}ocieties.} zur Analyse
+\frametitle{FLAMeS-Framework: Analyse realer Netzwerkaktivität}
+  \centering
+  Datengetriebene Analysen ($30$\textsc{TB} von $300$\textsc{K} Geräten)
   \begin{figure}
     \centering
-    \includegraphics[width=0.6\textwidth]{images/FLAMeS.png}\newline  
+    \includegraphics[width=0.7\textwidth]{images/FLAMeS.png}
+    \caption*{\textbf{F}ramework for \textbf{L}arge-scale \textbf{A}nalysis of \textbf{M}obil\textbf{e} \textbf{S}ocieties}
   \end{figure}  
-\end{itemize}
 \end{frame}
 
 %------------------------------------------------
@@ -223,25 +218,37 @@ Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
 
 \begin{frame}
   \frametitle{Phase I: Datensammlung \& Preprocessing}
-
   \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{images/AP_entry.png}
-    \caption*{\textbf{Quelle 1}: WLAN-AP-Logs}
-  \end{figure}
+    \includegraphics[width=\textwidth]{images/phase1.png}
+    \caption*{\textbf{Phase I}}
+  \end{figure}  
+\end{frame}
 
-  \begin{figure}
+\begin{frame}
+  \frametitle{Phase I: Datensammlung \& Preprocessing}
+
+  \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/netflow_entry_p1.png}
-    \includegraphics[width=0.8\textwidth]{images/netflow_entry_p2.png}
-    \caption*{\textbf{Quelle 2}: Netflow-Logs}
+    \begin{subfigure}[b]{\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/AP_entry.png}
+      \caption*{\textbf{Quelle 1}: WLAN-AP-Logs}
+    \end{subfigure}
+
+    \begin{subfigure}[b]{\textwidth}
+      \centering
+      \includegraphics[width=0.8\textwidth]{images/netflow_entry_p1.png}
+      \includegraphics[width=0.8\textwidth]{images/netflow_entry_p2.png}
+      \caption*{\textbf{Quelle 2}: NetFlow-Logs}
+    \end{subfigure}
   \end{figure}
   
   \textbf{Datenbasis}:
   
   \begin{itemize}
     \item \textbf{Quelle 1} + \textbf{Quelle 2} (DHCP MAC-to-IP-Mapping)
-    \item Zusätzl. Informationen durch rDNS
+    \item Externe Informationen z.B. durch rDNS und OUI
     
   \end{itemize}
       
@@ -263,7 +270,7 @@ Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
   \frametitle{Phase I: Datensammlung \& Preprocessing}
   \begin{figure}
     \centering
-    \includegraphics[width=0.8\textwidth]{images/traces.png}
+    \includegraphics[width=0.9\textwidth]{images/traces.png}
     \caption*{Kombinierte WLAN-AP- und Netflow-Traces}
   \end{figure}  
 \end{frame}
@@ -271,6 +278,15 @@ Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
 %------------------------------------------------
 \subsection{\textbf{Phase II}: Analyse der erhobenen Daten}
 %------------------------------------------------
+
+\begin{frame}
+  \frametitle{Phase II: Analyse der erhobenen Daten}
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/phase2.png}
+    \caption*{\textbf{Phase II}}
+  \end{figure}  
+\end{frame}
 
 \begin{frame}
   \frametitle{Phase II: Zeitliche und räumliche Analyse der Mobilität}
@@ -327,6 +343,15 @@ Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
 %------------------------------------------------
 
 \begin{frame}
+  \frametitle{Phase III: Korrelationen und integrierte Modelle}
+  \begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{images/phase3.png}
+    \caption*{\textbf{Phase III}}
+  \end{figure}  
+\end{frame}
+
+\begin{frame}
   \frametitle{Exkurs: Feature-Engineering}
 
   \begin{figure}
@@ -346,13 +371,14 @@ Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
 
   \begin{figure}[H]
     \centering
-    \begin{subfigure}[b]{0.4\textwidth}
+    \hspace{-3cm}
+    \begin{subfigure}[b]{0.45\textwidth}
       \includegraphics[width=1.2\textwidth]{images/mobility_correlations.png}
       \caption*{\textbf{Mobilität}}
     \end{subfigure}
-    \hspace{10px}
-    \begin{subfigure}[b]{0.4\textwidth}
-      \includegraphics[width=1.2\textwidth]{images/traffic_correlations.png}  
+    \hspace{3px}
+    \begin{subfigure}[b]{0.45\textwidth}
+      \includegraphics[width=1.5\textwidth]{images/traffic_correlations.png}  
       \caption*{\textbf{Traffic}}
     \end{subfigure}    
   \end{figure}  
@@ -363,17 +389,17 @@ Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
   \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{images/correlations.png}
-    \caption*{Korrelationen zwischen Mobilitäts- und Traffic-Features.}
+    \caption*{Korrelationen zwischen Mobilitäts- und Traffic-Features}
   \end{figure}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Phase III: Analyse verschiedener Modelle}
-  \textbf{Unterschiede der Mobilitäts- und Traffic-Charakteristiken zwischen den Gerätetypen signifikant?}
+  \frametitle{Phase III: Signifikanz der Unterschiede}
+  \textbf{Unterschiede der Mobilitäts- und Traffic-Charakteristiken zwischen den Gerätetypen signifikant?}\newline
   \begin{itemize}
-    \item SVM: Kombinierte Modelle mit $\approx 81\%$ genauer als isolierte Modelle (Mobilität $\approx 65 \%$, Datenverkehr $\approx 79 \%$)
-    \item Genauigkeit erhöht sich auf $\approx 86\%$, wenn zwischen Wochendenden und Wochentagen differenziert wird    
-    \item $k$-Means-Clustering: Kombinierte Features $\approx81.5 \%$ (Mobilität $\approx 60 \%$, Traffic $\approx 81.2 \%$)
+    \item \textbf{Supervised Classification}:\newline Kombinierte Modelle mit $\approx \boldsymbol{81\%}$ genauer als isolierte Modelle (Mobilität $\approx \boldsymbol{65 \%}$, Datenverkehr $\approx \boldsymbol{79 \%}$)
+    \item Genauigkeit erhöht sich auf $\approx \boldsymbol{86\%}$, wenn zwischen Wochendenden und Wochentagen differenziert wird    
+    \item \textbf{Unsupervised-Clustering}:\newline Kombiniert $\approx\boldsymbol{81.5 \%}$ (Mobilität $\approx \boldsymbol{60 \%}$, Traffic $\approx \boldsymbol{81.2 \%}$)
   \end{itemize}
 \end{frame}
 
@@ -394,7 +420,7 @@ Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
     \item Geräteklassifizierung
     \item Untersuchung der Mobilitäts- und Datenverkehrmetriken (Gerätetypen, Zeit, Ort)
     \item Signifikante Unterschiede zwischen den Gerätetypen
-    \item Machine Learning --> Kombiniertes Modell --> bildet Unterschiede besser ab als isolierte Modelle
+    \item Kombiniertes Modell bildet Unterschiede besser ab als isolierte Modelle
   \end{itemize}  
 \end{frame}
 
@@ -403,7 +429,7 @@ Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
 %------------------------------------------------
 
 \begin{frame}
-  \frametitle{Weitere Ansätze}
+  \frametitle{Erweiterung}
   \textbf{Nutzergruppen}
   \begin{itemize}
     \item Mobilität und Datenverkehr nicht nur zwischen Gerätetypen unterschiedlich
@@ -418,7 +444,7 @@ Trace-basierte Modelle verwenden i.d.R. Datensätze aus der Prä-Smartphone-Ära
     \item Bisher existierende Modelle nicht detailliert genug
     \item Intuitive Idee eines Zusammenhangs bestätigt
     \item Anstoß für Entwicklung zukünftiger kombinierter Modelle
-    \item Konzeption und Validierung eines konkreten Modells wird zukünftiger Forschung überlassen    
+    \item Konzeption und Validierung konkreter Modelle wird zukünftiger Forschung überlassen    
   \end{itemize}
 \end{frame}
 
