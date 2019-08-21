@@ -165,7 +165,7 @@
 \end{frame}
 
 %------------------------------------------------
-\section{Motivation}
+\section{Motivation / Fragestellungen}
 %------------------------------------------------
 
 \begin{frame}
@@ -181,7 +181,7 @@
 \begin{frame}
   \frametitle{Fragestellungen}
   \begin{itemize}
-    \item Wie unterscheiden sich Mobilitäts- und Datenverkehr- Charakteristiken zwischen den unterschiedlichen Gerätetypen,
+    \item Wie unterscheiden sich Mobilitäts- und Datenverkehr- Charakteristiken zwischen unterschiedlichen Gerätetypen,
     Zeiten und Orten?\newline
     \item Wie stehen diese Charakteristiken zueinander in Beziehung?\newline
     \item Sollten neue Modelle entwickelt werden, die diese Unterschiede berücksichtigen?
@@ -247,8 +247,8 @@
   \textbf{Datenbasis}:
   
   \begin{itemize}
-    \item \textbf{Quelle 1} + \textbf{Quelle 2} (DHCP MAC-to-IP-Mapping)
-    \item Externe Informationen z.B. durch rDNS und OUI
+    \item \textbf{Quelle 1} + \textbf{Quelle 2} (\textit{DHCP} \textit{MAC}-to-\textit{IP}-Mapping)
+    \item Externe Informationen z.B. durch \textit{rDNS} und \textit{OUI}
     
   \end{itemize}
       
@@ -258,12 +258,12 @@
   \frametitle{Phase I: Datensammlung \& Preprocessing}
   \textbf{Heuristik zur Geräteklassifizierung}
   \begin{itemize}
-    \item Hersteller mittels OUI identifizieren
+    \item Hersteller mittels \textit{OUI} identifizieren
     \item Kontakt zu \textit{admob.com} prüfen
   \end{itemize}
   \includegraphics[width=0.8\textwidth]{images/MAC_iPhone.png}\newline
-  Wireshark OUI Lookup Tool $\implies$ Apple, Inc.\newline\newline
-  \textbf{Ergebnis}: $86\%$ der Geräte in den AP-Logs und $97\%$ der Netflow-Traces klassifiziert
+  Wireshark \textit{OUI} Lookup Tool $\implies$ Apple, Inc.\newline\newline
+  \textbf{Ergebnis}: $86\%$ der Geräte in den AP-Logs und $97\%$ der NetFlow-Traces klassifiziert
 \end{frame}
 
 \begin{frame}
@@ -271,7 +271,7 @@
   \begin{figure}
     \centering
     \includegraphics[width=0.9\textwidth]{images/traces.png}
-    \caption*{Kombinierte WLAN-AP- und Netflow-Traces}
+    \caption*{Kombinierte WLAN-AP- und NetFlow-Traces}
   \end{figure}  
 \end{frame}
 
@@ -310,7 +310,7 @@
     \phantom \quad\quad\quad\quad\quad\quad\thinspace\thinspace $\implies \boldsymbol{\o \thinspace 2.7}$ (Smartphone-Traffic)
     \item Wochenenden: Verbleibende Geräte besonders aktiv
     \item Smartphones mehr extreme Phasen der Inaktivität
-    \item Laptops ($\boldsymbol{78.5 \%}$ TCP), Smartphones ($\boldsymbol{98.2 \%}$ TCP)
+    \item Laptops ($\boldsymbol{78.5 \%}$ \textit{TCP}), Smartphones ($\boldsymbol{98.2 \%}$ \textit{TCP})
     \item Großteil der APs an Wochenenden nicht verwendet
   \end{itemize}
 \end{frame}
@@ -360,14 +360,14 @@
   \end{figure}
 
   \begin{itemize}
-    \item Correlation Feature Selection (CFS)
+    \item Correlation Feature Selection (\textsc{CFS})
     \item \textquote{Pearson-Correlation}-Methode $[-1, 1]$
   \end{itemize}  
 \end{frame}
 
 \begin{frame}
   \frametitle{Phase III: Isolierte Korrelationen}
-  CFS selektiert $\boldsymbol{5 / 8}$ Mobilitäts- und $\boldsymbol{11 / 19}$ Traffic-Features
+  \textsc{CFS} selektiert $\boldsymbol{5 / 8}$ Mobilitäts- und $\boldsymbol{11 / 19}$ Traffic-Features
 
   \begin{figure}[H]
     \centering
@@ -397,16 +397,16 @@
   \frametitle{Phase III: Signifikanz der Unterschiede / Kombinierte Features}
   \textbf{Unterschiede der Mobilitäts- und Traffic-Charakteristiken zwischen den Gerätetypen signifikant?}\newline
   \begin{itemize}
-    \item \textbf{Supervised Classification (SVM)}:\newline Kombinierte Modelle mit $\approx \boldsymbol{81\%}$ genauer als isolierte Modelle (Mobilität $\approx \boldsymbol{65 \%}$, Datenverkehr $\approx \boldsymbol{79 \%}$)
-    \item Genauigkeit erhöht sich auf $\approx \boldsymbol{86\%}$, wenn zwischen Wochenenden und Wochentagen differenziert wird    
-    \item \textbf{Unsupervised Clustering (k-Means)}:\newline Kombiniert $\approx\boldsymbol{81.5 \%}$ (Mobilität $\approx \boldsymbol{60 \%}$, Traffic $\approx \boldsymbol{81.2 \%}$)
+    \item \textbf{Supervised Classification (SVM)}:\newline Kombiniert $\approx \boldsymbol{81\%}$ (Mobilität $\approx \boldsymbol{65 \%}$, Traffic $\approx \boldsymbol{79 \%}$)
+    \item Genauigkeit erhöht sich auf $\approx \boldsymbol{86\%}$, wenn zwischen Wochenenden und Wochentagen differenziert wird\newline
+    \item \textbf{Unsupervised Clustering ($k$-Means)}:\newline Kombiniert $\approx\boldsymbol{81.5 \%}$ (Mobilität $\approx \boldsymbol{60 \%}$, Traffic $\approx \boldsymbol{81.2 \%}$)
   \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Phase III: Kombiniertes Modell}
+  \frametitle{Phase III: Kombinierte Modelle}
   \begin{itemize}
-    \item Generierung erster Traces: GMM mit kombinierten Features
+    \item Generierung erster Traces: \textsc{GMM} mit kombinierten Features
     \item Vergleich der generierten Samples mit Echtdaten
     \item Samples bilden Verhalten beider Gerätetypen ab
   \end{itemize}
@@ -419,14 +419,14 @@
 \end{frame}
 
 %------------------------------------------------
-\section{Fazit und Ausblick}
+\section{Fazit / Ausblick}
 %------------------------------------------------
 
 \begin{frame}
   \frametitle{Zusammenfassung / Fazit}
   \begin{itemize}
     \item Signifikante Unterschiede zwischen den Gerätetypen
-    \item Korrelationen zwischen Dimensionen gezeigt
+    \item Korrelationen zwischen beiden Dimensionen
     \item Kombinierte Modelle potenziell realistischer
     \item Bisher existierende Modelle nicht detailliert genug
     \item Anstoß für Entwicklung zukünftiger kombinierter Modelle
@@ -446,6 +446,7 @@
 
 \begin{frame}
   \frametitle{Ausblick}
+  \textit{\textquote{Practical Prediction of Human Movements Across Device Types and Spatiotemporal Granularities}}\newline
   \begin{itemize}
     \item Vorhersagbarkeit menschlicher Mobilität
     \item Bewegung von \textquote{sit-to-use}-Geräten besser vorhersagbar
