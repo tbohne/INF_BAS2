@@ -170,7 +170,7 @@
 
 \begin{frame}
   \frametitle{Motivation}
-  \textit{\textquote{Analyzing Mobility-Traffic Correlations in Large WLAN Traces: Flutes vs. Cellos}}
+  \textit{\textquote{Analyzing Mobility-Traffic Correlations in Large WLAN Traces: Flutes vs. Cellos}} \cite{Alipour2018}
   \newline\newline
   \textbf{Isolierte Betrachtung}\newline
   Aktuelle Modelle erfassen nicht das Zusammenspiel von Mobilität und Datenverkehr\newline\newline
@@ -189,7 +189,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Intuitive Beispiele}
+  \frametitle{Intuitive Beispiele \cite{PI}}
   \begin{figure}
     \centering
     \includegraphics[width=0.55\textwidth]{images/smartphone_walking.png}
@@ -208,7 +208,8 @@
   \begin{figure}
     \centering
     \includegraphics[width=0.7\textwidth]{images/FLAMeS.png}
-    \caption*{\textbf{F}ramework for \textbf{L}arge-scale \textbf{A}nalysis of \textbf{M}obil\textbf{e} \textbf{S}ocieties}
+    \caption*{\textbf{F}ramework for \textbf{L}arge-scale \textbf{A}nalysis of \textbf{M}obil\textbf{e} \textbf{S}ocieties
+    \cite{Alipour2018}}
   \end{figure}  
 \end{frame}
 
@@ -221,7 +222,7 @@
   \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{images/phase1.png}
-    \caption*{\textbf{Phase I}}
+    \caption*{\textbf{Phase I} \cite{Alipour2018}}
   \end{figure}  
 \end{frame}
 
@@ -233,14 +234,14 @@
     \begin{subfigure}[b]{\textwidth}
       \centering
       \includegraphics[width=\textwidth]{images/AP_entry.png}
-      \caption*{\textbf{Quelle 1}: WLAN-AP-Logs}
+      \caption*{\textbf{Quelle 1}: WLAN-AP-Logs \cite{Alipour2018}}
     \end{subfigure}
 
     \begin{subfigure}[b]{\textwidth}
       \centering
       \includegraphics[width=0.8\textwidth]{images/netflow_entry_p1.png}
       \includegraphics[width=0.8\textwidth]{images/netflow_entry_p2.png}
-      \caption*{\textbf{Quelle 2}: NetFlow-Logs}
+      \caption*{\textbf{Quelle 2}: NetFlow-Logs \cite{Alipour2018}}
     \end{subfigure}
   \end{figure}
   
@@ -271,7 +272,7 @@
   \begin{figure}
     \centering
     \includegraphics[width=0.9\textwidth]{images/traces.png}
-    \caption*{Kombinierte WLAN-AP- und NetFlow-Traces}
+    \caption*{Kombinierte WLAN-AP- und NetFlow-Traces \cite{Alipour2018}}
   \end{figure}  
 \end{frame}
 
@@ -284,7 +285,7 @@
   \begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{images/phase2.png}
-    \caption*{\textbf{Phase II}}
+    \caption*{\textbf{Phase II} \cite{Alipour2018}}
   \end{figure}  
 \end{frame}
 
@@ -347,7 +348,7 @@
   \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{images/phase3.png}
-    \caption*{\textbf{Phase III}}
+    \caption*{\textbf{Phase III} \cite{Alipour2018}}
   \end{figure}  
 \end{frame}
 
@@ -357,6 +358,7 @@
   \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{images/feature_engineering.png}
+    \caption*{Feature-Selection Beispiel \cite{Medium2019}}
   \end{figure}
 
   \begin{itemize}
@@ -374,12 +376,12 @@
     \hspace{-3cm}
     \begin{subfigure}[b]{0.45\textwidth}
       \includegraphics[width=1.2\textwidth]{images/mobility_correlations.png}
-      \caption*{\textbf{Mobilität}}
+      \caption*{\textbf{\quad\quad\quad Mobilität} \cite{Alipour2018}}
     \end{subfigure}
     \hspace{3px}
     \begin{subfigure}[b]{0.45\textwidth}
       \includegraphics[width=1.5\textwidth]{images/traffic_correlations.png}  
-      \caption*{\textbf{Traffic}}
+      \caption*{\textbf{\quad\quad\quad\quad\quad Traffic} \cite{Alipour2018}}
     \end{subfigure}    
   \end{figure}  
 \end{frame}
@@ -389,7 +391,7 @@
   \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{images/correlations.png}
-    \caption*{Korrelationen zwischen Mobilitäts- und Traffic-Features}
+    \caption*{Korrelationen zwischen Mobilitäts- und Traffic-Features \cite{Alipour2018}}
   \end{figure}
 \end{frame}
 
@@ -446,7 +448,7 @@
 
 \begin{frame}
   \frametitle{Ausblick}
-  \textit{\textquote{Practical Prediction of Human Movements Across Device Types and Spatiotemporal Granularities}}\newline
+  \textit{\textquote{Practical Prediction of Human Movements Across Device Types and Spatiotemporal Granularities} \cite{Alipour2019}}\newline
   \begin{itemize}
     \item Vorhersagbarkeit menschlicher Mobilität
     \item Bewegung von \textquote{sit-to-use}-Geräten besser vorhersagbar
@@ -454,6 +456,11 @@
     \item Vorhersagegenauigkeit als Feature in integrierten Modellen
     \item Realistische Modellierung der Netzwerkaktivität ist aktives Forschungsfeld
   \end{itemize}  
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+  \bibliographystyle{plain}
+  \bibliography{sources.bib}
 \end{frame}
 
 \end{document}
