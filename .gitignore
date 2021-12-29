@@ -8,7 +8,6 @@
 *.out
 *.xml
 *.nav
-*.pdf
 *.snm
 *.synctex.gz
 main-blx.bib
